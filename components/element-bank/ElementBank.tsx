@@ -41,7 +41,7 @@ const ElementBank = (props:ElementBankProps) => {
             question:"Type your Question",
             attributes:{
                 styling:{
-                    fontBackground:"#FFFFFF",
+                    fontBackground:"#D1D5DB",
                     fontColor:"#000000"
                 },
                 icon:AiOutlineCodepenCircle,
@@ -53,7 +53,7 @@ const ElementBank = (props:ElementBankProps) => {
             question:"Type your Question",
             attributes:{
                 styling:{
-                    fontBackground:"#FFFFFF",
+                    fontBackground:"#D1D5DB",
                     fontColor:"#000000"
                 },
                 icon:RiCheckboxMultipleLine,

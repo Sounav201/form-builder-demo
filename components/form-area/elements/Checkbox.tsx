@@ -11,11 +11,11 @@ const Checkbox = (props: CheckboxProps) => {
 
     const isSelected = props.isSelected;
     return (
-        <div onClick={() => props.onQuestionSelected() }
- 
-            className={isSelected ? `my-4 pt-8 md:pt-8 mx-auto  w-11/12 relative border-2 border-dotted border-red-400` : `my-4 pt-8 md:pt-8 mx-auto  w-11/12 relative` }
+        <div onClick={() => props.onQuestionSelected()}
+
+            className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto  w-11/12 relative box-border border-2 border-dotted border-red-400` : `my-4 pt-8 pb-2 md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
         >
-            <Stack w={[350, 550, 700, 750]} marginX="auto" maxWidth={800}  >
+            <Stack w={[350, 550, 700]} marginX="auto" maxWidth={800}  >
                 <FormControl w={[350, 500, 600]}>
                     <Question
                         numbering={props.numbering}
@@ -25,10 +25,18 @@ const Checkbox = (props: CheckboxProps) => {
                         onQuestionTextChanged={props.onQuestionTextChanged}
                     />
                     <div className='mt-12'>
-                        {props.attributes.choices.map((choice,index) => (
-                            <div className='my-2 box-border' key={index}>
-                                <input type="checkbox" value={choice.value}  />
-                                <label>{choice.label}</label>
+                        {props.attributes.choices.map((choice, index) => (
+                            <div className='my-2 box-border flex' key={index} >
+                                <input type="checkbox" className='mt-2' value={choice.value} />
+                                <div className='ml-2 text-md' 
+                                contentEditable
+                                    onBlur={(e) => {
+                                        //props.onQuestionTextChanged(e.target.innerText);
+                                        props.onOptionEdit(e.target.innerText,index);
+                                    }}
+                                    defaultValue={choice.label}
+                                    suppressContentEditableWarning={true}
+                                ><label >{choice.label}</label></div>
                             </div>
                         ))}
 

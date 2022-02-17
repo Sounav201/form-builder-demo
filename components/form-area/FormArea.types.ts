@@ -5,6 +5,8 @@ export interface FormAreaProps {
     onQuestionTextChange: (item: FormAreaItem<ElementAttributes>, question: string) => any;
     onDrop: (item: FormAreaItem<ElementAttributes>) => any;
     onItemDelete: (item: FormAreaItem<ElementAttributes>) => any;
+    setshowSidebar:()=> any;
+    onOptionEdit:(item: FormAreaItem<ElementAttributes>,option:string, choiceIndex:number) => any;
   }
   
   
@@ -18,5 +20,7 @@ export interface FormAreaItem<T> {
     onDelete: () => any;
     onQuestionTextChanged: (questionText: string) => any;
     onQuestionSelected: () => any;
+    onOptionEdit:(option:string, choiceIndex:number) => any;
+
   }
   

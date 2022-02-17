@@ -14,7 +14,7 @@ import {
 } from "../services/SessionStorageService";
 import FormArea from '../components/form-area/FormArea';
 import ElementProperties from '../components/element-properties/ElementProperties';
-import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure,Button } from '@chakra-ui/react'
+import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure, Button } from '@chakra-ui/react'
 import Sidebar from '../components/element-properties/Sidebar';
 
 const Home: NextPage = () => {
@@ -22,18 +22,9 @@ const Home: NextPage = () => {
   const [selectedItem, setSelectedItem] = useState(
     null as FormAreaItem<ElementAttributes> | null);
 
-    const [formAreaItems, setFormAreaItems] = useState([] as FormAreaItem<ElementAttributes>[]);
+  const [formAreaItems, setFormAreaItems] = useState([] as FormAreaItem<ElementAttributes>[]);
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
-
-    const handleOpen = () => {
-      onOpen();
-  }
-
-  const handleClose = () => {
-      onClose();
-  }
-
+  const [showSidebar, setshowSidebar] = useState(false);
 
   //Highlight when a question is selected  
   const onQuestionSelected = (item: FormAreaItem<ElementAttributes>) => {
@@ -58,7 +49,7 @@ const Home: NextPage = () => {
           ...oldArray,
           { ...item, id: nanoid(), isSelected: true },
         ];
-       // SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, newArray);
+        // SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, newArray);
         return [...newArray];
       });
     },
@@ -90,8 +81,24 @@ const Home: NextPage = () => {
     });
   };
 
-
-
+  //Allow the user to add Options to their Checkbox or MCQ component
+  const onOptionEdit = (
+    item: FormAreaItem<ElementAttributes>,
+    option: string,
+    choiceIndex: number,
+  ) => {
+    setFormAreaItems((oldArray) => {
+      const index = oldArray.findIndex((i) => i.id === item.id);
+      console.log(typeof(item));
+      if (index !== -1 && item.type == 'checkbox') {
+        const newChoice = { label: option, value: option }
+        oldArray[index].attributes.choices[choiceIndex] = newChoice
+        //console.log(oldArray[index].attributes.choices[choiceIndex])
+      }
+      //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
+      return [...oldArray];
+    });
+  };
 
 
 
@@ -103,46 +110,50 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DndProvider backend={HTML5Backend}>
-      <div className='h-full min-h-screen bg-slate-400'>
-      <div className='grid grid-cols-12 gap-x-4 '>
+        <div className='h-full min-h-screen bg-slate-400'>
+          <div className='grid grid-cols-12 gap-x-4 '>
 
-      {/*Element Bank  */}
-       <div className='col-span-2 box-border'>
-        <ElementBank />
-        
-       </div>
-       {/*Form Area  */}
-       <div className='col-span-8 box-border'>
-       <FormArea
-          items={formAreaItems}
-          onDrop={onFormAreaDrop}
-          onItemDelete={onElementDelete}
-          onQuestionTextChange={onElementQuestionChanged}
-          onQuestionSelected={onQuestionSelected}
-        />
-          
-       </div>
-      {/*Element Properties  */}
-       <div className='col-span-2'>
-       <Sidebar
-          selectedItem={selectedItem}
-          onItemPropertiesChange={(item) => {
-            setFormAreaItems((oldArray) => {
-              const index = oldArray.findIndex((i) => i.id === item.id);
-              if (index !== -1) {
-                oldArray[index].attributes.styling = item.attributes.styling;
-              }
-              //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
-              return [...oldArray];
-            });
-          }}
-          //isSelected={selectedItem.isSelected}
-        />
-        
-       </div>
+            {/*Element Bank  */}
+            <div className='col-span-2 box-border'>
+              <ElementBank />
 
-      </div>
-      </div>
+            </div>
+            {/*Form Area  */}
+            <div className='col-span-8 box-border'>
+              <FormArea
+                items={formAreaItems}
+                onDrop={onFormAreaDrop}
+                onItemDelete={onElementDelete}
+                onQuestionTextChange={onElementQuestionChanged}
+                onQuestionSelected={onQuestionSelected}
+                setshowSidebar={() => { setshowSidebar(true) }}
+                onOptionEdit={onOptionEdit}
+              />
+
+            </div>
+            {/*Element Properties  */}
+            <div className='col-span-2'>
+              <Sidebar
+                selectedItem={selectedItem}
+                onItemPropertiesChange={(item) => {
+                  setFormAreaItems((oldArray) => {
+                    const index = oldArray.findIndex((i) => i.id === item.id);
+                    if (index !== -1) {
+                      oldArray[index].attributes.styling = item.attributes.styling;
+                    }
+                    //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
+                    return [...oldArray];
+                  });
+                }}
+                setshowSidebar={() => { setshowSidebar(false) }}
+                sidebarStatus={showSidebar}
+              //isSelected={selectedItem.isSelected}
+              />
+
+            </div>
+
+          </div>
+        </div>
       </DndProvider>
     </div>
   )

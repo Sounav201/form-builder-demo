@@ -19,7 +19,7 @@ const Question = (props:QuestionProps) => {
           {props.numbering}.
     </div> 
     <div 
-    className='text-lg font-bold flex-1 outline-none '
+    className='text-lg font-bold flex-1 outline-none  w-full '
     contentEditable
     onBlur={(e) => {
         props.onQuestionTextChanged(e.target.innerText);
@@ -33,9 +33,6 @@ const Question = (props:QuestionProps) => {
   >
 
     {props.question}
-    </div>
-    <div className='ml-2'>
-        <Button aria-label='Delete' colorScheme="purple" onClick={props.onDelete}>Delete</Button>
     </div>
 
     

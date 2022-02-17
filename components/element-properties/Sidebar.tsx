@@ -6,7 +6,6 @@ import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure,Button } f
 
 const Sidebar = (props: ElementPropertiesProps) => {
     
-    const [showSidebar, setShowSidebar] = useState(true);
     const [fontColor, setfontColor] = useState(props.selectedItem ? props.selectedItem.attributes.styling.fontColor : "");
     const [fontBackground, setfontBackground] = useState(props.selectedItem ? props.selectedItem.attributes.styling.fontBackground : "");
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,12 +29,13 @@ const Sidebar = (props: ElementPropertiesProps) => {
         //setShowSidebar(false);
         //isSelected = false;
        // setisSelected(false);
+       props.setshowSidebar();
     }
 
 
     return (
         <div>   <div
-            className={`top-0 right-0 w-[20vw] bg-blue-600  p-10 pl-20 text-white fixed h-full z-40  ease-in-out duration-300 ${isSelected && showSidebar ? "translate-x-0 " : "translate-x-full"
+            className={`top-0 right-0 w-[20vw] bg-blue-600  p-10 pl-20 text-white fixed h-full z-40 transition  ease-in-out duration-300 ${isSelected && props.sidebarStatus ? "translate-x-0 " : "translate-x-full"
                 }`}>
 
             <h4 className="mt-20 text-2xl font-semibold text-white">
@@ -75,10 +75,12 @@ const Sidebar = (props: ElementPropertiesProps) => {
 
                         </div>
 
-                {/*Set up a close button mechanism by taking care of the states from the Parent component  */}
-                {/* <Button aria-label='Close' colorScheme={'orange'} onClick={handleClose}>
+                {/*Set up a close button mechanism by taking care of the states from the Parent component -> DONE  */}
+                <div className='my-24'>
+                <Button  aria-label='Close' colorScheme={'orange'} onClick={handleClose}>
                     Close
-                </Button> */}
+                </Button>
+                </div>
 
         </div></div>
     )
