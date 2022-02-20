@@ -81,7 +81,7 @@ const Home: NextPage = () => {
     });
   };
 
-  //Allow the user to add Options to their Checkbox or MCQ component
+  //Allow the user to update Options to their Checkbox or MCQ component
   const onOptionEdit = (
     item: FormAreaItem<ElementAttributes>,
     option: string,
@@ -89,7 +89,7 @@ const Home: NextPage = () => {
   ) => {
     setFormAreaItems((oldArray) => {
       const index = oldArray.findIndex((i) => i.id === item.id);
-      console.log(typeof(item));
+      //console.log(typeof(item));
       if (index !== -1 && item.type == 'checkbox') {
         const newChoice = { label: option, value: option }
         oldArray[index].attributes.choices[choiceIndex] = newChoice
@@ -100,6 +100,28 @@ const Home: NextPage = () => {
     });
   };
 
+  //Allow the user to add Options to their Checkbox or MCQ component
+  const onOptionAdd = (
+    item:FormAreaItem<ElementAttributes>,
+
+  ) => {
+    setFormAreaItems((oldArray) => {
+      const newChoice = {label:"Type an Option" ,value:"Type an Option" }
+
+      const index = oldArray.findIndex((i) => i.id === item.id);
+      if(index!==-1)
+      {
+        //oldArray[index].attributes.choices= [...oldArray[index].attributes.choices, newChoice];
+
+        oldArray[index].attributes.choices.push(newChoice)
+       console.log(oldArray[index]);
+      
+      }
+
+      return [...oldArray]
+    });
+
+  };
 
 
   return (
@@ -128,6 +150,7 @@ const Home: NextPage = () => {
                 onQuestionSelected={onQuestionSelected}
                 setshowSidebar={() => { setshowSidebar(true) }}
                 onOptionEdit={onOptionEdit}
+                onOptionAdd={onOptionAdd}
               />
 
             </div>

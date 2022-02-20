@@ -72,6 +72,7 @@ const FormArea = (props: FormAreaProps) => {
                 }
                 onQuestionSelected={() => props.onQuestionSelected(item)}
                 onOptionEdit={(option,choiceIndex) => props.onOptionEdit(item,option,choiceIndex)}
+                onOptionAdd={() => props.onOptionAdd(item)}
               />
             <div className='mx-2  flex flex-col my-4'>
             <div className='my-2 '>
