@@ -8,6 +8,7 @@ export interface FormAreaProps {
     setshowSidebar:()=> any;
     onOptionEdit:(item: FormAreaItem<ElementAttributes>,option:string, choiceIndex:number) => any;
     onOptionAdd:(item: FormAreaItem<ElementAttributes>) => any;
+    onOptionDelete: (item: FormAreaItem<ElementAttributes>, choiceIndex:number) => any;
   }
   
   
@@ -23,6 +24,7 @@ export interface FormAreaItem<T> {
     onQuestionSelected: () => any;
     onOptionEdit:(option:string, choiceIndex:number) => any;
     onOptionAdd:() => any;
+    onOptionDelete:( choiceIndex:number) => any;
 
   }
   

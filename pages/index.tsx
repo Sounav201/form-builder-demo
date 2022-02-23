@@ -89,11 +89,10 @@ const Home: NextPage = () => {
   ) => {
     setFormAreaItems((oldArray) => {
       const index = oldArray.findIndex((i) => i.id === item.id);
-      //console.log(typeof(item));
       if (index !== -1 && item.type == 'checkbox') {
-        const newChoice = { label: option, value: option }
+        const newChoice = { label: option, value: option , id:oldArray[index].attributes.choices[choiceIndex].id}
         oldArray[index].attributes.choices[choiceIndex] = newChoice
-        //console.log(oldArray[index].attributes.choices[choiceIndex])
+   //     console.log(oldArray[index].attributes.choices[choiceIndex])
       }
       //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
       return [...oldArray];
@@ -106,7 +105,7 @@ const Home: NextPage = () => {
 
   ) => {
     setFormAreaItems((oldArray) => {
-      const newChoice = {label:"Type an Option" ,value:"Type an Option" }
+      const newChoice = {label:"Type an Option" ,value:"Type an Option", id:nanoid() }
 
       const index = oldArray.findIndex((i) => i.id === item.id);
       if(index!==-1)
@@ -114,9 +113,32 @@ const Home: NextPage = () => {
         //oldArray[index].attributes.choices= [...oldArray[index].attributes.choices, newChoice];
 
         oldArray[index].attributes.choices.push(newChoice)
-       console.log(oldArray[index]);
+       //console.log(oldArray[index]);
       
       }
+
+      return [...oldArray]
+    });
+
+  };
+
+  const onOptionDelete = (
+    item:FormAreaItem<ElementAttributes>,
+    choiceIndex: number,
+  ) => {
+    setFormAreaItems((oldArray) => {
+      const index = oldArray.findIndex((i) => i.id === item.id);
+
+      if(index!=-1 && item.type=="checkbox")
+      { 
+        const oldChoices = oldArray[index].attributes.choices;
+        const choiceToDelete = oldChoices[choiceIndex]
+        const newChoices = oldChoices.filter((oldChoice:any)=> oldChoice.id!=choiceToDelete.id)
+
+//        console.log("New choices : ", newChoices);
+        oldArray[index].attributes.choices = newChoices;
+      }
+      
 
       return [...oldArray]
     });
@@ -151,6 +173,7 @@ const Home: NextPage = () => {
                 setshowSidebar={() => { setshowSidebar(true) }}
                 onOptionEdit={onOptionEdit}
                 onOptionAdd={onOptionAdd}
+                onOptionDelete={onOptionDelete}
               />
 
             </div>

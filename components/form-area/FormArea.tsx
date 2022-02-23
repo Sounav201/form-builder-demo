@@ -36,7 +36,7 @@ const FormArea = (props: FormAreaProps) => {
         switch (item.type) {
           case ElementType.SHORT_TEXT:
             return (
-            <li className='list-none box-border flex'>
+            <li key={index} className='list-none box-border flex'>
               <ShortText
                 key={index}
                 {...item}
@@ -61,7 +61,7 @@ const FormArea = (props: FormAreaProps) => {
             );
           case ElementType.CHECKBOX:
             return (
-              <li className='list-none box-border flex'>
+              <li key={index} className='list-none box-border flex'>
               <Checkbox
                 key={index}
                 {...(item as FormAreaItem<CheckboxAttributes>)}
@@ -73,6 +73,7 @@ const FormArea = (props: FormAreaProps) => {
                 onQuestionSelected={() => props.onQuestionSelected(item)}
                 onOptionEdit={(option,choiceIndex) => props.onOptionEdit(item,option,choiceIndex)}
                 onOptionAdd={() => props.onOptionAdd(item)}
+                onOptionDelete={(choiceIndex) => props.onOptionDelete(item,choiceIndex) }
               />
             <div className='mx-2  flex flex-col my-4'>
             <div className='my-2 '>

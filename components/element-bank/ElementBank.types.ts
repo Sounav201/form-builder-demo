@@ -28,6 +28,7 @@ export interface CheckboxAttributes{
     choices:{
         value:string;
         label:string;
+        id:String;
     }[];
 }
 

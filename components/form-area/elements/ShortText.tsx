@@ -17,10 +17,10 @@ const ShortText = (props:ShortTextProps) => {
   return (
     <div 
     onClick={() => props.onQuestionSelected()}
-    className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto  w-11/12 relative box-border border-2 border-dotted border-red-400` : `my-4 pt-8 pb-2 md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative` }
+    className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto  w-11/12 relative box-border border-2 border-dotted border-red-400` : `my-4 pt-8 pb-2 md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
     >
-    <Stack w={[350,550,700]} marginX="auto" maxWidth={800}  >
-       <FormControl w={[350,500,600]}> 
+    <Stack w={[350, 550, 700]} marginX="auto" maxWidth={800}   >
+       <FormControl w={[350, 500, 600]} marginX="auto"> 
         <Question
         numbering={props.numbering}
         styling={props.attributes.styling}
@@ -28,7 +28,7 @@ const ShortText = (props:ShortTextProps) => {
         onDelete={props.onDelete}
         onQuestionTextChanged={props.onQuestionTextChanged}
       />
-      <div className='mt-12'>
+      <div className='mt-12 mb-4'>
 
         <Input w={[350,500,600]} size='lg'   type="text" placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input>
 

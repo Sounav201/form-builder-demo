@@ -14,13 +14,15 @@ const Sidebar = (props: ElementPropertiesProps) => {
         if (props.selectedItem !== null) {
             setfontColor(props.selectedItem.attributes.styling.fontColor);
             setfontBackground(props.selectedItem.attributes.styling.fontBackground);
-            
+            console.log(props.selectedItem);
+            console.log(isSelected);   
         }
 
     }, [props.selectedItem])
 
     if (props.selectedItem === null)
-        return null;
+       {return null;
+       }
 
     
     

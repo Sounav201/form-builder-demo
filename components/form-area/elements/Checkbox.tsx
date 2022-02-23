@@ -28,8 +28,8 @@ const Checkbox = (props: CheckboxProps) => {
                         {props.attributes.choices.map((choice, index) => (
                             <div className='my-2 box-border flex justify-between group-hover:bg-blue-300' key={index} >
                                 <div className='flex'>
-                                <input type="checkbox" className='mt-2 rounded-full' value={choice.value} />
-                                <div className='ml-2 text-md ' 
+                                <input type="checkbox" className='mt-2 rounded-full ' value={choice.value} />
+                                <div className='ml-2 text-md px-1' 
                                 contentEditable
                                     onBlur={(e) => {
                                         props.onOptionEdit(e.target.innerText,index);
@@ -40,7 +40,7 @@ const Checkbox = (props: CheckboxProps) => {
                                 </div>
                                 {/* <Button leftIcon={<AiOutlineClose/>}   size={'xs'} color="#D1D5DB" bg="#D1D5DB" borderColor={'#ccd0d5'}   _hover={{ bg: '#E53E3E' }}></Button> */}
                                 {/*Use Nested Classes   */}
-                                <button className='bg-red-500 rounded-full p-1 hover:bg-red-400 transition duration-300 '><AiOutlineClose /></button>
+                                <button className='bg-red-500 rounded-full p-1 hover:bg-red-400 transition duration-300 'onClick={() => props.onOptionDelete(index)}  ><AiOutlineClose size={18} /></button>
                             </div>
                         ))}
 

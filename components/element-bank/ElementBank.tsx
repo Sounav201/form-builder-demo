@@ -57,7 +57,7 @@ const ElementBank = (props:ElementBankProps) => {
                     fontColor:"#000000"
                 },
                 icon:RiCheckboxMultipleLine,
-                choices:[{label:"Yes",value:"Yes"}, {label:"No", value:"No"}],
+                choices:[{label:"Yes",value:"Yes" ,id:"1"}, {label:"No", value:"No" ,id:"2"}],
             } as CheckboxAttributes,
             displayName:"Checkbox"
         },
