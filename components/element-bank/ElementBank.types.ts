@@ -10,6 +10,10 @@ export enum ElementType {
     CHECKBOX = "checkbox"
 } 
 
+export interface LogicalAttributes{
+    
+}
+
 export interface StylingAttributes {
     fontColor:string;
     fontBackground:string;
@@ -18,11 +22,13 @@ export interface StylingAttributes {
 export type ElementAttributes = ShortTextAttributes | CheckboxAttributes;
 
 export interface ShortTextAttributes{
+    required:Boolean
     styling:StylingAttributes;
     icon:IconType;
 }
 
 export interface CheckboxAttributes{
+    required:Boolean;
     styling:StylingAttributes;
     icon:IconType; 
     choices:{

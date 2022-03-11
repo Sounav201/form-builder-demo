@@ -40,6 +40,7 @@ const ElementBank = (props:ElementBankProps) => {
             type:ElementType.SHORT_TEXT,
             question:"Type your Question",
             attributes:{
+                required:false,
                 styling:{
                     fontBackground:"#D1D5DB",
                     fontColor:"#000000"
@@ -52,6 +53,7 @@ const ElementBank = (props:ElementBankProps) => {
             type:ElementType.CHECKBOX,
             question:"Type your Question",
             attributes:{
+                required:false,
                 styling:{
                     fontBackground:"#D1D5DB",
                     fontColor:"#000000"

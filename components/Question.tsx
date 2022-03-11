@@ -6,6 +6,7 @@ interface QuestionProps {
     numbering: number;
     question: string;
     styling: StylingAttributes;
+    required:Boolean;
     onDelete: () => any;
     onQuestionTextChanged: (questionText: string) => any;
   }
@@ -13,6 +14,8 @@ interface QuestionProps {
   
 
 const Question = (props:QuestionProps) => {
+ 
+ 
   return (
     <div className='my-4 py-2 flex items-center  '>
       <div className='text-md  mr-2'>
@@ -34,6 +37,8 @@ const Question = (props:QuestionProps) => {
 
     {props.question}
     </div>
+{   props.required &&  <span className='ml-2 text-red-700'>*</span>
+}
 
     
 

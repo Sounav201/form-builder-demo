@@ -26,6 +26,22 @@ const Home: NextPage = () => {
 
   const [showSidebar, setshowSidebar] = useState(false);
 
+
+  //Move Form Element
+  const moveItem = useCallback((dragIndex:number, hoverIndex:number) => {
+      setFormAreaItems((oldArray) => {
+        const draggedItem = oldArray[dragIndex];
+        console.log("Dragged Item : " ,draggedItem);
+        const newArray =[...oldArray];
+
+
+        return [...newArray]
+
+      });
+
+  },[])
+
+
   //Highlight when a question is selected  
   const onQuestionSelected = (item: FormAreaItem<ElementAttributes>) => {
     setFormAreaItems((oldArray) => {
@@ -145,6 +161,15 @@ const Home: NextPage = () => {
 
   };
 
+  const moveCard = (dragIndex: number, hoverIndex: number) => {
+    const items: any[] = JSON.parse(JSON.stringify(formAreaItems));
+    const itemToMove = items[dragIndex];
+    items.splice(dragIndex, 1);
+    items.splice(hoverIndex, 0, itemToMove);
+    setFormAreaItems(items);
+  };
+
+
 
   return (
     <div>
@@ -165,6 +190,7 @@ const Home: NextPage = () => {
             {/*Form Area  */}
             <div className='col-span-8 box-border'>
               <FormArea
+                moveCard={moveCard}
                 items={formAreaItems}
                 onDrop={onFormAreaDrop}
                 onItemDelete={onElementDelete}
@@ -174,12 +200,14 @@ const Home: NextPage = () => {
                 onOptionEdit={onOptionEdit}
                 onOptionAdd={onOptionAdd}
                 onOptionDelete={onOptionDelete}
+                moveItem={moveItem}
               />
 
             </div>
             {/*Element Properties  */}
             <div className='col-span-2'>
               <Sidebar
+              
                 selectedItem={selectedItem}
                 onItemPropertiesChange={(item) => {
                   setFormAreaItems((oldArray) => {
