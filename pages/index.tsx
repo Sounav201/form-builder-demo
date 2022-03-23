@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Cookies from "js-cookie";
 import ElementBank from '../components/element-bank/ElementBank'
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -16,20 +17,26 @@ import FormArea from '../components/form-area/FormArea';
 import ElementProperties from '../components/element-properties/ElementProperties';
 import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure, Button } from '@chakra-ui/react'
 import Sidebar from '../components/element-properties/Sidebar';
+import { parseCookies } from '../services/parseCookies';
 
-const Home: NextPage = () => {
+const Home: NextPage = ({initialformAreaItems}:any) => {
 
   const [selectedItem, setSelectedItem] = useState(
     null as FormAreaItem<ElementAttributes> | null);
 
-  const [formAreaItems, setFormAreaItems] = useState([] as FormAreaItem<ElementAttributes>[]);
+  const [formAreaItems, setFormAreaItems] = useState(() =>  JSON.parse(initialformAreaItems) || [] as FormAreaItem<ElementAttributes>[]);
 
   const [showSidebar, setshowSidebar] = useState(false);
+
+  useEffect(() => {
+    Cookies.set("formAreaItems", JSON.stringify(formAreaItems))
+  }, [formAreaItems])
+  
 
 
   //Move Form Element
   const moveItem = useCallback((dragIndex:number, hoverIndex:number) => {
-      setFormAreaItems((oldArray) => {
+      setFormAreaItems((oldArray:any) => {
         const draggedItem = oldArray[dragIndex];
         console.log("Dragged Item : " ,draggedItem);
         const newArray =[...oldArray];
@@ -44,10 +51,10 @@ const Home: NextPage = () => {
 
   //Highlight when a question is selected  
   const onQuestionSelected = (item: FormAreaItem<ElementAttributes>) => {
-    setFormAreaItems((oldArray) => {
-      const index = oldArray.findIndex((i) => i.id === item.id);
+    setFormAreaItems((oldArray:any) => {
+      const index = oldArray.findIndex((i:any) => i.id === item.id);
       if (index !== -1) {
-        oldArray.forEach((item) => (item.isSelected = false));
+        oldArray.forEach((item:any) => (item.isSelected = false));
         oldArray[index].isSelected = true;
       }
       //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
@@ -59,8 +66,8 @@ const Home: NextPage = () => {
   //Drop the form element on to Form Area
   const onFormAreaDrop = useCallback(
     (item: FormAreaItem<ElementAttributes>) => {
-      setFormAreaItems((oldArray) => {
-        oldArray.forEach((item) => (item.isSelected = false));
+      setFormAreaItems((oldArray:any) => {
+        oldArray.forEach((item:any) => (item.isSelected = false));
         const newArray = [
           ...oldArray,
           { ...item, id: nanoid(), isSelected: true },
@@ -74,9 +81,9 @@ const Home: NextPage = () => {
 
   //Remove a form element from Form Area
   const onElementDelete = (item: FormAreaItem<ElementAttributes>) => {
-    setFormAreaItems((oldArray) => {
-      oldArray.forEach((item) => (item.isSelected = false));
-      const newArray = oldArray.filter((oldItem) => oldItem.id !== item.id);
+    setFormAreaItems((oldArray:any) => {
+      oldArray.forEach((item:any) => (item.isSelected = false));
+      const newArray = oldArray.filter((oldItem:any) => oldItem.id !== item.id);
       //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, newArray);
       return [...newArray];
     });
@@ -87,8 +94,8 @@ const Home: NextPage = () => {
     item: FormAreaItem<ElementAttributes>,
     questionText: string
   ) => {
-    setFormAreaItems((oldArray) => {
-      const index = oldArray.findIndex((i) => i.id === item.id);
+    setFormAreaItems((oldArray:any) => {
+      const index = oldArray.findIndex((i:any) => i.id === item.id);
       if (index !== -1) {
         oldArray[index].question = questionText;
       }
@@ -103,8 +110,8 @@ const Home: NextPage = () => {
     option: string,
     choiceIndex: number,
   ) => {
-    setFormAreaItems((oldArray) => {
-      const index = oldArray.findIndex((i) => i.id === item.id);
+    setFormAreaItems((oldArray:any) => {
+      const index = oldArray.findIndex((i:any) => i.id === item.id);
       if (index !== -1 && item.type == 'checkbox') {
         const newChoice = { label: option, value: option , id:oldArray[index].attributes.choices[choiceIndex].id}
         oldArray[index].attributes.choices[choiceIndex] = newChoice
@@ -120,10 +127,10 @@ const Home: NextPage = () => {
     item:FormAreaItem<ElementAttributes>,
 
   ) => {
-    setFormAreaItems((oldArray) => {
+    setFormAreaItems((oldArray:any) => {
       const newChoice = {label:"Type an Option" ,value:"Type an Option", id:nanoid() }
 
-      const index = oldArray.findIndex((i) => i.id === item.id);
+      const index = oldArray.findIndex((i:any) => i.id === item.id);
       if(index!==-1)
       {
         //oldArray[index].attributes.choices= [...oldArray[index].attributes.choices, newChoice];
@@ -142,8 +149,8 @@ const Home: NextPage = () => {
     item:FormAreaItem<ElementAttributes>,
     choiceIndex: number,
   ) => {
-    setFormAreaItems((oldArray) => {
-      const index = oldArray.findIndex((i) => i.id === item.id);
+    setFormAreaItems((oldArray:any) => {
+      const index = oldArray.findIndex((i:any) => i.id === item.id);
 
       if(index!=-1 && item.type=="checkbox")
       { 
@@ -232,5 +239,14 @@ const Home: NextPage = () => {
     </div>
   )
 }
+
+Home.getInitialProps = ({req}:any ) => {
+
+  const cookies = parseCookies(req);
+
+  return {initialformAreaItems: cookies.formAreaItems};
+
+  
+};
 
 export default Home
