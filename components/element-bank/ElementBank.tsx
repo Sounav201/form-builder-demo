@@ -6,12 +6,14 @@ import {
     ElementType,
     FormElement,
     ShortTextAttributes,
+    LongTextAttributes,
   } from "./ElementBank.types";
 import {AiFillPlusCircle} from 'react-icons/ai'
 import { useDisclosure } from '@chakra-ui/react'
 import {Drawer,DrawerBody,DrawerFooter,DrawerHeader,DrawerOverlay,DrawerContent,DrawerCloseButton} from '@chakra-ui/react'
 import Element from "./Element";
 import {AiOutlineArrowDown,AiOutlineCopy, AiOutlineDown,AiOutlineCodepenCircle,AiFillStar,AiOutlinePlus} from 'react-icons/ai'
+import {BsTextareaResize} from "react-icons/bs";
 import {FcRating} from "react-icons/fc"
 import {FiUpload} from "react-icons/fi"
 import {RiCheckboxMultipleLine} from "react-icons/ri"
@@ -62,6 +64,19 @@ const ElementBank = (props:ElementBankProps) => {
                 choices:[{label:"Yes",value:"Yes" ,id:"1"}, {label:"No", value:"No" ,id:"2"}],
             } as CheckboxAttributes,
             displayName:"Checkbox"
+        },
+        {
+            type:ElementType.LONG_TEXT,
+            question:"Type your Question",
+            attributes:{
+                required:false,
+                styling:{
+                    fontBackground:"#D1D5DB",
+                    fontColor:"#000000"
+                },
+                icon:BsTextareaResize,
+            } as LongTextAttributes,
+            displayName:"Long Text",
         },
 
     ];

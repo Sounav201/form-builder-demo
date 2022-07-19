@@ -7,7 +7,10 @@ export interface ElementBankProps extends HTMLAttributes<any>{
 
 export enum ElementType {
     SHORT_TEXT = "shorttext",
-    CHECKBOX = "checkbox"
+    CHECKBOX = "checkbox",
+    LONG_TEXT = "longtext",
+    RATING = "rating",
+    FILE_UPLOAD = "fileupload"
 } 
 
 export interface LogicalAttributes{
@@ -21,12 +24,14 @@ export interface StylingAttributes {
 
 export type ElementAttributes = ShortTextAttributes | CheckboxAttributes;
 
+//Default structure of Shorttext element
 export interface ShortTextAttributes{
     required:Boolean
     styling:StylingAttributes;
     icon:IconType;
 }
 
+//Default structure of Checkbox element
 export interface CheckboxAttributes{
     required:Boolean;
     styling:StylingAttributes;
@@ -36,6 +41,13 @@ export interface CheckboxAttributes{
         label:string;
         id:String;
     }[];
+}
+
+export interface LongTextAttributes{
+    required:Boolean
+    styling:StylingAttributes;
+    icon:IconType;
+
 }
 
 //Default structure of any form element

@@ -24,12 +24,12 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
   const [selectedItem, setSelectedItem] = useState(
     null as FormAreaItem<ElementAttributes> | null);
 
-  const [formAreaItems, setFormAreaItems] = useState(() =>  JSON.parse(initialformAreaItems) || [] as FormAreaItem<ElementAttributes>[]);
+  const [formAreaItems, setFormAreaItems] = useState( () =>  initialformAreaItems!= undefined && JSON.parse(initialformAreaItems) || [] as FormAreaItem<ElementAttributes>[]);
 
   const [showSidebar, setshowSidebar] = useState(false);
 
   useEffect(() => {
-    Cookies.set("formAreaItems", JSON.stringify(formAreaItems))
+   // Cookies.set("formAreaItems", JSON.stringify(formAreaItems))
   }, [formAreaItems])
   
 
@@ -214,11 +214,11 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
             {/*Element Properties  */}
             <div className='col-span-2'>
               <Sidebar
-              
+                
                 selectedItem={selectedItem}
                 onItemPropertiesChange={(item) => {
-                  setFormAreaItems((oldArray) => {
-                    const index = oldArray.findIndex((i) => i.id === item.id);
+                  setFormAreaItems((oldArray:any) => {
+                    const index = oldArray.findIndex((i:any) => i.id === item.id);
                     if (index !== -1) {
                       oldArray[index].attributes.styling = item.attributes.styling;
                     }
