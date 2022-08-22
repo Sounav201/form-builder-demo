@@ -42,7 +42,7 @@ export interface CheckboxAttributes{
         id:String;
     }[];
 }
-
+//Default structure of Longtext element
 export interface LongTextAttributes{
     required:Boolean
     styling:StylingAttributes;
