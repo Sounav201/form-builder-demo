@@ -7,6 +7,7 @@ import {
     FormElement,
     ShortTextAttributes,
     LongTextAttributes,
+    RatingAttributes,
   } from "./ElementBank.types";
 import {AiFillPlusCircle} from 'react-icons/ai'
 import { useDisclosure } from '@chakra-ui/react'
@@ -27,6 +28,7 @@ const ElementBank = (props:ElementBankProps) => {
     const [panelStatus, setpanelStatus] = useState(true)
  
     const handleOpen = () => {
+//        console.log('Sidebar panel opens!')
         setpanelStatus(false)
         onOpen();
     }
@@ -78,7 +80,25 @@ const ElementBank = (props:ElementBankProps) => {
             } as LongTextAttributes,
             displayName:"Long Text",
         },
+        
 
+        {
+            type:ElementType.RATING,
+            question:"Type your Question",
+            attributes:{
+                required:false,
+                styling:{
+                    fontBackground:"#D1D5DB",
+                    fontColor:"#000000",
+                    hoverColor:"#c31432",
+                },
+                icon:FcRating,
+                limit:5,
+                emoji:"Star"
+            } as RatingAttributes,
+            displayName:"Rating",
+        },
+        
     ];
 
 

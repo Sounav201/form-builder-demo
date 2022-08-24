@@ -30,12 +30,15 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
 
   useEffect(() => {
    // Cookies.set("formAreaItems", JSON.stringify(formAreaItems))
+  //console.log('State of form : ', formAreaItems);
   }, [formAreaItems])
   
 
 
+
   //Move Form Element
   const moveItem = useCallback((dragIndex:number, hoverIndex:number) => {
+   // console.log("Move ITEMS ");
       setFormAreaItems((oldArray:any) => {
         const draggedItem = oldArray[dragIndex];
         console.log("Dragged Item : " ,draggedItem);
@@ -51,6 +54,7 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
 
   //Highlight when a question is selected  
   const onQuestionSelected = (item: FormAreaItem<ElementAttributes>) => {
+    //console.log("Highlight question");
     setFormAreaItems((oldArray:any) => {
       const index = oldArray.findIndex((i:any) => i.id === item.id);
       if (index !== -1) {

@@ -9,10 +9,16 @@ const ElementProperties = (props: ElementPropertiesProps) => {
     const [fontColor, setfontColor] = useState(props.selectedItem ? props.selectedItem.attributes.styling.fontColor : "");
     const [fontBackground, setfontBackground] = useState(props.selectedItem ? props.selectedItem.attributes.styling.fontBackground : "");
     const [shouldOpen, setshouldOpen ] = useState(props.selectedItem == null? false : true)
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [ratingType, setratingType] = useState("")
     
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    console.log("ELEMENT PROPERTIES SIDEBAR OPEN!");
+    console.log('Element Properties : ', props.selectedItem);
+    alert(props.selectedItem);
+
     useEffect(() => {
         if (props.selectedItem !== null) {
+            console.log('Element : ', props.selectedItem)
             setfontColor(props.selectedItem.attributes.styling.fontColor);
             setfontBackground(props.selectedItem.attributes.styling.fontBackground);
             

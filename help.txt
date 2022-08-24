@@ -1,0 +1,19 @@
+This is a short guide to as how to create a form element.
+
+Step 1 : Go to ElementBank.types and add attributes for your Element. You may extend the generic Form element attributes 
+like Question ,required and so on. Also add Styling for your element (Styling attributes) and give a name to your element in the 
+enumType
+
+Step 2 : Create the Element UI in the elements directory. Declare an interface to pass the Props for your element 
+and extend the FormAreaItem interface. Make sure to add the necessary props in the FormAreaItem interface if necessary. 
+FormAreaItem (FormAreaItem<T>) takes a default argument T which is a template for the type of attribute you want to pass in be 
+it Checkbox Attributes or Rating Attributes. 
+The specific attributes can be accessed inside your UI by props.attributes.<specific attribute>
+
+Step 3 : Again add the Element into the elements array in ElementBank with the necessary attributes imported from ElementBank.types
+
+Step 4 : Time to put the Element into test. Import the element into FormArea.tsx and based on the appropriate condition plug it in the switch statement. 
+Make sure it follows the necessary convention and pass all the required props. 
+
+
+Bingo!

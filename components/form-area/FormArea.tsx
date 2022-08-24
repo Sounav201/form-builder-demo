@@ -1,19 +1,21 @@
 import React from 'react'
 import { useDrop } from "react-dnd";
 import { FormAreaItem, FormAreaProps } from "./FormArea.types";
-import { FiPlusCircle ,FiSettings} from "react-icons/fi"
+import { FiPlusCircle, FiSettings } from "react-icons/fi"
 import { useCallback, useRef, useState } from "react";
-import {ImBin} from "react-icons/im";
+import { ImBin } from "react-icons/im";
 import ShortText from "./elements/ShortText";
 import {
   CheckboxAttributes,
   ElementAttributes,
   ElementType,
+  RatingAttributes,
 } from "../element-bank/ElementBank.types";
 import Checkbox from "./elements/Checkbox";
 import { Button } from '@chakra-ui/react';
 import FormElement from './FormElement';
 import LongText from './elements/LongText';
+import Rating from './elements/Rating';
 
 
 const FormArea = (props: FormAreaProps) => {
@@ -64,14 +66,14 @@ const FormArea = (props: FormAreaProps) => {
 
                         />
                         <div className='mx-2 flex flex-col my-4'>
-                        <div className='my-2'>
-                              <Button aria-label='Delete' leftIcon={<ImBin />}  colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
-                              {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+                          <div className='my-2'>
+                            <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                            {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
 
-                            </div>
-                            <div className='my-2'>
-                              <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
-                            </div>
+                          </div>
+                          <div className='my-2'>
+                            <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                          </div>
 
                         </div>
                       </FormElement>
@@ -96,52 +98,84 @@ const FormArea = (props: FormAreaProps) => {
                         onOptionDelete={(choiceIndex) => props.onOptionDelete(item, choiceIndex)}
                       />
                       <div className='mx-2  flex flex-col my-4'>
-                      <div className='my-2'>
-                              <Button aria-label='Delete' leftIcon={<ImBin />}  colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
-                              {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+                        <div className='my-2'>
+                          <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                          {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
 
-                            </div>
-                            <div className='my-2'>
-                              <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
-                            </div>
+                        </div>
+                        <div className='my-2'>
+                          <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                        </div>
 
                       </div>
 
                     </li>
                   );
-                  case ElementType.LONG_TEXT:
-                    return (
-                      <li key={index} className='list-none box-border flex'>
-                        <FormElement>
-                          
-                          <LongText
-                            key={index}
-                            {...item}
-                            index={index}
-                            numbering={index + 1}
-                            moveCard={props.moveCard}
-                            onDelete={() => props.onItemDelete(item)}
-                            onQuestionTextChanged={(questionText) =>
-                              props.onQuestionTextChange(item, questionText)
-                            }
-                            onQuestionSelected={() => props.onQuestionSelected(item)}
-  
-                          />
-                          <div className='mx-2 flex flex-col my-4'>
-                            <div className='my-2'>
-                              <Button aria-label='Delete' leftIcon={<ImBin />}  colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
-                              {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+                case ElementType.LONG_TEXT:
+                  return (
+                    <li key={index} className='list-none box-border flex'>
+                      <FormElement>
 
-                            </div>
-                            <div className='my-2'>
-                              <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
-                            </div>
-  
+                        <LongText
+                          key={index}
+                          {...item}
+                          index={index}
+                          numbering={index + 1}
+                          moveCard={props.moveCard}
+                          onDelete={() => props.onItemDelete(item)}
+                          onQuestionTextChanged={(questionText) =>
+                            props.onQuestionTextChange(item, questionText)
+                          }
+                          onQuestionSelected={() => props.onQuestionSelected(item)}
+
+                        />
+                        <div className='mx-2 flex flex-col my-4'>
+                          <div className='my-2'>
+                            <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                            {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+
                           </div>
-                        </FormElement>
-                      </li>
-                    );
-  
+                          <div className='my-2'>
+                            <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                          </div>
+
+                        </div>
+                      </FormElement>
+                    </li>
+                  );
+
+                case ElementType.RATING:
+                  return (
+                    <li key={index} className='list-none box-border flex'>
+                      <FormElement>
+                        <Rating
+                          key={index}
+                          {...(item as FormAreaItem<RatingAttributes>)}
+                          index={index}
+                          numbering={index + 1}
+                          moveCard={props.moveCard}
+                          onDelete={() => props.onItemDelete(item)}
+                          onQuestionTextChanged={(questionText) =>
+                            props.onQuestionTextChange(item, questionText)
+                          }
+                          onQuestionSelected={() => props.onQuestionSelected(item)}
+
+                        />
+
+                        <div className='mx-2 flex flex-col my-4'>
+                          <div className='my-2'>
+                            <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                            {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+                          </div>
+                          <div className='my-2'>
+                            <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                          </div>
+                        </div>
+                      </FormElement>
+
+                    </li>
+                  )
+
 
               }
             })}

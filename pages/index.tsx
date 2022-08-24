@@ -8,7 +8,12 @@ const Home: NextPage = () => {
  
   const [email, setEmail] = useState("")
   const [password, setpassword] = useState("")
+  console.log("Hello there ")
  
+  const handleLogin =() => {
+    console.log('Login clicked!');
+
+  }
   return (
     <div className='bg-slate-900 h-auto  '>
       <Head>
@@ -82,7 +87,7 @@ const Home: NextPage = () => {
         </div>
 
         <div>
-          <button
+          <button onClick={handleLogin} type="button"
             className="w-full rounded-full bg-sky-500 dark:bg-sky-400 h-11 flex items-center justify-center px-6 py-3 transition hover:bg-sky-600 focus:bg-sky-600 active:bg-sky-800"
           >
             <span className="text-base font-semibold text-white dark:text-gray-900">Login</span>
