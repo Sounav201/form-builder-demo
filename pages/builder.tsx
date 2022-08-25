@@ -190,7 +190,7 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DndProvider backend={HTML5Backend}>
-        <div className='h-full min-h-screen bg-slate-400'>
+        <div className='h-full min-h-screen bg-slate-800'>
           <div className='grid grid-cols-12 gap-x-4 '>
 
             {/*Element Bank  */}
