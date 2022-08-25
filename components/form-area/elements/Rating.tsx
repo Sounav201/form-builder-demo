@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useDrag, useDrop, XYCoord } from "react-dnd";
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import { RatingAttributes } from "../../element-bank/ElementBank.types";
 import Question from "../../Question";
 import { FormAreaItem,DragItem } from "../FormArea.types";
@@ -17,13 +17,16 @@ const Rating = (props:RatingProps) => {
     const isSelected = props.isSelected;
     const [rating,setRating] = useState(null);
     const [hover,setHover] = useState(null);
-    
+    const [ratingElement,setratingElement] = useState(props.attributes.emoji ? props.attributes.emoji : "Star")    
     let blockColor = props.attributes.styling.fontColor || "#e4e5e9"
     let hoverColor = props.attributes.styling.hoverColor || "#c31432"
-
-
-
     const rateLimit = props.attributes.limit? props.attributes.limit : 5;
+
+    useEffect(() => {
+      console.log('Selected rating element : ', ratingElement);
+    }, [ratingElement,isSelected])
+    
+
     const choiceOfElement = props.attributes.emoji;
     
 

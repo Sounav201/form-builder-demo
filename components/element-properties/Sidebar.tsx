@@ -18,9 +18,10 @@ const Sidebar = (props: ElementPropertiesProps) => {
     useEffect(() => {
         if (props.selectedItem !== null) {
             console.log("Element : ", props.selectedItem)
-            console.log("Rating type : ", ratingType)
             if(props.selectedItem.type == "rating")
             {
+                //console.log("Rating type : ", ratingType)
+
                 setratingType("Star")
             }
             else{
@@ -111,7 +112,13 @@ const Sidebar = (props: ElementPropertiesProps) => {
                     <label className='font-medium '>Rating type</label>
                     <Select bg='tomato' borderColor='tomato'
                     color='black' placeholder='Select option' onChange={(e) => {
-                        console.log(e.target.value);
+                        //console.log(e.target.value);
+                        setratingType(e.target.value);
+                        if(props.selectedItem!==null)
+                        {
+                            (props.selectedItem.attributes as RatingAttributes).emoji = e.target.value;
+                            props.onItemPropertiesChange(props.selectedItem);
+                        }
                     }}>
                         <option className='bg-purple-500 text-yellow-800' value='Star'>Star </option>
                         <option value='Heart'>Heart</option>

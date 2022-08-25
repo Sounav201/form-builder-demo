@@ -6,7 +6,7 @@ import ElementBank from '../components/element-bank/ElementBank'
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { FormAreaItem } from "../components/form-area/FormArea.types";
-import { ElementAttributes } from "../components/element-bank/ElementBank.types";
+import { ElementAttributes, RatingAttributes } from "../components/element-bank/ElementBank.types";
 import { useCallback, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import {
@@ -223,8 +223,12 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
                 onItemPropertiesChange={(item) => {
                   setFormAreaItems((oldArray:any) => {
                     const index = oldArray.findIndex((i:any) => i.id === item.id);
+                  
                     if (index !== -1) {
-                      oldArray[index].attributes.styling = item.attributes.styling;
+                      if(item.type !="rating")
+                        oldArray[index].attributes.styling = item.attributes.styling;
+                      else if(item.type == "rating")
+                        (oldArray[index].attributes as RatingAttributes).emoji = (item.attributes as RatingAttributes).emoji; 
                     }
                     //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
                     return [...oldArray];
