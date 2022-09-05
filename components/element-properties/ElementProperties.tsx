@@ -7,7 +7,6 @@ import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure,Button } f
 const ElementProperties = (props: ElementPropertiesProps) => {
 
     const [fontColor, setfontColor] = useState(props.selectedItem ? props.selectedItem.attributes.styling.fontColor : "");
-    const [fontBackground, setfontBackground] = useState(props.selectedItem ? props.selectedItem.attributes.styling.fontBackground : "");
     const [shouldOpen, setshouldOpen ] = useState(props.selectedItem == null? false : true)
     const [ratingType, setratingType] = useState("")
     
@@ -20,7 +19,6 @@ const ElementProperties = (props: ElementPropertiesProps) => {
         if (props.selectedItem !== null) {
             console.log('Element : ', props.selectedItem)
             setfontColor(props.selectedItem.attributes.styling.fontColor);
-            setfontBackground(props.selectedItem.attributes.styling.fontBackground);
             
         }
 
@@ -58,24 +56,6 @@ const ElementProperties = (props: ElementPropertiesProps) => {
                             />
 
                         </div>
-                        <div className='my-4 py-2 flex flex-col'>
-                            <label>Text Background Color</label>
-                            <input
-                                type="color"
-                                value={fontBackground}
-                                onChange={(e) => {
-                                    console.log(e);
-                                    setfontBackground(e.target.value);
-                                    if (props.selectedItem !== null) {
-                                        props.selectedItem.attributes.styling.fontBackground =
-                                            e.target.value;
-                                        props.onItemPropertiesChange(props.selectedItem);
-                                    }
-                                }}
-                            />
-
-                        </div>
-
 
 
                     </DrawerBody>
