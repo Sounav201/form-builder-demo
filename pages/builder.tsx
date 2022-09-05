@@ -198,6 +198,7 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
       'Preview feature still under progress. We thank you for your patience 😊',
       'success'
     )
+    console.log('Preview state of Form Area : ', formAreaItems);
   }
   }
 
