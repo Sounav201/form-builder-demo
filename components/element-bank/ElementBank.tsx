@@ -91,6 +91,7 @@ const ElementBank = (props:ElementBankProps) => {
                     fontBackground:"#D1D5DB",
                     fontColor:"#000000",
                     hoverColor:"#c31432",
+                    fillColor: "#000000"
                 },
                 icon:FcRating,
                 limit:5,

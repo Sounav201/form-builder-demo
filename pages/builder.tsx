@@ -228,7 +228,12 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
                       if(item.type !="rating")
                         oldArray[index].attributes.styling = item.attributes.styling;
                       else if(item.type == "rating")
+                      {  
                         (oldArray[index].attributes as RatingAttributes).emoji = (item.attributes as RatingAttributes).emoji; 
+                        (oldArray[index].attributes as RatingAttributes).styling.fillColor = (item.attributes as RatingAttributes).styling.fillColor; 
+                        (oldArray[index].attributes as RatingAttributes).styling.hoverColor = (item.attributes as RatingAttributes).styling.hoverColor; 
+
+                      }
                     }
                     //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
                     return [...oldArray];

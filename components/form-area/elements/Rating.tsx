@@ -18,7 +18,7 @@ const Rating = (props:RatingProps) => {
     const [rating,setRating] = useState(null);
     const [hover,setHover] = useState(null);
     const [ratingElement,setratingElement] = useState(props.attributes.emoji ? props.attributes.emoji : "Star")    
-    let blockColor = props.attributes.styling.fontColor || "#e4e5e9"
+    let blockColor = props.attributes.styling.fillColor || "#e4e5e9"
     let hoverColor = props.attributes.styling.hoverColor || "#c31432"
     const rateLimit = props.attributes.limit? props.attributes.limit : 5;
 

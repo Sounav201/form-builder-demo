@@ -13,8 +13,8 @@ const Sidebar = (props: ElementPropertiesProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isSelected, setisSelected] = useState(props.selectedItem ? props.selectedItem.isSelected : true)
     const [ratingType, setratingType] = useState(props.selectedItem !=null ?  props.selectedItem.type == "rating" ?  (props.selectedItem.attributes as RatingAttributes).emoji : "" : "")
-
-
+    const [ratingfillColor,setratingfillColor] = useState(props.selectedItem !=null ?  props.selectedItem.type == "rating" ?  (props.selectedItem.attributes as RatingAttributes).styling.fillColor : "#000000" : "#000000")
+    const [ratinghoverColor, setratinghoverColor] = useState(props.selectedItem !=null ?  props.selectedItem.type == "rating" ?  (props.selectedItem.attributes as RatingAttributes).styling.hoverColor : "#c31432" : "#c31432")
     useEffect(() => {
         if (props.selectedItem !== null) {
             console.log("Element : ", props.selectedItem)
@@ -23,6 +23,8 @@ const Sidebar = (props: ElementPropertiesProps) => {
                 //console.log("Rating type : ", ratingType)
 
                 setratingType("Star")
+                setratingfillColor((props.selectedItem.attributes as RatingAttributes).styling.fillColor)
+                setratinghoverColor((props.selectedItem.attributes as RatingAttributes).styling.hoverColor)
             }
             else{
                 setratingType("")
@@ -107,6 +109,45 @@ const Sidebar = (props: ElementPropertiesProps) => {
                 />
 
             </div>
+            {ratingType.length> 0 && (
+                <div className='my-2 py-2 flex flex-col'>
+                    <label className='font-medium'>Block Color</label>
+                    <input 
+                        className='rounded-md my-1'
+                        type="color"
+                        value={ratingfillColor}
+                        onChange = {(e) => {
+                            setratingfillColor(e.target.value);
+                            if(props.selectedItem !== null)
+                            {
+                                (props.selectedItem.attributes as RatingAttributes).styling.fillColor = e.target.value;
+                                props.onItemPropertiesChange(props.selectedItem);
+                            }
+                        }}
+
+                         />
+                </div>
+            )}
+              {ratingType.length> 0 && (
+                <div className='my-2 py-2 flex flex-col'>
+                    <label className='font-medium'>Fill Color</label>
+                    <input 
+                        className='rounded-md my-1'
+                        type="color"
+                        value={ratinghoverColor}
+                        onChange = {(e) => {
+                            setratingfillColor(e.target.value);
+                            if(props.selectedItem !== null)
+                            {
+                                (props.selectedItem.attributes as RatingAttributes).styling.hoverColor = e.target.value;
+                                props.onItemPropertiesChange(props.selectedItem);
+                            }
+                        }}
+
+                         />
+                </div>
+            )}
+
             {ratingType.length > 0 && (
                 <div className='my-2 py-2 flex flex-col'>
                     <label className='font-medium '>Rating type</label>

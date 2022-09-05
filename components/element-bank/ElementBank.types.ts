@@ -24,6 +24,7 @@ export interface StylingAttributes {
 }
 export interface RatingStyleAttributes extends StylingAttributes{
     hoverColor:string;
+    fillColor:string;
 }
 
 export type ElementAttributes = ShortTextAttributes | CheckboxAttributes | RatingAttributes;
