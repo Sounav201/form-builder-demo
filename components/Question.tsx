@@ -31,7 +31,6 @@ const Question = (props:QuestionProps) => {
     suppressContentEditableWarning={true}
     style={{
         color: props.styling.fontColor,
-        backgroundColor: props.styling.fontBackground,
     }}
   >
 

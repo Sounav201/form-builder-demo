@@ -5,7 +5,7 @@ import { CheckboxAttributes } from "../../element-bank/ElementBank.types";
 import Question from "../../Question";
 import { DragItem, FormAreaItem } from "../FormArea.types";
 import Image from 'next/image'
-import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, Stack, Box, Button } from '@chakra-ui/react'
+import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, Stack, Box, Button  } from '@chakra-ui/react'
 import {AiOutlineClose} from 'react-icons/ai';
 interface CheckboxProps extends FormAreaItem<CheckboxAttributes> { }
 //Need to put isSelected boolean 
@@ -118,7 +118,7 @@ const Checkbox = (props: CheckboxProps) => {
                         {props.attributes.choices.map((choice, index) => (
                             <div className='my-2 box-border flex justify-between group-hover:bg-blue-300' key={index} >
                                 <div className='flex'>
-                                <input type="checkbox" className='mt-2 rounded-full ' value={choice.value} />
+                                <input type="checkbox" className='mt-2 mx-auto rounded-full  ' value={choice.value} />
                                 <div className='ml-2 text-md px-1' 
                                 contentEditable
                                     onBlur={(e) => {

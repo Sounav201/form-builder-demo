@@ -18,6 +18,7 @@ import ElementProperties from '../components/element-properties/ElementPropertie
 import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure, Button } from '@chakra-ui/react'
 import Sidebar from '../components/element-properties/Sidebar';
 import { parseCookies } from '../services/parseCookies';
+import Swal from 'sweetalert2'
 
 const Home: NextPage = ({initialformAreaItems}:any) => {
 
@@ -180,6 +181,26 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
     setFormAreaItems(items);
   };
 
+  const handlePreviewClick = () => {
+    
+    //Check if formArea has any elements
+    if(formAreaItems.length==0){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Your form has no elements!',
+      
+    })
+  }
+  else{
+    Swal.fire(
+      'Hold on!',
+      'Preview feature still under progress. We thank you for your patience 😊',
+      'success'
+    )
+  }
+  }
+
 
 
   return (
@@ -191,6 +212,10 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
       </Head>
       <DndProvider backend={HTML5Backend}>
         <div className='h-full min-h-screen bg-slate-800'>
+        <div className="bg-black fixed right-8 top-6">
+            <button className="bg-gradient-to-r text-white from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>Preview</button>
+            
+        </div>
           <div className='grid grid-cols-12 gap-x-4 '>
 
             {/*Element Bank  */}

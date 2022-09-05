@@ -8,13 +8,13 @@ const Sidebar = (props: ElementPropertiesProps) => {
 
 
     const [fontColor, setfontColor] = useState(props.selectedItem ? props.selectedItem.attributes.styling.fontColor : "");
-    const [fontBackground, setfontBackground] = useState(props.selectedItem ? props.selectedItem.attributes.styling.fontBackground : "");
     const [isRequired, setisRequired] = useState(props.selectedItem ? props.selectedItem.attributes.required : false);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isSelected, setisSelected] = useState(props.selectedItem ? props.selectedItem.isSelected : true)
     const [ratingType, setratingType] = useState(props.selectedItem !=null ?  props.selectedItem.type == "rating" ?  (props.selectedItem.attributes as RatingAttributes).emoji : "" : "")
     const [ratingfillColor,setratingfillColor] = useState(props.selectedItem !=null ?  props.selectedItem.type == "rating" ?  (props.selectedItem.attributes as RatingAttributes).styling.fillColor : "#000000" : "#000000")
     const [ratinghoverColor, setratinghoverColor] = useState(props.selectedItem !=null ?  props.selectedItem.type == "rating" ?  (props.selectedItem.attributes as RatingAttributes).styling.hoverColor : "#c31432" : "#c31432")
+
     useEffect(() => {
         if (props.selectedItem !== null) {
             console.log("Element : ", props.selectedItem)
@@ -30,7 +30,6 @@ const Sidebar = (props: ElementPropertiesProps) => {
                 setratingType("")
             }
             setfontColor(props.selectedItem.attributes.styling.fontColor);
-            setfontBackground(props.selectedItem.attributes.styling.fontBackground);
             setisRequired(props.selectedItem.attributes.required);
 
         }
@@ -92,23 +91,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
                 />
 
             </div>
-            <div className='my-4 py-2 flex flex-col'>
-                <label className='font-medium '> Text Background Color</label>
-                <input
-                    className='rounded-md my-1'
-                    type="color"
-                    value={fontBackground}
-                    onChange={(e) => {
-                        setfontBackground(e.target.value);
-                        if (props.selectedItem !== null) {
-                            props.selectedItem.attributes.styling.fontBackground =
-                                e.target.value;
-                            props.onItemPropertiesChange(props.selectedItem);
-                        }
-                    }}
-                />
-
-            </div>
+    
             {ratingType.length> 0 && (
                 <div className='my-2 py-2 flex flex-col'>
                     <label className='font-medium'>Block Color</label>

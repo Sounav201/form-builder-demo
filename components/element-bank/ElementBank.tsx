@@ -46,7 +46,6 @@ const ElementBank = (props:ElementBankProps) => {
             attributes:{
                 required:false,
                 styling:{
-                    fontBackground:"#D1D5DB",
                     fontColor:"#000000"
                 },
                 icon:AiOutlineCodepenCircle,
@@ -59,7 +58,6 @@ const ElementBank = (props:ElementBankProps) => {
             attributes:{
                 required:false,
                 styling:{
-                    fontBackground:"#D1D5DB",
                     fontColor:"#000000"
                 },
                 icon:RiCheckboxMultipleLine,
@@ -73,7 +71,6 @@ const ElementBank = (props:ElementBankProps) => {
             attributes:{
                 required:false,
                 styling:{
-                    fontBackground:"#D1D5DB",
                     fontColor:"#000000"
                 },
                 icon:BsTextareaResize,
@@ -88,7 +85,6 @@ const ElementBank = (props:ElementBankProps) => {
             attributes:{
                 required:false,
                 styling:{
-                    fontBackground:"#D1D5DB",
                     fontColor:"#000000",
                     hoverColor:"#c31432",
                     fillColor: "#000000"

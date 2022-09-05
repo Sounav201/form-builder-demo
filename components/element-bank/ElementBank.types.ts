@@ -20,7 +20,6 @@ export interface LogicalAttributes{
 
 export interface StylingAttributes {
     fontColor:string;
-    fontBackground:string;
 }
 export interface RatingStyleAttributes extends StylingAttributes{
     hoverColor:string;
