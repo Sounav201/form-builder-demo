@@ -31,7 +31,7 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
 
   useEffect(() => {
    // Cookies.set("formAreaItems", JSON.stringify(formAreaItems))
-  //console.log('State of form : ', formAreaItems);
+  console.log('State of form : ', formAreaItems);
   }, [formAreaItems])
   
 
