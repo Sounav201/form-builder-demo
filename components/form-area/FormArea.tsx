@@ -39,9 +39,9 @@ const FormArea = (props: FormAreaProps) => {
   return (
     <div>
 
-      <div className='relative m-auto mt-16 w-full h-auto min-w-fit min-h-fit  bg-gray-800 flex justify-center'>
+      <div className='relative m-auto mt-16 w-full h-auto min-w-fit min-h-fit  bg-transparent flex justify-center'>
 
-        <div className='w-5/6 lg:px-24 max-w-fit  mt-16 overflow-visible mx-auto mb-12 bg-slate-300 rounded-md flex flex-col justify-center'>
+        <div  className='w-11/12 lg:px-24   mt-16 overflow-visible mx-auto mb-12 bg-slate-300  rounded-md flex flex-col justify-center'>
 
           <ul className={props.items.length > 0 ? 'py-32 relative m-0 flex flex-col items-start text-xl list-none    ' : 'py-32 relative m-0 flex items-start text-xl list-none    '}
             ref={drop}>

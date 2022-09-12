@@ -7,33 +7,45 @@ const preview = () => {
     const [form, setform] = useState([
         {
             "type": "shorttext",
-            "question": "What is your name?",
-            "attributes": {
-                "required": true,
-                "styling": {
-                    "fontColor": "#000000"
-                }
-            },
-            "id": "UHGSBlcgJMMbxucWgeaKo",
-            "isSelected": true
-        },
-        {
-            "type": "longtext",
-            "question": "How was your placement experience?",
+            "question": "Question 1",
             "attributes": {
                 "required": false,
                 "styling": {
                     "fontColor": "#000000"
                 }
             },
-            "id": "W8ReUaWkCD64CgFiVbsT8",
+            "id": "Gvu7PVA6XXHaj2vfEO4oq",
+            "isSelected": false
+        },
+        {
+            "type": "longtext",
+            "question": "Question 2",
+            "attributes": {
+                "required": false,
+                "styling": {
+                    "fontColor": "#000000"
+                }
+            },
+            "id": "U0SiGfRzWkostHSJluYSU",
+            "isSelected": true
+        },
+        {
+            "type": "shorttext",
+            "question": "Question 3",
+            "attributes": {
+                "required": false,
+                "styling": {
+                    "fontColor": "#000000"
+                }
+            },
+            "id": "D90DYr3SQp1DhIRRXk2o6",
             "isSelected": false
         }
     ]);
 
   return (
-    <div className="bg-gray-500 h-screen w-screen flex flex-col ">
-        <div className='w-1/2 my-4 rounded-xl p-2 bg-red-600 mx-auto '>
+    <div style={{backgroundImage:"url('./sunset-hair.jpg')"}} className="bg-gray-500 h-screen w-screen flex flex-col ">
+        <div className='w-1/2 my-4 rounded-xl p-2 bg-yellow-600 mx-auto '>
         {form.length> 0 && form.map((element,idx) => {
             if(element.type == "shorttext")
             {
@@ -44,11 +56,13 @@ const preview = () => {
             }
             else if(element.type == "longtext")
             {
-            return(<div key={idx} className="w-10/11 mx-auto my-4">
+            return(
+            <div key={idx} className="w-10/11 mx-auto my-4">
             
             <LongTextElement question={element.question} attributes={element.attributes} />
 
         </div>)
+        
 
 
             }
