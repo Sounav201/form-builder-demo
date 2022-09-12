@@ -18,7 +18,7 @@ const Container = () => {
                     </p>
                 </div>
                 <p className="pl-2 md:pl-4 py-2 md:py-3 font-extrabold text-4xl md:text-6xl bg-gradient-to-r from-purple-800 to-pink-500 md:tracking-wide text-transparent bg-clip-text animate-text mb-8 md:mb-16">
-                    Let's build your form <br/> Together !
+                    {"Let's build your form"} <br/> {"Together !"}
                 </p>
             </div>
             {/* <p className=" px-8 py-1 font-semibold text-green-600 text-xl transform -translate-y-2">

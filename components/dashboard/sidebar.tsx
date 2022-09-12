@@ -28,7 +28,7 @@ import {FiCodesandbox} from 'react-icons/fi';
 // import ReceiptRoundedIcon from '@material-ui/icons/ReceiptRounded';
 
 const Sidebar = () => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     return (
         <div className={` h-auto bg-gray-900 shadow-2xl ${open ? " w-6/12 md:w-3/12 ":" w-1/11 md:w-1/13 "} duration-300 relative`}>

@@ -7,7 +7,7 @@ export class SessionStorageService {
       useEffect(() => {
         if(typeof(window)!== undefined)
         {
-      sessionStorage.setItem(key, JSON.stringify(data));
+          sessionStorage.setItem(key, JSON.stringify(data));
         }
       }, [])
       
