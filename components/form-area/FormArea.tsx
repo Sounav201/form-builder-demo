@@ -39,7 +39,7 @@ const FormArea = (props: FormAreaProps) => {
   return (
     <div>
 
-      <div className='relative m-auto mt-16 w-full h-auto min-w-fit min-h-fit  bg-gray-800 flex justify-center'>
+      <div className=' m-auto mt-16 w-full h-auto min-w-fit min-h-fit  bg-gray-800 flex justify-center'>
 
         <div className='w-5/6 lg:px-24 max-w-fit  mt-16 overflow-visible mx-auto mb-12 bg-slate-300 rounded-md flex flex-col justify-center'>
 

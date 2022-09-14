@@ -15,13 +15,13 @@ const Header = () => {
                 {/* <p className="text-green-600 text-sm md:text-xl font-bold md:font-semibold">Create </p> */}
                 {/* <p>0xc14D1bdD7A28b12fa3e88FE2bE9e193Bdfdlk8bb940A6</p> */}
                 {/* <CropLandscapeIcon className="text-gray-300" /> */}
-                <RiDashboardFill size={ 18 } className="cursor-pointer text-gray-300" />
+                <RiDashboardFill size="1.5em" className="cursor-pointer text-gray-300" />
 
             </div>
             <div className="flex gap-1 md:gap-4 text-gray-400 ">
 
-                <BsFillPersonFill size={ 18 } className="cursor-pointer" />
-                <MdOutlineExitToApp size={ 18 } color="secondary" className="cursor-pointer" />
+                <BsFillPersonFill size="1.5em" className="cursor-pointer" />
+                <MdOutlineExitToApp size="1.5em" color="secondary" className="cursor-pointer" />
                 <p className="text-white text-sm md:text-lg font-semibold cursor-pointer ">Close</p>
             </div>
         </div>

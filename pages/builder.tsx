@@ -9,6 +9,9 @@ import { FormAreaItem } from "../components/form-area/FormArea.types";
 import { ElementAttributes, RatingAttributes } from "../components/element-bank/ElementBank.types";
 import { useCallback, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
+// import {RiPaintBrushFill} from "react-icons/ri";
+import {IoIosColorPalette} from "react-icons/io";
+
 import {
   FORM_ITEMS_SESSION_KEY,
   SessionStorageService,
@@ -202,7 +205,10 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
   }
   }
 
+  const [panelStatus, setpanelStatus] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
@@ -212,20 +218,30 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DndProvider backend={HTML5Backend}>
-        <div className='h-full min-h-screen bg-slate-800'>
-        <div className="bg-black fixed right-8 top-6">
+        <div className='h-full min-h-screen bg-slate-900'>
+        <div className=" flex flex-col gap-16 fixed items-center right-0 top-6">
+            <div className=''>
             <button className="bg-gradient-to-r text-white from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>Preview</button>
-            
+            </div>
+            <div className={`flex justify-center items-center `}>
+              <div className={` h-96 py-4 px-12 bg-slate-800 text-white duration-300 ${!open && "scale-0"} `}>
+                Choose Your Theme
+              </div>
+              <button className={` absolute bg-blue-500 w-fit p-4 rounded-full duration-300 ${ open && "-translate-x-28 " } `} onClick={() => setOpen(!open)}>
+                <IoIosColorPalette size="2em" color="white"/>
+              </button>
+            </div>
         </div>
+        
           <div className='grid grid-cols-12 gap-x-4 '>
 
             {/*Element Bank  */}
-            <div className='col-span-2 box-border'>
+            <div className=' box-border'>
               <ElementBank />
 
             </div>
             {/*Form Area  */}
-            <div className='col-span-8 box-border'>
+            <div className='col-span-12 box-border'>
               <FormArea
                 moveCard={moveCard}
                 items={formAreaItems}
@@ -242,7 +258,7 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
 
             </div>
             {/*Element Properties  */}
-            <div className='col-span-2'>
+            <div className=''>
               <Sidebar
                 
                 selectedItem={selectedItem}

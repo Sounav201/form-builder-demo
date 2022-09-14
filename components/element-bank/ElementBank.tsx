@@ -116,11 +116,11 @@ const ElementBank = (props:ElementBankProps) => {
         </DrawerContent>
       </Drawer>
 
-        <div className={panelStatus ?`fixed h-3/4 flex w-60  overflow-auto  transition ease-out duration-500 `: `fixed h-3/4 flex w-60 overflow-auto transition ease-out duration-500 -translate-x-56`} onClick={handleOpen} > 
-        <span className={`togglePanel   my-auto text-white rounded-lg  py-4 text-center w-full block inset-y-0 left-2  bg-blue-500   cursor-pointer`} >
-            <span className='toggleText pointer text-lg mx-2'>Add Form Elements</span>
-            <span className='absolute right-0 mr-2 z-50'><AiFillPlusCircle size={32} className="bg-blue-500"/> </span>
-        </span>
+        <div className={panelStatus ?`fixed h-full flex w-60 overflow-auto  transition ease-out duration-500 `: `fixed h-full flex w-56 overflow-auto transition ease-out duration-500 -translate-x-56`} onClick={handleOpen} > 
+            <div className={`togglePanel flex my-auto text-white rounded-r-2xl  py-4 justify-center gap-1.5 w-full  bg-blue-500   cursor-pointer`} >
+                <p className=' toggleText pointer text-lg font-bold '>Add Form Elements</p>
+                <AiFillPlusCircle size="2em" />
+            </div>
         </div>
     </>
   )
