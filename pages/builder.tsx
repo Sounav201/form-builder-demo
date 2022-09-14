@@ -212,20 +212,20 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DndProvider backend={HTML5Backend}>
-        <div  className='h-full min-h-screen bg-slate-800'>
+        <div  className='h-full min-h-screen min-w-screen bg-slate-800'>
         <div className="bg-black fixed right-8 top-6">
             <button className="bg-gradient-to-r text-white from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>Preview</button>
             
         </div>
-          <div className='grid grid-cols-12 gap-x-4 '>
+          <div className='grid grid-cols-12 gap-x-4  place-content-center'>
 
             {/*Element Bank  */}
-            <div className='col-span-2 box-border'>
+            <div className='md:col-span-1 box-border'>
               <ElementBank />
 
             </div>
             {/*Form Area  */}
-            <div className='col-span-8 box-border'>
+            <div className='md:col-span-10 box-border'>
               <FormArea
                 moveCard={moveCard}
                 items={formAreaItems}
@@ -242,9 +242,8 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
 
             </div>
             {/*Element Properties  */}
-            <div className='col-span-2'>
-              <Sidebar
-                
+            <div className='md:col-span-1'>
+              <Sidebar   
                 selectedItem={selectedItem}
                 onItemPropertiesChange={(item) => {
                   setFormAreaItems((oldArray:any) => {

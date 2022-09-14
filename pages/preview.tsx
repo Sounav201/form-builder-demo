@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import ShortTextElement from "../components/display-form/elements/ShortTextElement"
 import LongTextElement from '../components/display-form/elements/LongTextElement'
 
-const preview = () => {
+const Preview = () => {
 
     const [form, setform] = useState([
         {
@@ -72,4 +72,4 @@ const preview = () => {
   )
 }
 
-export default preview
+export default Preview

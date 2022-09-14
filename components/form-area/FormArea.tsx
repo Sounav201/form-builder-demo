@@ -39,9 +39,9 @@ const FormArea = (props: FormAreaProps) => {
   return (
     <div>
 
-      <div className='relative m-auto mt-16 w-full h-auto min-w-fit min-h-fit  bg-transparent flex justify-center'>
+      <div className='relative m-auto mt-16 '>
 
-        <div  className='w-11/12 lg:px-24   mt-16 overflow-visible mx-auto mb-12 bg-slate-300  rounded-md flex flex-col justify-center'>
+        <div  className='md:w-5/6 lg:w-5/6    mt-16 overflow-visible mx-auto mb-12 bg-slate-300  rounded-md flex flex-col justify-center'>
 
           <ul className={props.items.length > 0 ? 'py-32 relative m-0 flex flex-col items-start text-xl list-none    ' : 'py-32 relative m-0 flex items-start text-xl list-none    '}
             ref={drop}>
@@ -50,7 +50,7 @@ const FormArea = (props: FormAreaProps) => {
               switch (item.type) {
                 case ElementType.SHORT_TEXT:
                   return (
-                    <li key={index} className='list-none box-border flex'>
+                    <li key={index} className='list-none box-border flex md:w-3/4 lg:w-11/12 mx-auto'>
                       <FormElement>
                         <ShortText
                           key={index}
@@ -65,7 +65,7 @@ const FormArea = (props: FormAreaProps) => {
                           onQuestionSelected={() => props.onQuestionSelected(item)}
 
                         />
-                        <div className='mx-2 flex flex-col my-4'>
+                        <div className=' flex flex-col my-4'>
                           <div className='my-2'>
                             <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
                             {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
@@ -81,7 +81,7 @@ const FormArea = (props: FormAreaProps) => {
                   );
                 case ElementType.CHECKBOX:
                   return (
-                    <li key={index} className='list-none box-border flex'>
+                    <li key={index} className='list-none box-border flex md:w-3/4 lg:w-11/12 mx-auto'>
                       <Checkbox
                         key={index}
                         {...(item as FormAreaItem<CheckboxAttributes>)}
@@ -97,7 +97,7 @@ const FormArea = (props: FormAreaProps) => {
                         onOptionAdd={() => props.onOptionAdd(item)}
                         onOptionDelete={(choiceIndex) => props.onOptionDelete(item, choiceIndex)}
                       />
-                      <div className='mx-2  flex flex-col my-4'>
+                      <div className='flex flex-col my-4'>
                         <div className='my-2'>
                           <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
                           {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
@@ -113,7 +113,7 @@ const FormArea = (props: FormAreaProps) => {
                   );
                 case ElementType.LONG_TEXT:
                   return (
-                    <li key={index} className='list-none box-border flex'>
+                    <li key={index} className='list-none box-border flex md:w-3/4 lg:w-11/12 mx-auto'>
                       <FormElement>
 
                         <LongText
@@ -129,7 +129,7 @@ const FormArea = (props: FormAreaProps) => {
                           onQuestionSelected={() => props.onQuestionSelected(item)}
 
                         />
-                        <div className='mx-2 flex flex-col my-4'>
+                        <div className=' flex flex-col my-4 '>
                           <div className='my-2'>
                             <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
                             {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
@@ -146,7 +146,7 @@ const FormArea = (props: FormAreaProps) => {
 
                 case ElementType.RATING:
                   return (
-                    <li key={index} className='list-none box-border flex'>
+                    <li key={index} className='list-none box-border flex md:w-3/4 lg:w-11/12 mx-auto'>
                       <FormElement>
                         <Rating
                           key={index}
@@ -162,7 +162,7 @@ const FormArea = (props: FormAreaProps) => {
 
                         />
 
-                        <div className='mx-2 flex flex-col my-4'>
+                        <div className=' flex flex-col my-4 mx-auto'>
                           <div className='my-2'>
                             <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
                             {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
