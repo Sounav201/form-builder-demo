@@ -12,7 +12,8 @@ const CheckboxElement = (props: any) => {
                     <div className='my-6'>
                         <Stack spacing={[2,2]}>
                         {props.attributes.choices.map((choice, index) => (
-                            <Checkbox value={choice.value}>
+                            
+                            <Checkbox key={index} value={choice.value}>
                                 {choice.label}
                             </Checkbox>
                         ))}
