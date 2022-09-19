@@ -19,47 +19,74 @@ import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure, Button } 
 import Sidebar from '../components/element-properties/Sidebar';
 import { parseCookies } from '../services/parseCookies';
 import Swal from 'sweetalert2'
+import Link from 'next/link';
 
-const Home: NextPage = ({initialformAreaItems}:any) => {
+import { useRouter } from 'next/router';
+
+
+const Home: NextPage = ({ initialformAreaItems }: any) => {
 
   const [selectedItem, setSelectedItem] = useState(
     null as FormAreaItem<ElementAttributes> | null);
 
-  const [formAreaItems, setFormAreaItems] = useState( () =>  initialformAreaItems!= undefined && JSON.parse(initialformAreaItems) || [] as FormAreaItem<ElementAttributes>[]);
-
+  const [formAreaItems, setFormAreaItems] = useState( [] as FormAreaItem<ElementAttributes>[]);
   const [showSidebar, setshowSidebar] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-   // Cookies.set("formAreaItems", JSON.stringify(formAreaItems))
-  console.log('State of form : ', formAreaItems);
-  }, [formAreaItems])
+
+    if(typeof(window)!= undefined)
+    {
+      if(localStorage.getItem("formAreaItems"))
+      {console.log('Getter runs!');
+        setFormAreaItems(JSON.parse(localStorage.getItem("formAreaItems"))  )
+      }
+      
+    }
+
+    
+  }, [])
   
+
+    useEffect(() => {
+      // Cookies.set("formAreaItems", JSON.stringify(formAreaItems))
+      console.log('State of form : ', formAreaItems);
+
+      if(typeof(window)!= undefined)
+      {
+        console.log('Setter runs!');
+        localStorage.setItem("formAreaItems", JSON.stringify(formAreaItems));
+        
+      }
+      
+      
+    }, [formAreaItems])
 
 
 
   //Move Form Element
-  const moveItem = useCallback((dragIndex:number, hoverIndex:number) => {
-   // console.log("Move ITEMS ");
-      setFormAreaItems((oldArray:any) => {
-        const draggedItem = oldArray[dragIndex];
-        console.log("Dragged Item : " ,draggedItem);
-        const newArray =[...oldArray];
+  const moveItem = useCallback((dragIndex: number, hoverIndex: number) => {
+    // console.log("Move ITEMS ");
+    setFormAreaItems((oldArray: any) => {
+      const draggedItem = oldArray[dragIndex];
+      console.log("Dragged Item : ", draggedItem);
+      const newArray = [...oldArray];
 
 
-        return [...newArray]
+      return [...newArray]
 
-      });
+    });
 
-  },[])
+  }, [])
 
 
   //Highlight when a question is selected  
   const onQuestionSelected = (item: FormAreaItem<ElementAttributes>) => {
     //console.log("Highlight question");
-    setFormAreaItems((oldArray:any) => {
-      const index = oldArray.findIndex((i:any) => i.id === item.id);
+    setFormAreaItems((oldArray: any) => {
+      const index = oldArray.findIndex((i: any) => i.id === item.id);
       if (index !== -1) {
-        oldArray.forEach((item:any) => (item.isSelected = false));
+        oldArray.forEach((item: any) => (item.isSelected = false));
         oldArray[index].isSelected = true;
       }
       //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
@@ -71,8 +98,8 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
   //Drop the form element on to Form Area
   const onFormAreaDrop = useCallback(
     (item: FormAreaItem<ElementAttributes>) => {
-      setFormAreaItems((oldArray:any) => {
-        oldArray.forEach((item:any) => (item.isSelected = false));
+      setFormAreaItems((oldArray: any) => {
+        oldArray.forEach((item: any) => (item.isSelected = false));
         const newArray = [
           ...oldArray,
           { ...item, id: nanoid(), isSelected: true },
@@ -86,9 +113,9 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
 
   //Remove a form element from Form Area
   const onElementDelete = (item: FormAreaItem<ElementAttributes>) => {
-    setFormAreaItems((oldArray:any) => {
-      oldArray.forEach((item:any) => (item.isSelected = false));
-      const newArray = oldArray.filter((oldItem:any) => oldItem.id !== item.id);
+    setFormAreaItems((oldArray: any) => {
+      oldArray.forEach((item: any) => (item.isSelected = false));
+      const newArray = oldArray.filter((oldItem: any) => oldItem.id !== item.id);
       //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, newArray);
       return [...newArray];
     });
@@ -99,8 +126,8 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
     item: FormAreaItem<ElementAttributes>,
     questionText: string
   ) => {
-    setFormAreaItems((oldArray:any) => {
-      const index = oldArray.findIndex((i:any) => i.id === item.id);
+    setFormAreaItems((oldArray: any) => {
+      const index = oldArray.findIndex((i: any) => i.id === item.id);
       if (index !== -1) {
         oldArray[index].question = questionText;
       }
@@ -115,12 +142,12 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
     option: string,
     choiceIndex: number,
   ) => {
-    setFormAreaItems((oldArray:any) => {
-      const index = oldArray.findIndex((i:any) => i.id === item.id);
+    setFormAreaItems((oldArray: any) => {
+      const index = oldArray.findIndex((i: any) => i.id === item.id);
       if (index !== -1 && item.type == 'checkbox') {
-        const newChoice = { label: option, value: option , id:oldArray[index].attributes.choices[choiceIndex].id}
+        const newChoice = { label: option, value: option, id: oldArray[index].attributes.choices[choiceIndex].id }
         oldArray[index].attributes.choices[choiceIndex] = newChoice
-   //     console.log(oldArray[index].attributes.choices[choiceIndex])
+        //     console.log(oldArray[index].attributes.choices[choiceIndex])
       }
       //SessionStorageService.saveItem(FORM_ITEMS_SESSION_KEY, oldArray);
       return [...oldArray];
@@ -129,20 +156,19 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
 
   //Allow the user to add Options to their Checkbox or MCQ component
   const onOptionAdd = (
-    item:FormAreaItem<ElementAttributes>,
+    item: FormAreaItem<ElementAttributes>,
 
   ) => {
-    setFormAreaItems((oldArray:any) => {
-      const newChoice = {label:"Type an Option" ,value:"Type an Option", id:nanoid() }
+    setFormAreaItems((oldArray: any) => {
+      const newChoice = { label: "Type an Option", value: "Type an Option", id: nanoid() }
 
-      const index = oldArray.findIndex((i:any) => i.id === item.id);
-      if(index!==-1)
-      {
+      const index = oldArray.findIndex((i: any) => i.id === item.id);
+      if (index !== -1) {
         //oldArray[index].attributes.choices= [...oldArray[index].attributes.choices, newChoice];
 
         oldArray[index].attributes.choices.push(newChoice)
-       //console.log(oldArray[index]);
-      
+        //console.log(oldArray[index]);
+
       }
 
       return [...oldArray]
@@ -151,22 +177,21 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
   };
 
   const onOptionDelete = (
-    item:FormAreaItem<ElementAttributes>,
+    item: FormAreaItem<ElementAttributes>,
     choiceIndex: number,
   ) => {
-    setFormAreaItems((oldArray:any) => {
-      const index = oldArray.findIndex((i:any) => i.id === item.id);
+    setFormAreaItems((oldArray: any) => {
+      const index = oldArray.findIndex((i: any) => i.id === item.id);
 
-      if(index!=-1 && item.type=="checkbox")
-      { 
+      if (index != -1 && item.type == "checkbox") {
         const oldChoices = oldArray[index].attributes.choices;
         const choiceToDelete = oldChoices[choiceIndex]
-        const newChoices = oldChoices.filter((oldChoice:any)=> oldChoice.id!=choiceToDelete.id)
+        const newChoices = oldChoices.filter((oldChoice: any) => oldChoice.id != choiceToDelete.id)
 
-//        console.log("New choices : ", newChoices);
+        //        console.log("New choices : ", newChoices);
         oldArray[index].attributes.choices = newChoices;
       }
-      
+
 
       return [...oldArray]
     });
@@ -182,27 +207,24 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
   };
 
   const handlePreviewClick = () => {
-    
+
     //Check if formArea has any elements
-    if(formAreaItems.length==0){
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Your form has no elements!',
-      
-    })
-  }
-  else{
-    Swal.fire(
-      'Hold on!',
-      'Preview feature still under progress. We thank you for your patience 😊',
-      'success'
-    )
-    console.log('Preview state of Form Area : ', formAreaItems);
-  }
+    if (formAreaItems.length == 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Your form has no elements!',
+
+      })
+    }
+    else {
+      router.push("/preview");
+
+      //console.log('Preview state of Form Area : ', formAreaItems);
+    }
   }
 
-//style={{backgroundImage:"url('./sunset-hair.jpg')"}}
+  //style={{backgroundImage:"url('./sunset-hair.jpg')"}}
 
   return (
     <div>
@@ -212,12 +234,15 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DndProvider backend={HTML5Backend}>
-        <div  className='h-full min-h-screen min-w-screen bg-slate-800'>
-        <div className="bg-black fixed right-8 top-6">
-            <button className="bg-gradient-to-r text-white from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>Preview</button>
+        <div className='h-full min-h-screen min-w-screen bg-slate-800    '>
+          <div className="bg-black fixed right-8 top-6">
+             
+            <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>
+              Preview
+              </button>
             
-        </div>
-          <div className='grid grid-cols-12 gap-x-4  place-content-center'>
+          </div>
+          <div className='grid grid-cols-12 gap-x-4   place-content-center'>
 
             {/*Element Bank  */}
             <div className='md:col-span-1 box-border'>
@@ -243,20 +268,19 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
             </div>
             {/*Element Properties  */}
             <div className='md:col-span-1'>
-              <Sidebar   
+              <Sidebar
                 selectedItem={selectedItem}
                 onItemPropertiesChange={(item) => {
-                  setFormAreaItems((oldArray:any) => {
-                    const index = oldArray.findIndex((i:any) => i.id === item.id);
-                  
+                  setFormAreaItems((oldArray: any) => {
+                    const index = oldArray.findIndex((i: any) => i.id === item.id);
+
                     if (index !== -1) {
-                      if(item.type !="rating")
+                      if (item.type != "rating")
                         oldArray[index].attributes.styling = item.attributes.styling;
-                      else if(item.type == "rating")
-                      {  
-                        (oldArray[index].attributes as RatingAttributes).emoji = (item.attributes as RatingAttributes).emoji; 
-                        (oldArray[index].attributes as RatingAttributes).styling.fillColor = (item.attributes as RatingAttributes).styling.fillColor; 
-                        (oldArray[index].attributes as RatingAttributes).styling.hoverColor = (item.attributes as RatingAttributes).styling.hoverColor; 
+                      else if (item.type == "rating") {
+                        (oldArray[index].attributes as RatingAttributes).emoji = (item.attributes as RatingAttributes).emoji;
+                        (oldArray[index].attributes as RatingAttributes).styling.fillColor = (item.attributes as RatingAttributes).styling.fillColor;
+                        (oldArray[index].attributes as RatingAttributes).styling.hoverColor = (item.attributes as RatingAttributes).styling.hoverColor;
 
                       }
                     }
@@ -278,13 +302,13 @@ const Home: NextPage = ({initialformAreaItems}:any) => {
   )
 }
 
-Home.getInitialProps = ({req}:any ) => {
+Home.getInitialProps = ({ req }: any) => {
 
   const cookies = parseCookies(req);
 
-  return {initialformAreaItems: cookies.formAreaItems};
+  return { initialformAreaItems: cookies.formAreaItems };
 
-  
+
 };
 
 export default Home
