@@ -26,7 +26,7 @@ export interface RatingStyleAttributes extends StylingAttributes{
     fillColor:string;
 }
 
-export type ElementAttributes = ShortTextAttributes | CheckboxAttributes | RatingAttributes;
+export type ElementAttributes = ShortTextAttributes | CheckboxAttributes | RatingAttributes | FileUploadAttributes | LongTextAttributes;
 
 //Default structure of Shorttext element
 export interface ShortTextAttributes{
@@ -34,7 +34,7 @@ export interface ShortTextAttributes{
     styling:StylingAttributes;
     icon:IconType;
 }
-
+//Default structure of Rating element
 export interface RatingAttributes {
     required:Boolean
     styling:RatingStyleAttributes;
@@ -59,6 +59,15 @@ export interface CheckboxAttributes{
 export interface LongTextAttributes{
     required:Boolean
     styling:StylingAttributes;
+    icon:IconType;
+
+}
+
+//Default structure of FileUpload element
+export interface FileUploadAttributes{
+    required:Boolean
+    typeofFile:string
+    styling:StylingAttributes
     icon:IconType;
 
 }

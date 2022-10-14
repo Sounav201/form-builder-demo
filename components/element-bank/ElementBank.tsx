@@ -8,13 +8,14 @@ import {
     ShortTextAttributes,
     LongTextAttributes,
     RatingAttributes,
+    FileUploadAttributes
   } from "./ElementBank.types";
 import {AiFillPlusCircle} from 'react-icons/ai'
 import { useDisclosure } from '@chakra-ui/react'
 import {Drawer,DrawerBody,DrawerFooter,DrawerHeader,DrawerOverlay,DrawerContent,DrawerCloseButton} from '@chakra-ui/react'
 import Element from "./Element";
 import {AiOutlineArrowDown,AiOutlineCopy, AiOutlineDown,AiOutlineCodepenCircle,AiFillStar,AiOutlinePlus} from 'react-icons/ai'
-import {BsTextareaResize} from "react-icons/bs";
+import {BsTextareaResize, BsUpload} from "react-icons/bs";
 import {FcRating} from "react-icons/fc"
 import {FiUpload} from "react-icons/fi"
 import {RiCheckboxMultipleLine} from "react-icons/ri"
@@ -95,6 +96,20 @@ const ElementBank = (props:ElementBankProps) => {
             } as RatingAttributes,
             displayName:"Rating",
         },
+        {
+            type:ElementType.FILE_UPLOAD,
+            question:"Type your Question",
+            attributes:{
+                required:false,
+                styling:{
+                    fontColor:"#000000"
+                },
+                icon:BsUpload,
+                typeofFile:"image"
+            } as FileUploadAttributes,
+            displayName:"File Upload",
+            
+        }
         
     ];
 
