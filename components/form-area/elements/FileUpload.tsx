@@ -12,7 +12,6 @@ import {BsUpload} from "react-icons/bs"
 interface FileUploadProps extends FormAreaItem<FileUploadAttributes> {}
 
 const FileUpload = (props:FileUploadProps) => {
-    const [input, setinput] = useState("")
     const isSelected = props.isSelected;
     const [files,setFiles] = useState([])
 
@@ -54,6 +53,7 @@ const FileUpload = (props:FileUploadProps) => {
       }),
       []
     );
+    
     const [{ handlerId }, drop] = useDrop<
       DragItem,
       void,

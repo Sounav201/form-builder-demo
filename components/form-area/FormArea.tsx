@@ -10,12 +10,14 @@ import {
   ElementAttributes,
   ElementType,
   RatingAttributes,
+  FileUploadAttributes
 } from "../element-bank/ElementBank.types";
 import Checkbox from "./elements/Checkbox";
 import { Button } from '@chakra-ui/react';
 import FormElement from './FormElement';
 import LongText from './elements/LongText';
 import Rating from './elements/Rating';
+import FileUpload from './elements/FileUpload';
 
 
 const FormArea = (props: FormAreaProps) => {
@@ -174,10 +176,40 @@ const FormArea = (props: FormAreaProps) => {
                       </FormElement>
 
                     </li>
-                  )
+                  );
+
+                  case ElementType.FILE_UPLOAD:
+                    return (
+                      <li key={index} className='list-none box-border flex md:w-3/4 lg:w-11/12 mx-auto'>
+                      <FormElement>
+                        <FileUpload
+                          key={index}
+                          {...(item as FormAreaItem<FileUploadAttributes>)}
+                          index={index}
+                          numbering={index + 1}
+                          moveCard={props.moveCard}
+                          onDelete={() => props.onItemDelete(item)}
+                          onQuestionTextChanged={(questionText) => props.onQuestionTextChange(item, questionText)}
+                          onQuestionSelected={() => props.onQuestionSelected(item)}
+                          />
+                          <div className=' flex flex-col my-4 mx-auto'>
+                          <div className='my-2'>
+                            <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                            {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+                          </div>
+                          <div className='my-2'>
+                            <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                          </div>
+                        </div>
+
+
+                      </FormElement>
+                      </li>
+                    )
 
 
               }
+
             })}
 
 

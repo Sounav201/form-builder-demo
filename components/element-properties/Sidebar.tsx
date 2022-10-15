@@ -55,14 +55,14 @@ const Sidebar = (props: ElementPropertiesProps) => {
 
     return (
         <div>   <div
-            className={`top-0 right-0 w-[20vw] bg-blue-600  p-10 pl-20 text-white fixed h-full z-40 transition  ease-in-out duration-300 ${isSelected && props.sidebarStatus ? "translate-x-0 " : "translate-x-full"
+            className={`top-0 right-0 w-[20vw] bg-blue-800/90  p-10 pl-10 text-white fixed h-full z-40 transition  ease-in-out duration-300 ${isSelected && props.sidebarStatus ? "translate-x-0 " : "translate-x-full"
                 }`}>
 
-            <h4 className="mt-20 text-2xl font-semibold text-white">
+            <h4 className="my-4 text-2xl font-semibold text-white">
                 Element Properties
             </h4>
-
-            <div className='my-4 py-2 flex flex-col'>
+            <div className='flex flex-col gap-2'>
+            <div className=' py-2 flex flex-col'>
                 <label className='font-medium '>Required Field?</label>
                 <Switch size='md' mt={1} colorScheme={'red'} onChange={() => {
                     setisRequired(prevstate => !prevstate);
@@ -75,7 +75,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
             </div>
 
 
-            <div className='my-4 py-2 flex flex-col'>
+            <div className=' py-2 flex flex-col'>
                 <label className='font-medium '>Text Color</label>
                 <input
                     className='rounded-md my-1'
@@ -93,7 +93,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
             </div>
     
             {ratingType.length> 0 && (
-                <div className='my-2 py-2 flex flex-col'>
+                <div className='py-2 flex flex-col'>
                     <label className='font-medium'>Block Color</label>
                     <input 
                         className='rounded-md my-1'
@@ -112,7 +112,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
                 </div>
             )}
               {ratingType.length> 0 && (
-                <div className='my-2 py-2 flex flex-col'>
+                <div className='py-2 flex flex-col'>
                     <label className='font-medium'>Fill Color</label>
                     <input 
                         className='rounded-md my-1'
@@ -132,7 +132,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
             )}
 
             {ratingType.length > 0 && (
-                <div className='my-2 py-2 flex flex-col'>
+                <div className='py-2 flex flex-col gap-2'>
                     <label className='font-medium '>Rating type</label>
                     <Select bg='tomato' borderColor='tomato'
                     color='black' placeholder='Select option' onChange={(e) => {
@@ -152,10 +152,10 @@ const Sidebar = (props: ElementPropertiesProps) => {
                 </div>
 
             )}
-
+            </div>
 
             {/*Set up a close button mechanism by taking care of the states from the Parent component -> DONE  */}
-            <div className='my-24'>
+            <div className='my-12'>
                 <Button aria-label='Close' colorScheme={'orange'} onClick={handleClose}>
                     Close
                 </Button>

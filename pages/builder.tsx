@@ -237,7 +237,7 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
         <div className='h-full min-h-screen min-w-screen bg-slate-800    '>
           <div className="bg-black fixed right-8 top-6">
              
-            <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>
+            <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-semibold " onClick={handlePreviewClick}>
               Preview
               </button>
             
