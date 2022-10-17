@@ -14,6 +14,7 @@ import {
   SessionStorageService,
 } from "../services/SessionStorageService";
 import FormArea from '../components/form-area/FormArea';
+import {IoIosColorPalette} from "react-icons/io";
 import ElementProperties from '../components/element-properties/ElementProperties';
 import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure, Button } from '@chakra-ui/react'
 import Sidebar from '../components/element-properties/Sidebar';
@@ -235,13 +236,20 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
       </Head>
       <DndProvider backend={HTML5Backend}>
         <div className='h-full min-h-screen min-w-screen bg-slate-800    '>
-          <div className="bg-black fixed right-8 top-6">
+          <div className="flex flex-col bg-none fixed right-8 top-6 gap-52">
              
-            <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-semibold " onClick={handlePreviewClick}>
+            <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>
               Preview
               </button>
+              <div className={` `}>
+              
+              <button className={` absolute bg-blue-500 w-fit p-4 rounded-full duration-300 `} >
+                <IoIosColorPalette size="2em" color="white"/>
+              </button>
+            </div>
             
           </div>
+          
           <div className='grid grid-cols-12 gap-x-4   place-content-center'>
 
             {/*Element Bank  */}
