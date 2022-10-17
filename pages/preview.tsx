@@ -34,8 +34,8 @@ const Preview = () => {
 
 
   return (
-    <div style={{backgroundImage:"url('./subtle-prism.svg')"}} className="bg-gray-500 bg-cover flex flex-col ">
-    <div className="bg-transparent fixed left-8 top-6">
+    <div style={{backgroundImage:"url('./subtle-prism.svg')"}} className=" bg-cover min-h-screen flex flex-col ">
+        <div className="bg-transparent fixed left-8 top-6">
              <Link href={"/builder"}>
              <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-2 px-4 rounded-sm font-semibold " >
                Go Back
@@ -93,7 +93,7 @@ const Preview = () => {
             }
 
         })}
-    </div>
+        </div>
     </div>
   )
 }
