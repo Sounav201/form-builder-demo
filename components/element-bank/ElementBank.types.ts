@@ -20,6 +20,7 @@ export interface LogicalAttributes{
 
 export interface StylingAttributes {
     fontColor:string;
+    questionImage:string;
 }
 export interface RatingStyleAttributes extends StylingAttributes{
     hoverColor:string;
@@ -43,7 +44,6 @@ export interface RatingAttributes {
     emoji:string;
 
 }
-
 //Default structure of Checkbox element
 export interface CheckboxAttributes{
     required:Boolean;
@@ -69,9 +69,7 @@ export interface FileUploadAttributes{
     typeofFile:string
     styling:StylingAttributes
     icon:IconType;
-
 }
-
 
 //Default structure of any form element
 export interface FormElement<T>{

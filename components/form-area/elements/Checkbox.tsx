@@ -110,6 +110,7 @@ const Checkbox = (props: CheckboxProps) => {
                         numbering={props.numbering}
                         required={props.attributes.required}
                         styling={props.attributes.styling}
+                        questionImage = {props.attributes.styling.questionImage}
                         question={props.question}
                         onDelete={props.onDelete}
                         onQuestionTextChanged={props.onQuestionTextChanged}

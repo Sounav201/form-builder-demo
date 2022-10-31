@@ -198,6 +198,14 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
 
   };
 
+  const addImage = (item: FormAreaItem<ElementAttributes>, image: any) => {
+  
+    console.log('Image string : ', image)
+    
+  
+  }
+
+
   const moveCard = (dragIndex: number, hoverIndex: number) => {
     const items: any[] = JSON.parse(JSON.stringify(formAreaItems));
     const itemToMove = items[dragIndex];

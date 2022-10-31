@@ -1,10 +1,12 @@
 import { Button } from '@chakra-ui/react';
-import React from 'react'
+import Image from 'next/image';
+import React, { useEffect } from 'react'
 
 import { StylingAttributes } from "./element-bank/ElementBank.types";
 interface QuestionProps {
     numbering: number;
     question: string;
+    questionImage:string;
     styling: StylingAttributes;
     required:Boolean;
     onDelete: () => any;
@@ -15,12 +17,13 @@ interface QuestionProps {
 
 const Question = (props:QuestionProps) => {
  
+  
  
   return (
-    <div className='my-4 py-2 flex items-center  '>
-      <div className='text-md  mr-2'>
+    <div className='my-4 py-2 flex flex-col gap-4 items-center  '>
+      {/* <div className='text-md  mr-2'>
           {props.numbering}.
-    </div> 
+    </div>  */}
     <div 
     className='text-lg font-semibold flex-1 outline-none  w-full '
     contentEditable
@@ -35,9 +38,13 @@ const Question = (props:QuestionProps) => {
   >
 
     {props.question}
-    </div>
-{   props.required &&  <span className='ml-2 text-red-700'>*</span>
+    {   props.required &&  <span className='ml-2 text-red-700'>*</span>
 }
+
+    </div>
+
+
+{props.questionImage && props.questionImage.length> 0  &&<div className=''><Image src={props.questionImage} height={200} width={200} /> </div>}
 
     
 

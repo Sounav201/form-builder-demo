@@ -47,7 +47,8 @@ const ElementBank = (props:ElementBankProps) => {
             attributes:{
                 required:false,
                 styling:{
-                    fontColor:"#000000"
+                    fontColor:"#000000",
+                    questionImage:"",
                 },
                 icon:AiOutlineCodepenCircle,
             } as ShortTextAttributes,
@@ -59,7 +60,8 @@ const ElementBank = (props:ElementBankProps) => {
             attributes:{
                 required:false,
                 styling:{
-                    fontColor:"#000000"
+                    fontColor:"#000000",
+                    questionImage:"",
                 },
                 icon:RiCheckboxMultipleLine,
                 choices:[{label:"Yes",value:"Yes" ,id:"1"}, {label:"No", value:"No" ,id:"2"}],
@@ -72,7 +74,8 @@ const ElementBank = (props:ElementBankProps) => {
             attributes:{
                 required:false,
                 styling:{
-                    fontColor:"#000000"
+                    fontColor:"#000000",
+                    questionImage:"",
                 },
                 icon:BsTextareaResize,
             } as LongTextAttributes,
@@ -88,7 +91,8 @@ const ElementBank = (props:ElementBankProps) => {
                 styling:{
                     fontColor:"#000000",
                     hoverColor:"#c31432",
-                    fillColor: "#000000"
+                    fillColor: "#000000",
+                    questionImage:"",
                 },
                 icon:FcRating,
                 limit:5,
@@ -102,7 +106,8 @@ const ElementBank = (props:ElementBankProps) => {
             attributes:{
                 required:false,
                 styling:{
-                    fontColor:"#000000"
+                    fontColor:"#000000",
+                    questionImage:"",
                 },
                 icon:BsUpload,
                 typeofFile:"image"

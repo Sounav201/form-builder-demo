@@ -109,6 +109,7 @@ const ShortText = (props:ShortTextProps) => {
        <FormControl w={[350, 500, 600]} marginX="auto"> 
         <Question
         required={props.attributes.required}
+        questionImage = {props.attributes.styling.questionImage}
         numbering={props.numbering}
         styling={props.attributes.styling}
         question={props.question}
