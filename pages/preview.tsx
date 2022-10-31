@@ -34,8 +34,8 @@ const Preview = () => {
 
 
   return (
-    <div style={{backgroundImage:"url('./sunset-hair.jpg')"}} className="bg-gray-500 bg-no-repeat bg-cover bg-center bg-fixed h-screen flex flex-col ">
-    <div className="bg-transparent fixed left-8 top-6">
+    <div style={{backgroundImage:"url('./subtle-prism.svg')"}} className=" bg-cover min-h-screen flex flex-col ">
+        <div className="bg-transparent fixed left-8 top-6">
              <Link href={"/builder"}>
              <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-2 px-4 rounded-sm font-semibold " >
                Go Back
@@ -43,7 +43,7 @@ const Preview = () => {
                </Link>
            </div>
  
-        <div className='w-1/2 my-4 rounded-xl p-2 bg-yellow-600/25 mx-auto '>
+        <div style={{backgroundImage:"url('./scattered-forcefields.svg')"}} className='w-7/13 my-4 bg-cover rounded-xl p-2 mx-auto '>
         {form.length> 0 && form.map((element,idx) => {
             if(element.type == "shorttext")
             {
@@ -93,7 +93,7 @@ const Preview = () => {
             }
 
         })}
-    </div>
+        </div>
     </div>
   )
 }
