@@ -69,12 +69,21 @@ const FormArea = (props: FormAreaProps) => {
                         />
                         <div className=' flex flex-col my-4'>
                           <div className='my-2'>
-                            <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                            <Button aria-label='Delete'  colorScheme="red" onClick={() => props.onItemDelete(item)} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-rose-700 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><ImBin size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Delete</span>
+                            </Button>
                             {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
 
                           </div>
                           <div className='my-2'>
-                            <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                            <Button aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-orange-400 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><FiSettings size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Properties</span>
+                              
+                            </Button>
                           </div>
 
                         </div>
@@ -99,17 +108,26 @@ const FormArea = (props: FormAreaProps) => {
                         onOptionAdd={() => props.onOptionAdd(item)}
                         onOptionDelete={(choiceIndex) => props.onOptionDelete(item, choiceIndex)}
                       />
-                      <div className='flex flex-col my-4'>
-                        <div className='my-2'>
-                          <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
-                          {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+                      <div className=' flex flex-col my-4'>
+                          <div className='my-2'>
+                            <Button aria-label='Delete'  colorScheme="red" onClick={() => props.onItemDelete(item)} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-rose-700 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><ImBin size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Delete</span>
+                            </Button>
+                            {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+
+                          </div>
+                          <div className='my-2'>
+                            <Button aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-orange-400 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><FiSettings size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Properties</span>
+                              
+                            </Button>
+                          </div>
 
                         </div>
-                        <div className='my-2'>
-                          <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
-                        </div>
-
-                      </div>
 
                     </li>
                   );
@@ -131,14 +149,23 @@ const FormArea = (props: FormAreaProps) => {
                           onQuestionSelected={() => props.onQuestionSelected(item)}
 
                         />
-                        <div className=' flex flex-col my-4 '>
+                        <div className=' flex flex-col my-4'>
                           <div className='my-2'>
-                            <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                            <Button aria-label='Delete'  colorScheme="red" onClick={() => props.onItemDelete(item)} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-rose-700 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><ImBin size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Delete</span>
+                            </Button>
                             {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
 
                           </div>
                           <div className='my-2'>
-                            <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                            <Button aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-orange-400 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><FiSettings size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Properties</span>
+                              
+                            </Button>
                           </div>
 
                         </div>
@@ -164,14 +191,25 @@ const FormArea = (props: FormAreaProps) => {
 
                         />
 
-                        <div className=' flex flex-col my-4 mx-auto'>
+<div className=' flex flex-col my-4'>
                           <div className='my-2'>
-                            <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                            <Button aria-label='Delete'  colorScheme="red" onClick={() => props.onItemDelete(item)} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-rose-700 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><ImBin size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Delete</span>
+                            </Button>
                             {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+
                           </div>
                           <div className='my-2'>
-                            <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                            <Button aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-orange-400 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><FiSettings size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Properties</span>
+                              
+                            </Button>
                           </div>
+
                         </div>
                       </FormElement>
 
@@ -192,17 +230,26 @@ const FormArea = (props: FormAreaProps) => {
                           onQuestionTextChanged={(questionText) => props.onQuestionTextChange(item, questionText)}
                           onQuestionSelected={() => props.onQuestionSelected(item)}
                           />
-                          <div className=' flex flex-col my-4 mx-auto'>
+                          <div className=' flex flex-col my-4'>
                           <div className='my-2'>
-                            <Button aria-label='Delete' leftIcon={<ImBin />} colorScheme="red" onClick={() => props.onItemDelete(item)}>Delete</Button>
+                            <Button aria-label='Delete'  colorScheme="red" onClick={() => props.onItemDelete(item)} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-rose-700 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><ImBin size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Delete</span>
+                            </Button>
                             {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+
                           </div>
                           <div className='my-2'>
-                            <Button leftIcon={<FiSettings />} aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()}>Properties</Button>
+                            <Button aria-label='Properties' colorScheme="yellow" onClick={() => props.setshowSidebar()} className='absolute group flex justify-center items-center overflow-hidden transform duration-300  '>
+                            <span className="absolute left-0 w-full h-0 transition-all bg-orange-400 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                            <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 "><FiSettings size="1.5em"/></span>
+                            <span className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}>Properties</span>
+                              
+                            </Button>
                           </div>
+
                         </div>
-
-
                       </FormElement>
                       </li>
                     )

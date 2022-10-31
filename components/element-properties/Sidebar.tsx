@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ElementPropertiesProps } from './ElementProperties.types'
-import { FiSettings, FiTrash2 } from 'react-icons/fi'
+import { FiSettings, FiTrash2 } from 'react-icons/fi';
+import {IoMdCloseCircleOutline} from 'react-icons/io';
 import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
 import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure, Button } from '@chakra-ui/react'
 import { RatingAttributes } from '../element-bank/ElementBank.types'
@@ -81,31 +82,32 @@ const Sidebar = (props: ElementPropertiesProps) => {
     }
 
     return (
-        <div>   <div
-            className={`top-0 right-0 w-[20vw] bg-blue-800/90  p-10 pl-10 text-white fixed h-full z-40 transition  ease-in-out duration-300 ${isSelected && props.sidebarStatus ? "translate-x-0 " : "translate-x-full"
+        <div>   
+            <div className={`top-0 right-0 w-[20vw] bg-cetacean/95 px-4 text-white fixed h-full z-40 transition  ease-in-out duration-300 ${isSelected && props.sidebarStatus ? "translate-x-0 " : "translate-x-full"
                 }`}>
 
-            <h4 className="my-4 text-2xl font-semibold text-white">
+            <h1 className="mt-4 text-2xl text-purple-700 font-spacemono font-bold uppercase">
                 Element Properties
-            </h4>
-            <div className='flex flex-col gap-2'>
-                <div className=' py-2 flex flex-col'>
-                    <label className='font-medium '>Required Field?</label>
-                    <Switch size='md' mt={1} colorScheme={'red'} onChange={() => {
+            </h1>
+            <div className='flex flex-col '>
+                <div className=' py-4 px-2 flex flex-col'>
+                    <label className='font-medium text-lg text-zinc-300 '>Mandatory Field?</label>
+                    <Switch size='md' mt={1} className="px-2" colorScheme={'yellow'} onChange={() => {
                         setisRequired(prevstate => !prevstate);
                         if (props.selectedItem != null) {
                             props.selectedItem.attributes.required = !props.selectedItem.attributes.required
                             props.onItemPropertiesChange(props.selectedItem);
                         }
                     }} />
-                    <label className='text-sm text-yellow-400'>Prevent submission if this question is empty.</label>
+                    <label className='text-xs text-yellow-400 px-2'>Prevents submission if this question is empty*</label>
                 </div>
 
 
-                <div className=' py-2 flex flex-col'>
-                    <label className='font-medium '>Text Color</label>
+                <div className=' py-4 flex flex-col px-2 gap-2'>
+                    <label className='font-medium text-lg text-zinc-300 '>Text Color</label>
+                    <div className='px-2'>
                     <input
-                        className='rounded-md my-1'
+                        className='rounded'
                         type="color"
                         value={fontColor}
                         onChange={(e) => {
@@ -116,27 +118,30 @@ const Sidebar = (props: ElementPropertiesProps) => {
                             }
                         }}
                     />
+                    </div>
 
                 </div>
 
-                <div className=' py-2 flex flex-col'>
-                    <label className='font-medium '>Question Image</label>
-                    {src && src.length>0 && <img src={src} className='w-20 h-20 rounded-md my-1 border-2 border-white' />}
+                <div className=' py-4 px-2 flex flex-col'>
+                    <label className='font-medium text-lg text-zinc-300 '>Question Image</label>
+                    {src && src.length>0 && <img src={src} className='w-20 h-20 m-1 rounded-md border-2 border-white' />}
                     
-                    <input className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 rounded-lg transition ease-in-out m-0
-                    file:mr-5 file:py-2 file:px-6
+                    <input className="flex flex-col w-full  py-2 text-xs font-normal text-gray-300 transition ease-in-out m-0 file:mr-4
+                    file:py-2 file:px-6
                     file:rounded-full file:border-0
-                    file:text-md file:font-semibold  file:text-white
-                    file:bg-gradient-to-r file:from-blue-600 file:to-amber-600
-                    hover:file:cursor-pointer hover:file:opacity-80
+                    file:text-base file:font-semibold  file:text-zinc-200
+                    file:bg-gradient-to-b file:from-blue-800 file:to-fuchsia-900
+                    hover:file:cursor-pointer hover:file:bg-gradient-to-b hover:file:from-blue-900 hover:file:to-purple-900 hover:file:text-white
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
                     type={"file"} 
                     name="file"
-                     
+                    
                     onChange={handleUpload} />
 
 
-                    <button type='button' className='p-2 w-1/2 my-2 rounded-md bg-white text-black' onClick={handleRemove}>Clear</button>
+                    
+                    <button type='button' className='p-2 my-2 mx-auto w-1/2 rounded-md bg-white font-semibold bg-gradient-to-r from-emerald-500 to-teal-800  text-white hover:bg-gradient-to-r hover:from-teal-800 hover:to-emerald-500 hover:animate-text' onClick={handleRemove}>Clear</button>
+                    
                     
                 </div>
 
@@ -202,11 +207,16 @@ const Sidebar = (props: ElementPropertiesProps) => {
 
 
             {/*Set up a close button mechanism by taking care of the states from the Parent component -> DONE  */}
-            <div className='my-12'>
+            {/* <div className='bottom-12 right-8 absolute'>
                 <Button aria-label='Close' colorScheme={'orange'} onClick={handleClose}>
                     Close
                 </Button>
-            </div>
+            </div> */}
+            <button className="bottom-12 right-8 absolute font-medium text-orange-500 border-2 border-orange-500 w-1/2  hover:pr-8 duration-300 rounded-full hover:text-white group flex justify-center items-center overflow-hidden" onClick={handleClose}>
+                        <span className="absolute left-0 w-full h-0 transition-all bg-orange-500 opacity-100 group-hover:h-full group-hover:top-0  ease"></span>
+                        <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-8 group-hover:translate-y-0 "><IoMdCloseCircleOutline size="1.5em" /></span>
+                        <span className={`relative py-1 text-xs md:text-lg font-monospace `}>CLOSE</span>
+            </button>
 
         </div></div>
     )

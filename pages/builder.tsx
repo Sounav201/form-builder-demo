@@ -246,9 +246,10 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
         <div className='h-full min-h-screen min-w-screen bg-slate-800    '>
           <div className="flex flex-col bg-none fixed right-8 top-6 gap-52">
              
-            <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>
+            {/* <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>
               Preview
-              </button>
+              </button> */}
+              <button className="relative border-2 border-violet-800 py-2.5 px-5 font-medium uppercase text-violet-500 transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-gradient-to-r from-violet-900  to-blue-600 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:border-violet-800 before:hover:scale-x-100" onClick={handlePreviewClick}>Preview</button>
               <div className={` `}>
               
               <button className={` absolute bg-blue-500 w-fit p-4 rounded-full duration-300 `} >
