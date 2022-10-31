@@ -128,6 +128,7 @@ const Rating = (props:RatingProps) => {
         required={props.attributes.required}
         numbering={props.numbering}
         styling={props.attributes.styling}
+        questionImage = {props.attributes.styling.questionImage}
         question={props.question}
         onDelete={props.onDelete}
         onQuestionTextChanged={props.onQuestionTextChanged}
