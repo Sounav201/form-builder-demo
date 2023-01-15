@@ -1,11 +1,14 @@
-import conn from "../../../utils/db";
+import conn from "../../utils/db";
+import { serialize } from 'cookie';
+import * as jose from 'jose';
 
-const secret = process.env.SECRET;
+
+const secret = "Sounav201";
 
 export default async function handler(req, res) {
     try {
         const { email, password } = req.body;
-       /* const query = `Select * from designr.users WHERE "email" = '${email}' AND "password"='${password}' `; 
+        const query = `Select * from public.users WHERE "email" = '${email}' AND "password"='${password}' `; 
         const results = await conn.query(query);
         
         if (results.rowCount > 0) {
@@ -15,7 +18,7 @@ export default async function handler(req, res) {
                 .setIssuedAt()
                 .setExpirationTime('1d')
                 .sign(new TextEncoder().encode(`${secret}`));
-            const serialized = serialize("DesignrJWT", jwtToken, {
+            const serialized = serialize("FormBuilder", jwtToken, {
                 httpOnly: true,
                 secure: true,
                 sameSite: "strict",
@@ -28,8 +31,7 @@ export default async function handler(req, res) {
         else {
             return res.status(401).json({ message: "Invalid credentials" });
         }
-      */
-  return res.status(201).json({message:"Just testing out"});
+      
         
     } catch (error) {
         console.log(error)

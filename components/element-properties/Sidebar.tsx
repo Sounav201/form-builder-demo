@@ -218,7 +218,8 @@ const Sidebar = (props: ElementPropertiesProps) => {
                         <span className={`relative py-1 text-xs md:text-lg font-monospace `}>CLOSE</span>
             </button>
 
-        </div></div>
+        </div>
+        </div>
     )
 }
 
