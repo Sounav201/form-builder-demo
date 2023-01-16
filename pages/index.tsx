@@ -1,17 +1,39 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useState } from 'react'
-
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
- 
+
+  const router = useRouter();
  
   const [email, setEmail] = useState("")
   const [password, setpassword] = useState("")
-  console.log("Hello there ")
  
-  const handleLogin =() => {
-    console.log('Login clicked!');
+  const handleLogin = async() => {
+    console.log('Login clicked!!!');
+    console.log('Creds : ', email,password);
+
+    try {
+      const response = await fetch('/api/login' ,{
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password}),
+
+      })
+      const data = await response.json();
+      console.log('Data from API : ', data);
+      if(data.message == "Login Successful")
+      {
+        alert('Logged in!')
+        router.push('/dashboard/home');
+      }
+
+    } catch (error) {
+      console.log('Error : ', error);
+    }
 
   }
   return (

@@ -3,9 +3,17 @@ import React from 'react'
 import Card from './Card'
 import Middle from './Middle'
 import RightBar from './RightBar'
-
+import sampleTemplate from '../templates/sampleTemplate';
 
 const Container = () => {
+    const chooseTemplateClick = async(templateChoice) => {
+        console.log('Selected Template : ', templateChoice);
+        if(templateChoice=="QUIZ")
+        {
+            console.log('Quiz template : ', sampleTemplate);
+        }
+
+    }
     return (
         <div className=" h-full  " >
             <div className="  px-3 md:px-8 mt-2 md:mt-8 ">
@@ -33,10 +41,10 @@ const Container = () => {
                 <p className="px-2 md:px-4 font-extrabold text-2xl md:text-4xl bg-gradient-to-r from-sky-300 to-green-500 md:tracking-wide text-transparent bg-clip-text animate-text pb-4 ">Choose from the templates below</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 px-1 py-1  md:p-4 gap-1 md:gap-3">
-                <Card title="Form-1" balance={"QUIZ"} icon={0} />
-                <Card title="Form-2" balance={"SURVEY"} icon={1} />
-                <Card title="Form-3" balance={"FEEDBACK"} icon={2} />
-                <Card title="Form-4" balance={"ATTENDANCE"} icon={3} />
+                <Card chooseTemplateClick={chooseTemplateClick} title="Form-1" balance={"QUIZ"} icon={0} />
+                <Card chooseTemplateClick={chooseTemplateClick} title="Form-2" balance={"SURVEY"} icon={1} />
+                <Card chooseTemplateClick={chooseTemplateClick} title="Form-3" balance={"FEEDBACK"} icon={2} />
+                <Card chooseTemplateClick={chooseTemplateClick} title="Form-4" balance={"ATTENDANCE"} icon={3} />
 
             </div>
         </div>

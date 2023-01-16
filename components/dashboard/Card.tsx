@@ -18,8 +18,11 @@ const Color = ["from-indigo-500 to-blue-400", "from-yellow-400 to-yellow-300", "
 const Card = (props) => {
     var balance = props.balance
 
+
     return (
-        <div className={`transform hover:scale-105 cursor-pointer transition delay-100 w-full cursor-pointer p-1 md:p-2 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} >
+        <div 
+        onClick={() => props.chooseTemplateClick(balance)}  
+        className={`transform hover:scale-105 cursor-pointer transition delay-100 w-full cursor-pointer p-1 md:p-2 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} >
             <div className="flex justify-between">
                 <div></div>
                 <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-slate-800 bg-gray-300 rounded-full p-1 md:p-0.5 m-1  bg-opacity-60">
