@@ -1,21 +1,23 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import AppContext from '../src/context/appContext'
 
 const Home: NextPage = () => {
 
   const router = useRouter();
- 
+  const {user,setUser} = useContext(AppContext);
+
   const [email, setEmail] = useState("")
   const [password, setpassword] = useState("")
  
   const handleLogin = async() => {
     console.log('Login clicked!!!');
-    console.log('Creds : ', email,password);
+   // console.log('Creds : ', email,password);
 
     try {
-      const response = await fetch('/api/login' ,{
+      const response = await fetch('/api/auth/login' ,{
         method:"POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,11 +30,14 @@ const Home: NextPage = () => {
       if(data.message == "Login Successful")
       {
         alert('Logged in!')
+        setUser(email);
         router.push('/dashboard/home');
       }
 
     } catch (error) {
       console.log('Error : ', error);
+      setEmail("");
+      setpassword("");
     }
 
   }

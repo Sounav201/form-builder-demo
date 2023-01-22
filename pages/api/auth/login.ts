@@ -1,4 +1,4 @@
-import conn from "../../utils/db";
+import conn from "../../../utils/db";
 import { serialize } from 'cookie';
 import * as jose from 'jose';
 

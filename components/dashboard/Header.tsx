@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 // import DashboardIcon from '@material-ui/icons/Dashboard';
 import {RiDashboardFill} from 'react-icons/ri';
 // import CropLandscapeIcon from '@material-ui/icons/CropLandscape';
@@ -7,11 +7,29 @@ import {RiDashboardFill} from 'react-icons/ri';
 import {BsFillPersonFill} from 'react-icons/bs';
 // import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {MdOutlineExitToApp} from 'react-icons/md';
+import axios from 'axios';
+import { useRouter } from 'next/router'
+import AppContext from '../../src/context/appContext';
 
 const Header = () => {
 
+    const router = useRouter();
+    const {user,setUser} = useContext(AppContext);
+
     const handleLogout = async () => {
         console.log('Logout clicked!')
+        
+            const params = { key: "static_key" };
+
+            const result = await axios.post("/api/auth/logout", params);
+            if (result.status == 200) {
+              router.push("/");
+              localStorage.removeItem("token");
+              localStorage.removeItem("user");
+              setUser("");
+            }
+          
+        
     }
     return (
         <div className="flex shadow-sm bg-slate-900/50 px-1 md:px-4 py-1 md:py-3 justify-between md:h-auto ">

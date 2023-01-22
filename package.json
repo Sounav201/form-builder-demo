@@ -11,6 +11,7 @@
     "@chakra-ui/react": "^1.8.3",
     "@emotion/react": "11",
     "@emotion/styled": "11",
+    "axios": "^1.2.3",
     "cookie": "^0.5.0",
     "framer-motion": "6",
     "jose": "^4.11.2",

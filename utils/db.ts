@@ -1,8 +1,6 @@
 import {Pool , Client} from  "pg";
 
-
-const connectionString = 'postgresql://postgres:FormBuilder@2022@db.mbbvfsnnnvflmlpplvhn.supabase.co:6543/postgres';
-//postgresql://postgres:[YOUR-PASSWORD]@db.mbbvfsnnnvflmlpplvhn.supabase.co:5432/postgres
+const connectionString = process.env.POSTGRES_URL ;
 const pool = new Pool({
     connectionString
 })
