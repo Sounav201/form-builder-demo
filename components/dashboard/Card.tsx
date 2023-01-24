@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 // import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import {RiQuestionAnswerFill} from 'react-icons/ri';
 // import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
@@ -7,6 +8,7 @@ import {MdPeopleAlt} from 'react-icons/md';
 import {BsFillChatQuoteFill} from 'react-icons/bs';
 // import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import {TiGroup} from 'react-icons/ti';
+import { ChakraProvider, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel, FormHelperText, Input, Button, useDisclosure } from '@chakra-ui/react';
 
 
 const Style = "text-white text-xs"
@@ -17,11 +19,15 @@ const Color = ["from-indigo-500 to-blue-400", "from-yellow-400 to-yellow-300", "
 
 const Card = (props) => {
     var balance = props.balance
-
+    const { isOpen, onClose, onOpen } = useDisclosure();
+    const [formName, setFormName] = useState('');
+    const handleModalClose = () => onClose();
 
     return (
+        <>
         <div 
-        onClick={() => props.chooseTemplateClick(balance)}  
+        onClick={onOpen}  
+        // onClick={() => props.chooseTemplateClick(balance)}
         className={`transform hover:scale-105 cursor-pointer transition delay-100 w-full cursor-pointer p-1 md:p-2 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} >
             <div className="flex justify-between">
                 <div></div>
@@ -39,6 +45,38 @@ const Card = (props) => {
                 {"build now"}
             </p>
         </div>
+        <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <ModalCloseButton />
+          </ModalHeader>
+
+          <ModalBody>
+            <form
+              id="new-note"
+              onSubmit={(event) => {
+                event.preventDefault();
+                // console.log(formName)
+                alert("Form Created!");
+                props.chooseTemplateClick(balance, formName)
+              }}
+            >
+              <FormControl>
+                <FormLabel>{[props.balance]} Form</FormLabel>
+                <Input type="text" placeholder='Enter Form Name' value={formName} onChange={({ target }) => setFormName(target?.value)} />
+              </FormControl>
+            </form>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button type="submit" form="new-note" colorScheme={`whatsapp`} onClick={handleModalClose}>
+              Continue
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      </>
     )
 }
 

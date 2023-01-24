@@ -4,7 +4,7 @@ const Middle = () => {
     return (
         <div className=" bg-slate-900/50 shadow-sm w-full rounded-xl ">
             <div className=" p-2 md:p-3 border-gray-100">
-                <p className="font-semibold text-blue-500 md:text-xl font-spacemono ">
+                <p className="font-semibold text-white md:text-xl font-spacemono ">
                     Forms made by you ..
                 </p>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-2 justify-between cursor-pointer ">

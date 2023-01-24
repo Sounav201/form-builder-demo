@@ -40,7 +40,7 @@ const Header = () => {
 
                 <BsFillPersonFill size="1.5em" className="cursor-pointer" />
                 <MdOutlineExitToApp onClick={handleLogout} size="1.5em" color="secondary" className="cursor-pointer" />
-                <p className="text-white text-sm md:text-lg font-semibold cursor-pointer ">Close</p>
+                {/* <p className="text-white text-sm md:text-lg font-semibold cursor-pointer ">Close</p> */}
             </div>
         </div>
     )
