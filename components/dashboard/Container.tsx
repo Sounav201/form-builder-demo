@@ -9,27 +9,42 @@ import quizTemplate from '../templates/quizTemplate';
 import surveyTemplate from '../templates/surveyTemplate';
 import feedbackTemplate from '../templates/feedbackTemplate';
 import attendanceTemplate from '../templates/attendanceTemplate';
+import { useRouter } from 'next/router';
+const setFormtemplate = (templateChoice, formName) => {
+    if(typeof window !== "undefined") {
+        localStorage.setItem("formAreaItems", JSON.stringify(templateChoice));
+        localStorage.setItem("formName", JSON.stringify(formName));
+    }
+}
 
 const Container = () => {
     // const [showModal, setShowModal] = useState(false);
+    const router = useRouter();
     const chooseTemplateClick = async(templateChoice, formName) => {
         console.log('Selected Template : ', templateChoice);
         if(templateChoice=="QUIZ")
         {
             console.log(formName, quizTemplate);
+            setFormtemplate(quizTemplate, formName);
+            
         }
         else if (templateChoice=="SURVEY")
         {
             console.log(formName, surveyTemplate);
+            setFormtemplate(surveyTemplate, formName);
+
         }
         else if (templateChoice == "FEEDBACK")
         {
             console.log(formName, feedbackTemplate);
+            setFormtemplate(feedbackTemplate, formName);
         }
         else if (templateChoice == "ATTENDANCE")
         {
             console.log(formName, attendanceTemplate);
+            setFormtemplate(attendanceTemplate, formName);
         }
+        router.push('/builder');
 
     }
     

@@ -9,7 +9,7 @@ import {BsFillChatQuoteFill} from 'react-icons/bs';
 // import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import {TiGroup} from 'react-icons/ti';
 import { ChakraProvider, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel, FormHelperText, Input, Button, useDisclosure } from '@chakra-ui/react';
-
+import Swal from 'sweetalert2';
 
 const Style = "text-white text-xs"
 
@@ -28,7 +28,7 @@ const Card = (props) => {
         <div 
         onClick={onOpen}  
         // onClick={() => props.chooseTemplateClick(balance)}
-        className={`transform hover:scale-105 cursor-pointer transition delay-100 w-full cursor-pointer p-1 md:p-2 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} >
+        className={`transform hover:scale-105  transition delay-100 w-full cursor-pointer p-1 md:p-2 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} >
             <div className="flex justify-between">
                 <div></div>
                 <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-slate-800 bg-gray-300 rounded-full p-1 md:p-0.5 m-1  bg-opacity-60">
@@ -58,8 +58,13 @@ const Card = (props) => {
               onSubmit={(event) => {
                 event.preventDefault();
                 // console.log(formName)
-                alert("Form Created!");
+                
                 props.chooseTemplateClick(balance, formName)
+                Swal.fire({
+                  title: 'Form Created!',
+                  text: 'You can now start building your form',
+                  icon: 'success',
+                  confirmButtonText: 'Go'})
               }}
             >
               <FormControl>
