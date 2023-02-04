@@ -122,8 +122,8 @@ const ElementBank = (props:ElementBankProps) => {
   return (
     <>
         <Drawer placement={"left"} onClose={handleClose} isOpen={isOpen} size={"xs"} isFullHeight={false} >
-        <DrawerContent bgColor={"black"}>
-          <DrawerHeader borderBottomWidth='1px' color={"white"}>Drag and drop an element on to the form</DrawerHeader>
+        <DrawerContent bgColor={"#000116"} >
+          <DrawerHeader borderBottomWidth='1px' color={"#FFFFFF"} className="text-center">Drag & Drop an element to add it to your form --{'>'}</DrawerHeader>
           <DrawerBody>
             
             {elements.map((element) => {
@@ -136,11 +136,11 @@ const ElementBank = (props:ElementBankProps) => {
         </DrawerContent>
       </Drawer>
 
-      <div className={panelStatus ?`fixed h-full flex w-56 overflow-auto  transition ease-out duration-500 z-50`: `fixed h-full flex w-56 overflow-auto transition ease-out duration-500 -translate-x-56`} 
+      <div className={panelStatus ?`fixed h-full flex w-68 overflow-auto  transition ease-out duration-500 z-50`: `fixed h-full flex w-56 overflow-auto transition ease-out duration-500 -translate-x-56`} 
       onClick={handleOpen} > 
-            <div className={`togglePanel flex my-auto text-white rounded-r-2xl  py-4 justify-center gap-1.5 w-full  bg-blue-500   cursor-pointer`} >
-                <p className=' toggleText pointer text-lg font-bold '>Add Form Elements</p>
-                <AiFillPlusCircle size="2em" />
+            <div className={`togglePanel flex my-auto text-violet-600 rounded-r-2xl py-2 px-4 justify-center gap-1.5 w-full  bg-transparent border-y-2 border-r-2 border-violet-800   cursor-pointer`} >
+                <p className='flex toggleText pointer items-center text-2xl font-bold '>Add Form Elements</p>
+                <AiFillPlusCircle size="2.5em" className="bg-background rounded-full" />
             </div>
         </div>
     </>

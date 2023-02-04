@@ -83,10 +83,10 @@ const Sidebar = (props: ElementPropertiesProps) => {
 
     return (
         <div>   
-            <div className={`top-0 right-0 w-[20vw] bg-cetacean/95 px-4 text-white fixed h-full z-40 transition  ease-in-out duration-300 ${isSelected && props.sidebarStatus ? "translate-x-0 " : "translate-x-full"
+            <div className={`top-0 right-0 w-[20vw] bg-slate-900/95 px-4 text-white fixed h-full z-40 transition  ease-in-out duration-300 ${isSelected && props.sidebarStatus ? "translate-x-0 " : "translate-x-full"
                 }`}>
 
-            <h1 className="mt-4 text-2xl text-purple-700 font-spacemono font-bold uppercase">
+            <h1 className="mt-4 text-2xl text-violet-800 font-spacemono font-bold uppercase">
                 Element Properties
             </h1>
             <div className='flex flex-col '>
@@ -212,8 +212,8 @@ const Sidebar = (props: ElementPropertiesProps) => {
                     Close
                 </Button>
             </div> */}
-            <button className="bottom-12 right-8 absolute font-medium text-orange-500 border-2 border-orange-500 w-1/2  hover:pr-8 duration-300 rounded-full hover:text-white group flex justify-center items-center overflow-hidden" onClick={handleClose}>
-                        <span className="absolute left-0 w-full h-0 transition-all bg-orange-500 opacity-100 group-hover:h-full group-hover:top-0  ease"></span>
+            <button className="bottom-12 right-8 absolute font-medium text-violet-500 border-2 border-violet-800 hover:border-yellow-500 w-1/2  hover:pr-8 duration-300 rounded-full hover:text-yellow-500 group flex justify-center items-center overflow-hidden" onClick={handleClose}>
+                        <span className="absolute left-0 w-full h-0 transition-all bg-background opacity-100 group-hover:h-full group-hover:top-0  ease"></span>
                         <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-8 group-hover:translate-y-0 "><IoMdCloseCircleOutline size="1.5em" /></span>
                         <span className={`relative py-1 text-xs md:text-lg font-monospace `}>CLOSE</span>
             </button>

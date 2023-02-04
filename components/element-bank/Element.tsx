@@ -38,10 +38,10 @@ const Element = ({ type, question, displayName, attributes,handleClose }: Elemen
         <div ref={dragRef} style={{
             opacity: isDragging ? 0.5 : 1,
             cursor: "move",}}
-            className={isDragging ? 'my-8 border-2 border-white border-solid p-3 bg-purple-800 hover:bg-transparent transition duration-300 rounded-lg cursor-pointer' : 'my-8 p-3 bg-purple-800 hover:bg-transparent transition duration-300 rounded-lg cursor-pointer'}>
+            className={isDragging ? 'my-6 border-2 border-white p-3 bg-violet-800 hover:bg-transparent transition duration-300 rounded-xl cursor-pointer' : 'my-6 p-3 border-2 border-violet-800 bg-transparent hover:bg-transparent hover:scale-105 transition duration-300 rounded-xl cursor-pointer'}>
             <Flex>
-                <Icon as={attributes.icon} fontSize={"2xl"} color={"white"} className={"w-5 h-7 ml-2 -mr-1 text-violet-200 hover:text-violet-100 transition duration-300 ease-in-out"} />
-                <Text ml={5} color={"yellow.300"} as="em" fontWeight={"bold"}>{displayName}</Text>
+                <Icon as={attributes.icon} fontSize={"2xl"} color={"#5B21B6"} className={"w-5 h-7 mx-2 text-violet-200 hover:text-violet-100 transition duration-300 ease-in-out"} />
+                <Text ml={5} className="text-violet-800 text-base" as="em" fontWeight={"bold"}>{displayName}</Text>
             </Flex>
 
         </div>

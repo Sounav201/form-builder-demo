@@ -8,7 +8,7 @@ const Home: NextPage = () => {
 
   const router = useRouter();
   const {user,setUser} = useContext(AppContext);
-
+  
   const [email, setEmail] = useState("")
   const [password, setpassword] = useState("")
  
@@ -58,7 +58,7 @@ const Home: NextPage = () => {
         </a>
 
       </div>
-    <div className="mt-12 rounded-3xl border bg-gray-50 dark:border-gray-700 dark:bg-gray-800 -mx-6 sm:-mx-10 p-8 sm:p-10">
+    <div className="mt-12 rounded-3xl border bg-background/70 dark:border-gray-700 dark:bg-gray-800 -mx-6 sm:-mx-10 p-8 sm:p-10">
       <div className=' mb-4 mx-auto '>
         <p className='md:text-xl text-white text-center '>Sign in with</p>
       </div>
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
       <div className='mt-4 mb-2 mx-auto'>
         <p className='text-center md:text-base text-white font-semibold'>Or sign in using credentials</p>
       </div>
-      <form action="" className="mt-10 space-y-8 dark:text-white">
+      <form action="" className="mt-10 space-y-8 text-white dark:text-white">
         <div>
           <div className="relative before:absolute before:bottom-0 before:h-0.5 before:left-0 before:origin-right focus-within:before:origin-left before:right-0 before:scale-x-0 before:m-auto before:bg-sky-400 dark:before:bg-sky-800 focus-within:before:!scale-x-100 focus-within:invalid:before:bg-red-400 before:transition before:duration-300">
             <input value={email} onChange={(e)=> setEmail(e.target.value)} id="" type="email" placeholder="Your email or user name" className="w-full bg-transparent pb-3  border-b border-gray-300 dark:placeholder-gray-300 dark:border-gray-600 outline-none  invalid:border-red-400 transition" />

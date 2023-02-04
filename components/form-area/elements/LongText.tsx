@@ -101,7 +101,7 @@ const LongText = (props:LongTextProps) => {
     }}
     data-handler-id={handlerId}
     onClick={() => props.onQuestionSelected()}
-    className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto rounded-md  w-11/12 relative box-border border-2 border-dotted border-red-400` : `my-4 pt-8 pb-2 rounded-md md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
+    className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto rounded-md  w-11/12 relative box-border border-2 border-dotted border-violet-900` : `my-4 pt-8 pb-2 rounded-md md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
     >
   <Stack w={[350, 550, 700]} marginX="auto" maxWidth={800}   >
                 <FormControl w={[350, 500, 600]} marginX="auto">

@@ -34,7 +34,7 @@ const Preview = () => {
 
 
   return (
-    <div style={{backgroundImage:"url('./subtle-prism.svg')"}} className=" bg-cover min-h-screen flex flex-col ">
+    <div className=" bg-cover min-h-screen flex flex-col bg-background ">
         <div className="bg-transparent fixed left-8 top-6">
              <Link href={"/builder"}>
              <button className="relative border-2 border-violet-800 py-2.5 px-5 font-medium uppercase text-violet-500 transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-gradient-to-r from-violet-900  to-blue-600 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:border-violet-800 before:hover:scale-x-100" >
@@ -43,7 +43,7 @@ const Preview = () => {
                </Link>
            </div>
  
-        <div style={{backgroundImage:"url('./scattered-forcefields.svg')"}} className='w-7/13 my-4 bg-cover rounded-xl p-2 mx-auto '>
+        <div  className='w-7/13 my-4 bg-cover bg-violet-200 p-2 mx-auto '>
         {form.length> 0 && form.map((element,idx) => {
             if(element.type == "shorttext")
             {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import {isMobile} from 'react-device-detect';
 // import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import {RiQuestionAnswerFill} from 'react-icons/ri';
 // import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
@@ -28,7 +29,7 @@ const Card = (props) => {
         <div 
         onClick={onOpen}  
         // onClick={() => props.chooseTemplateClick(balance)}
-        className={`transform hover:scale-105  transition delay-100 w-full cursor-pointer p-1 md:p-2 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} >
+        className={`transform hover:scale-105  transition delay-100 w-full cursor-pointer p-1 md:p-2 h-32 md:h-40 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} >
             <div className="flex justify-between">
                 <div></div>
                 <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-slate-800 bg-gray-300 rounded-full p-1 md:p-0.5 m-1  bg-opacity-60">
@@ -60,11 +61,22 @@ const Card = (props) => {
                 // console.log(formName)
                 
                 props.chooseTemplateClick(balance, formName)
-                Swal.fire({
+                if(!(isMobile))
+                { 
+                  Swal.fire({
                   title: 'Form Created!',
-                  text: 'You can now start building your form',
+                  text: 'Yay! You can now start building your form',
                   icon: 'success',
-                  confirmButtonText: 'Go'})
+                  confirmButtonText: 'Continue'});
+                }
+                else
+                {
+                  Swal.fire({
+                  title: 'Form generation failed!',
+                  text: 'Uh Oh! Your form could not be generated',
+                  icon: 'error',
+                  confirmButtonText: 'Continue'});
+                }
               }}
             >
               <FormControl>
