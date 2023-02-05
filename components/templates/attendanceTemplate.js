@@ -1,7 +1,20 @@
 const attendanceTemplate = [
     {
+        "type": "shorttext",
+        "question": "Please enter the Date in (DD/MM/YYYY) format",
+        "attributes": {
+            "required": false,
+            "styling": {
+                "fontColor": "#000000",
+                "questionImage": ""
+            }
+        },
+        "id": "gHfltsH6k-W1a5bB70grY",
+        "isSelected": true
+    },
+    {
         "type": "longtext",
-        "question": "Type your Question",
+        "question": "Please enter the Subject Code",
         "attributes": {
             "required": false,
             "styling": {
@@ -14,7 +27,7 @@ const attendanceTemplate = [
     },
     {
         "type": "checkbox",
-        "question": "Type your Question",
+        "question": "Student Roll No.",
         "attributes": {
             "required": false,
             "styling": {
@@ -23,13 +36,13 @@ const attendanceTemplate = [
             },
             "choices": [
                 {
-                    "label": "Yes",
-                    "value": "Yes",
+                    "label": "Present",
+                    "value": "Present",
                     "id": "1"
                 },
                 {
-                    "label": "No",
-                    "value": "No",
+                    "label": "Absent",
+                    "value": "Absent",
                     "id": "2"
                 }
             ]

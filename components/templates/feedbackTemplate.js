@@ -1,7 +1,7 @@
 const feedbackTemplate = [
     {
         "type": "longtext",
-        "question": "Type your Question",
+        "question": "Please enter your Name",
         "attributes": {
             "required": false,
             "styling": {
@@ -14,7 +14,7 @@ const feedbackTemplate = [
     },
     {
         "type": "checkbox",
-        "question": "Type your Question",
+        "question": "Please enter your Gender",
         "attributes": {
             "required": false,
             "styling": {
@@ -23,14 +23,19 @@ const feedbackTemplate = [
             },
             "choices": [
                 {
-                    "label": "Yes",
-                    "value": "Yes",
+                    "label": "Male",
+                    "value": "Male",
                     "id": "1"
                 },
                 {
-                    "label": "No",
-                    "value": "No",
+                    "label": "Female",
+                    "value": "Female",
                     "id": "2"
+                },
+                {
+                    "label": "I don't want to specify",
+                    "value": "I don't want to specify",
+                    "id": "3"                
                 }
             ]
         },
@@ -39,15 +44,17 @@ const feedbackTemplate = [
     },
     {
         "type": "rating",
-        "question": "Type your Question",
+        "question": "Please give a rating based on your Overall Experience",
         "attributes": {
-            "required": "false",
+            "required": false,
             "styling": {
                 "fontColor": "#000000",
                 "hoverColor": "#c31432",
                 "fillColor": "#000000",
                 "questionImage": "",
             },
+            "limit": 5,
+            "emoji": "Star",
         },
         "id": "Kvgd4ya6bm5xpgA_nE4l4",
         "isSelected": false

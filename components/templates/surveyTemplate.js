@@ -1,7 +1,7 @@
 const surveyTemplate = [
     {
         "type": "longtext",
-        "question": "Type your Question",
+        "question": "Which Department do you work in? (Technical / Sales / Marketing / Operations) ",
         "attributes": {
             "required": false,
             "styling": {
@@ -14,22 +14,24 @@ const surveyTemplate = [
     },
     {
         "type": "rating",
-        "question": "Type your Question",
+        "question": "How satisfied are you based on your opportunities for professional growth?",
         "attributes": {
-            "required": "false",
+            "required": false,
             "styling": {
                 "fontColor": "#000000",
                 "hoverColor": "#c31432",
                 "fillColor": "#000000",
                 "questionImage": "",
             },
+            "limit": 5,
+            "emoji": "Smiley",
         },
         "id": "fxeqdANK5uEiru0MOs7YX",
         "isSelected": false
     },
     {
         "type": "checkbox",
-        "question": "Type your Question",
+        "question": "Please enter your Job Role",
         "attributes": {
             "required": false,
             "styling": {
@@ -38,14 +40,19 @@ const surveyTemplate = [
             },
             "choices": [
                 {
-                    "label": "Yes",
-                    "value": "Yes",
+                    "label": "Executive",
+                    "value": "Executive",
                     "id": "1"
                 },
                 {
-                    "label": "No",
-                    "value": "No",
+                    "label": "Manager",
+                    "value": "Manager",
                     "id": "2"
+                },
+                {
+                    "label": "Analyst",
+                    "value": "Analyst",
+                    "id": "3"
                 }
             ]
         },

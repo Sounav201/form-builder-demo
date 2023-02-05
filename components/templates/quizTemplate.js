@@ -1,7 +1,7 @@
 const quizTemplate = [
     {
         "type": "shorttext",
-        "question": "Type your Question",
+        "question": "Please enter your Student ID",
         "attributes": {
             "required": false,
             "styling": {
@@ -14,7 +14,7 @@ const quizTemplate = [
     },
     {
         "type": "longtext",
-        "question": "Type your Question",
+        "question": "1. Describe the process of photosynthesis.",
         "attributes": {
             "required": false,
             "styling": {
@@ -27,7 +27,7 @@ const quizTemplate = [
     },
     {
         "type": "checkbox",
-        "question": "Type your Question",
+        "question": "2. Which of the following is penultimate layer of the atmosphere?",
         "attributes": {
             "required": false,
             "styling": {
@@ -36,15 +36,25 @@ const quizTemplate = [
             },
             "choices": [
                 {
-                    "label": "Yes",
-                    "value": "Yes",
+                    "label": "Stratosphere",
+                    "value": "Stratosphere",
+                    "id": "4"
+                },
+                {
+                    "label": "Exosphere",
+                    "value": "Exosphere",
                     "id": "1"
                 },
                 {
-                    "label": "No",
-                    "value": "No",
+                    "label": "Thermosphere",
+                    "value": "Thermosphere",
                     "id": "2"
-                }
+                },
+                {
+                    "label": "Mesosphere",
+                    "value": "Mesosphere",
+                    "id": "3"
+                },
             ]
         },
         "id": "FC3GU2ln29C9jrEJGkrFZ",
