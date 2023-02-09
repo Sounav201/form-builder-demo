@@ -138,7 +138,7 @@ const ElementBank = (props:ElementBankProps) => {
 
       <div className={panelStatus ?`fixed h-full flex w-68 overflow-auto  transition ease-out duration-500 z-50`: `fixed h-full flex w-56 overflow-auto transition ease-out duration-500 -translate-x-56`} 
       onClick={handleOpen} > 
-            <div className={`togglePanel flex my-auto text-violet-600 rounded-r-2xl py-2 px-4 justify-center gap-1.5 w-full  bg-transparent border-y-2 border-r-2 border-violet-800   cursor-pointer`} >
+            <div className={`togglePanel flex my-auto text-violet-600 rounded-r-2xl py-2 px-4 justify-center gap-1.5 w-full  bg-black  border-y-2 border-r-2 border-violet-800    cursor-pointer`} >
                 <p className='flex toggleText pointer items-center text-2xl font-bold '>Add Form Elements</p>
                 <AiFillPlusCircle size="2.5em" className="bg-background rounded-full" />
             </div>

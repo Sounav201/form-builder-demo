@@ -32,6 +32,7 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
     null as FormAreaItem<ElementAttributes> | null);
 
   const [formAreaItems, setFormAreaItems] = useState( [] as FormAreaItem<ElementAttributes>[]);
+  const [formHeading,setformHeading] = useState('Untitled Form');
   const [showSidebar, setshowSidebar] = useState(false);
   const router = useRouter();
 
@@ -42,6 +43,10 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
       if(localStorage.getItem("formAreaItems"))
       {console.log('Getter runs!');
         setFormAreaItems(JSON.parse(localStorage.getItem("formAreaItems"))  )
+      }
+      if(localStorage.getItem("formHeading"))
+      {
+        setformHeading(JSON.parse(localStorage.getItem("formHeading"))  )
       }
       
     }
@@ -58,13 +63,18 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
       {
         console.log('Setter runs!');
         localStorage.setItem("formAreaItems", JSON.stringify(formAreaItems));
-        
+        localStorage.setItem("formHeading", JSON.stringify(formHeading));
+      
       }
       
       
     }, [formAreaItems])
 
-
+  
+    //Change form heading
+    const onFormHeadingChanged = (heading: string) => {
+      setformHeading(heading);
+    }
 
   //Move Form Element
   const moveItem = useCallback((dragIndex: number, hoverIndex: number) => {
@@ -276,6 +286,7 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
               <FormArea
                 moveCard={moveCard}
                 items={formAreaItems}
+                formHeading={formHeading}
                 onDrop={onFormAreaDrop}
                 onItemDelete={onElementDelete}
                 onQuestionTextChange={onElementQuestionChanged}
@@ -285,6 +296,7 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
                 onOptionAdd={onOptionAdd}
                 onOptionDelete={onOptionDelete}
                 moveItem={moveItem}
+                onFormHeadingChanged={onFormHeadingChanged}
               />
 
             </div>

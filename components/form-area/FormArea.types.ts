@@ -1,6 +1,7 @@
 import { ElementAttributes, ElementType } from "../element-bank/ElementBank.types";
 export interface FormAreaProps {
     items: FormAreaItem<ElementAttributes>[];
+    formHeading:string;
     moveCard: (dragIndex: number, hoverIndex: number) => any;
     onQuestionSelected: (item: FormAreaItem<ElementAttributes>) => any;
     onQuestionTextChange: (item: FormAreaItem<ElementAttributes>, question: string) => any;
@@ -11,6 +12,7 @@ export interface FormAreaProps {
     onOptionAdd:(item: FormAreaItem<ElementAttributes>) => any;
     onOptionDelete: (item: FormAreaItem<ElementAttributes>, choiceIndex:number) => any;
     moveItem:(dragIndex:number, hoverIndex:number) => void
+    onFormHeadingChanged:(heading:string) => void;
 
   }
   

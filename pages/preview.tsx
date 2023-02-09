@@ -10,8 +10,7 @@ const Preview = () => {
 
     const router = useRouter();
     const data = router.query;
-    const [dummyform, setdummyform] = useState([]);
- 
+    const [dummyHeading, setdummyHeading] = useState("Untitled Form")
 
     const [form, setform] = useState([ ]);
 
@@ -21,9 +20,12 @@ const Preview = () => {
         {
           if(localStorage.getItem("formAreaItems"))
           {//console.log('Getter runs!');
-            setdummyform(JSON.parse(localStorage.getItem("formAreaItems"))  )
             setform(JSON.parse(localStorage.getItem("formAreaItems"))  )
             
+          }
+          if(localStorage.getItem("formHeading"))
+          {
+            setdummyHeading(JSON.parse(localStorage.getItem("formHeading")));
           }
           
         }
@@ -44,6 +46,7 @@ const Preview = () => {
            </div>
  
         <div  className='w-7/13 my-4 bg-cover bg-violet-200 p-2 mx-auto '>
+            <div className="text-3xl font-bold my-4 text-center outline-none  w-full ">{dummyHeading}</div>
         {form.length> 0 && form.map((element,idx) => {
             if(element.type == "shorttext")
             {

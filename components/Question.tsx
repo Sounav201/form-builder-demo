@@ -35,7 +35,7 @@ const Question = (props:QuestionProps) => {
     style={{
         color: props.styling.fontColor,
     }}
-  >
+    >
 
     {props.question}
     {   props.required &&  <span className='ml-2 text-red-700'>*</span>
