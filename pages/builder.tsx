@@ -7,7 +7,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { FormAreaItem } from "../components/form-area/FormArea.types";
 import { ElementAttributes, RatingAttributes } from "../components/element-bank/ElementBank.types";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import {
   FORM_ITEMS_SESSION_KEY,
@@ -24,9 +24,13 @@ import Swal from 'sweetalert2'
 import Link from 'next/link';
 
 import { useRouter } from 'next/router';
+import AppContext from '../src/context/appContext';
 
 
 const Home: NextPage = ({ initialformAreaItems }: any) => {
+
+  const {user} = useContext(AppContext);
+  const router = useRouter();
 
   const [selectedItem, setSelectedItem] = useState(
     null as FormAreaItem<ElementAttributes> | null);
@@ -34,12 +38,20 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
   const [formAreaItems, setFormAreaItems] = useState( [] as FormAreaItem<ElementAttributes>[]);
   const [formHeading,setformHeading] = useState('Untitled Form');
   const [showSidebar, setshowSidebar] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
 
     if(typeof(window)!= undefined)
-    {
+    { 
+      if (user && user.length > 0) {
+        console.log("User logged in" , user);
+      
+      } else if(localStorage.getItem("form_builderuser")) {
+        console.log("User logged in" , user);
+        
+      } else {
+        router.push("/");
+      }
       if(localStorage.getItem("formAreaItems"))
       {console.log('Getter runs!');
         setFormAreaItems(JSON.parse(localStorage.getItem("formAreaItems"))  )
@@ -246,6 +258,33 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
 
   //style={{backgroundImage:"url('./sunset-hair.jpg')"}}
 
+  const handleSaveClick = async () => {
+    //Must be a conditional statement to check if the form is new or not
+    //If new, then send the data to the backend to create a new form
+    //If not new, then send the data to the backend to update the form
+    //For New form
+    var dataToSend ={formHeading:formHeading,formAreaItems:formAreaItems,user:user}
+    const response = await fetch('/api/createForm',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(dataToSend)
+    })
+    if(response.status == 200)
+    {
+      const data = await response.json()
+      console.log('Response : ',data)
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Your form has been saved!',
+      });
+      
+    }
+
+  }
+
   return (
     <div>
       <Head>
@@ -257,9 +296,6 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
         <div className='h-full min-h-screen min-w-screen bg-background    '>
           <div className="flex flex-col bg-none fixed right-8 top-6 gap-52 z-20">
              
-            {/* <button className="bg-gradient-to-r text-white cursor-pointer from-purple-600  to-blue-600 transition-all  duration-300 hover:scale-105  hover:from-blue-800 hover:to-purple-800 py-4 px-8 rounded-sm font-bold " onClick={handlePreviewClick}>
-              Preview
-              </button> */}
               <button className="relative border-2 border-violet-800 py-2.5 px-5 font-medium uppercase text-violet-500 transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-gradient-to-r from-violet-900  to-blue-600 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:border-violet-800 before:hover:scale-x-100" onClick={handlePreviewClick}>Preview</button>
               <div className={` `}>
                 
@@ -271,7 +307,7 @@ const Home: NextPage = ({ initialformAreaItems }: any) => {
             
           </div>
           <div className = 'flex flex-col group bg-none fixed right-8 bottom-6 gap-52 z-20'>
-            <button className="flex flex-row gap-2 relative border-2 border-violet-800 py-2.5 px-5 font-medium uppercase text-violet-500 transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-gradient-to-r from-violet-900  to-blue-600 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:border-violet-800 before:hover:scale-x-100" >Save<IoIosSave size="1.5em" className="group-hover:animate-ping"/></button>
+            <button onClick={handleSaveClick}  className="flex flex-row gap-2 relative border-2 border-violet-800 py-2.5 px-5 font-medium uppercase text-violet-500 transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-gradient-to-r from-violet-900  to-blue-600 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:border-violet-800 before:hover:scale-x-100" >Save<IoIosSave size="1.5em" className="group-hover:animate-ping"/></button>
           </div>
           
           <div className='grid grid-cols-12 gap-x-4   place-content-center'>

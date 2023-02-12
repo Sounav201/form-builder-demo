@@ -2,36 +2,44 @@ import React from 'react';
 import {useState} from 'react';
 import { useRouter } from 'next/router';
 import {isMobile} from 'react-device-detect';
-// import FolderSharedIcon from '@material-ui/icons/FolderShared';
 import {MdFolderShared} from 'react-icons/md';
-// import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
 import {MdAssignmentLate} from 'react-icons/md';
-// import DraftsIcon from '@material-ui/icons/Drafts';
 import {MdDrafts} from 'react-icons/md';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
 import {AiFillHeart} from 'react-icons/ai';
-// import ArchiveIcon from '@material-ui/icons/Archive';
 import {IoMdArchive} from 'react-icons/io';
-// import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import {MdOutlineAllInclusive} from 'react-icons/md';
-// import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
 import {MdCreateNewFolder} from 'react-icons/md';
-// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-// import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import {MdOutlineArrowBackIos} from 'react-icons/md';
-// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-// import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import {MdArrowForward} from 'react-icons/md';
-// import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import {FiCodesandbox} from 'react-icons/fi';
-// import AddIcon from '@material-ui/icons/Add';
-// import CreateIcon from '@material-ui/icons/Create';
-// import AiFillFolderAdd from 'react-icons/ai';
-// import ReceiptRoundedIcon from '@material-ui/icons/ReceiptRounded';
+import { ChakraProvider, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel, FormHelperText, Input, Button, useDisclosure } from '@chakra-ui/react';
+import { generateUUID } from '../../services/generateUUID';
+
 
 const Sidebar = ({ darkMode, setDarkMode }) => {
     const [open, setOpen] = useState(true);
     const router = useRouter();
+    const [formName, setFormName] = useState('');
+    const modal = useDisclosure();
+    const handleCreateClick = () => {
+        if(isMobile) 
+             router.push('/mobileredirect') 
+        else{
+            modal.onOpen();
+        }
+    }
+
+    const handleModalClose = () => {
+        const formAreaItems = [];
+        const formHeading = formName;
+        const formID = generateUUID();
+        if(typeof window !== "undefined") {
+            localStorage.setItem("formAreaItems", JSON.stringify(formAreaItems));
+            localStorage.setItem("formHeading", JSON.stringify(formHeading));
+            router.push(`/forms/${formID}`);
+        }
+    }
+
 
     return (
         <div className={` h-auto bg-gray-900 dark:bg-gray-900 absolute md:relative md:duration-300 invisible md:visible shadow-2xl ${open ? " w-6/12 md:w-3/12  ":" w-1/11 md:w-1/13 "} `}>
@@ -50,7 +58,7 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
                 <div className="space-y-4" >
                 <div className="space-y-3 shadow-sm  border-solid pt-3 md:pt-4 " >
                     {/* <h1 className={`flex text-yellow-400 text-base md:text-lg justify-center font-semibold ${!open && "hidden"} `}>MY FORMS</h1> */}
-                    <button className=" font-medium text-blue-400 border-2 border-blue-400 w-full  rounded-full hover:text-white group relative flex justify-center items-center overflow-hidden" onClick={() => {(isMobile) ? router.push('/mobileRedirect') : router.push('/builder')}}>
+                    <button className=" font-medium text-blue-400 border-2 border-blue-400 w-full  rounded-full hover:text-white group relative flex justify-center items-center overflow-hidden" onClick={handleCreateClick}>
                         <span className="absolute left-0 w-full h-0 transition-all bg-blue-400 opacity-100 group-hover:h-full group-hover:top-0 duration-400 ease"></span>
                         <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-x-full group-hover:translate-x-0"><MdArrowForward size="1.5em" /></span>
                         <span className={`relative py-1 text-xs md:text-lg font-monospace ${!open && "hidden"}`}>CREATE</span>
@@ -115,6 +123,37 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
 
 
                 </div> */}
+                <Modal isOpen={modal.isOpen} onClose={modal.onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <ModalCloseButton />
+          </ModalHeader>
+
+          <ModalBody>
+            <form
+              id="new-note"
+              onSubmit={(event) => {
+                event.preventDefault();
+                // console.log(formName)
+                
+              }}
+            >
+              <FormControl>
+                <FormLabel>Create New Form</FormLabel>
+                <Input type="text" placeholder='Enter Form Name' value={formName} onChange={({ target }) => setFormName(target?.value)} />
+              </FormControl>
+            </form>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button type="submit" form="new-note" colorScheme={`whatsapp`} onClick={handleModalClose}>
+              Continue
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+            </Modal>
+
             </div>
 
         </div>

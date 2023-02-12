@@ -30,7 +30,12 @@ const Home: NextPage = () => {
       if(data.message == "Login Successful")
       {
         alert('Logged in!')
+        localStorage.setItem("form_buildertoken", data.token);
+              //console.log("User role logged in ", data.role);
+        localStorage.setItem("form_builderuser", data.email);
+
         setUser(email);
+
         router.push('/dashboard/home');
       }
 

@@ -13,55 +13,47 @@ import feedbackTemplate from '../templates/feedbackTemplate';
 import attendanceTemplate from '../templates/attendanceTemplate';
 import { useRouter } from 'next/router';
 import {isMobile} from 'react-device-detect';
+import { generateUUID } from '../../services/generateUUID';
 const setFormtemplate = (templateChoice, formName) => {
     if(typeof window !== "undefined") {
         localStorage.setItem("formAreaItems", JSON.stringify(templateChoice));
-        localStorage.setItem("formName", JSON.stringify(formName));
+        localStorage.setItem("formHeading", JSON.stringify(formName));
+        //Generate ID 
+        const formID = generateUUID();
+        return formID;
     }
 }
 
+const enumTypeDict ={
+    "QUIZ":quizTemplate,
+    "SURVEY":surveyTemplate,
+    "FEEDBACK":feedbackTemplate,
+    "ATTENDANCE":attendanceTemplate
+}
 
 const Container = ({ darkMode, setDarkMode }) => {
     // const [showModal, setShowModal] = useState(false);
     const router = useRouter();
     const [scrollY, setScrollY] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
-    // const [darkMode, setDarkMode] = useState(true);
+    
     const chooseTemplateClick = async(templateChoice, formName) => {
         console.log('Selected Template : ', templateChoice);
-        
+        console.log('Choice of template : ', enumTypeDict[templateChoice]);
+        const selectedTemplate = enumTypeDict[templateChoice];        
         if(isMobile)
         {
             router.push('/mobileredirect');
         }
-        else if(templateChoice=="QUIZ")
-        {
-            console.log(formName, quizTemplate);
-            setFormtemplate(quizTemplate, formName);
-            // router.push('/builder');
+        else{
+            const formID = setFormtemplate(selectedTemplate, formName);
+            router.push(`/forms/${formID}`);
         }
-        else if (templateChoice=="SURVEY")
-        {
-            console.log(formName, surveyTemplate);
-            setFormtemplate(surveyTemplate, formName);
-            // router.push('/builder');
-        }
-        else if (templateChoice == "FEEDBACK")
-        {
-            console.log(formName, feedbackTemplate);
-            setFormtemplate(feedbackTemplate, formName);
-            // router.push('/builder');
-        }
-        else if (templateChoice == "ATTENDANCE")
-        {
-            console.log(formName, attendanceTemplate);
-            setFormtemplate(attendanceTemplate, formName);
-            // router.push('/builder');
-        }
-        if(!(isMobile))
-        {
-            router.push('/builder');
-        }
+        
+        // if(!(isMobile))
+        // {
+        //     router.push('/builder');
+        // }
         
 
     }
@@ -134,7 +126,7 @@ const Container = ({ darkMode, setDarkMode }) => {
                 <RightBar darkMode={darkMode} setDarkMode={setDarkMode}/>
             </div>
             <div className=" flex flex-col px-2 md:px-8 gap-1 md:gap-1 ">
-                <p className=" py-1 text-rose-800 dark:text-white font-semibold text-lg md:text-2xl  font-spacemono pt-4 text-white md:tracking-wide animate-text ">Create a Form now</p>
+                <p className=" py-1 text-rose-800 dark:text-white font-semibold text-lg md:text-2xl  font-spacemono pt-4  md:tracking-wide animate-text ">Create a Form now</p>
                 <p className="px-2 md:px-4 font-extrabold text-2xl md:text-4xl bg-sky-600 dark:bg-gradient-to-r dark:from-sky-300 dark:to-green-500 md:tracking-wide text-transparent bg-clip-text animate-text pb-4 ">Choose from the templates below</p>
             </div>
             <Fragment>

@@ -8,7 +8,9 @@ const secret = "Sounav201";
 export default async function handler(req, res) {
     try {
         const { email, password } = req.body;
+
         const query = `Select * from public.users WHERE "email" = '${email}' AND "password"='${password}' `; 
+        
         const results = await conn.query(query);
         
         if (results.rowCount > 0) {

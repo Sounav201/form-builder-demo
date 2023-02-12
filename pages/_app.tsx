@@ -5,7 +5,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import AppContext from '../src/context/appContext';
 
 
@@ -34,12 +34,24 @@ const theme = extendTheme({ colors,breakpoints })
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [user,setUser] = useState(null);
+  const [createdForms, setCreatedForms] = useState([]);
 
+  //form_builderuser
+  useEffect(() => {
+    if (user?.length == 0 || user == null) {
+      //Check if localStorage has a token role
+      if (typeof window != undefined && localStorage.getItem("form_builderuser")) {
+        console.log('Found user')
+        setUser(localStorage.getItem("form_builderuser"));
+      }
+    }
+  }, []);
+ 
 
   
   return (
   <ChakraProvider theme={theme}>
-    <AppContext.Provider value={{user,setUser}}>
+    <AppContext.Provider value={{user,setUser,createdForms, setCreatedForms}}>
    <DndProvider backend={HTML5Backend}> 
   <Component {...pageProps} />
   </DndProvider>

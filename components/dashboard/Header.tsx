@@ -17,15 +17,38 @@ import {IoMdArchive} from 'react-icons/io';
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import AppContext from '../../src/context/appContext';
+import { ChakraProvider, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel, FormHelperText, Input, Button, useDisclosure } from '@chakra-ui/react';
+import { generateUUID } from '../../services/generateUUID';
 
 function Topbar({minimize, setMinimize}) {
     const router = useRouter();
+    const [formName, setFormName] = useState('');
+    const modal = useDisclosure();
+    const handleCreateClick = () => {
+        console.log('Create click ') 
+        if(isMobile) 
+             router.push('/mobileredirect') 
+        else{
+            modal.onOpen();
+        }
+    }
+
+    const handleModalClose = () => {
+        const formAreaItems = [];
+        const formHeading = formName;
+        const formID = generateUUID();
+        if(typeof window !== "undefined") {
+            localStorage.setItem("formAreaItems", JSON.stringify(formAreaItems));
+            localStorage.setItem("formHeading", JSON.stringify(formHeading));
+            router.push(`/forms/${formID}`);
+        }
+    }
 
     return (
         <div className={` top-0 left-0 h-screen w-full bg-slate-900 dark:bg-gray-900 z-50 transform ${minimize ? "-translate-y-0 fixed" : "-translate-y-full absolute"} visible md:invisible transition-transform duration-700 ease-in-out filter  `}>
            
             <div className="flex flex-col justify-center items-center mt-12">
-                <button className=" text-white border border-gray-400 hover:border-sky-500 dark:hover:border-indigo-700 w-11/12 rounded-full hover:text-sky-500 dark:hover:text-indigo-500 flex justify-center items-center gap-2"  onClick={() => {(isMobile) ? router.push('/mobileredirect') : router.push('/builder')}}>
+                <button className=" text-white border border-gray-400 hover:border-sky-500 dark:hover:border-indigo-700 w-11/12 rounded-full hover:text-sky-500 dark:hover:text-indigo-500 flex justify-center items-center gap-2"  onClick={handleCreateClick}>
                 <span className={`text-lg my-3 font-bold`}>CREATE</span>
                 {/* <MdArrowForward size="1.5em" /> */}
                 <MdCreateNewFolder size="1.5em" />
@@ -58,6 +81,37 @@ function Topbar({minimize, setMinimize}) {
 
                <IoMdCloseCircleOutline size="3em" className={`mt-24 text-white animate-spin hover:scale-110`} onClick={() => setMinimize(!minimize)}/>
             </div>  
+            <Modal isOpen={modal.isOpen} onClose={modal.onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <ModalCloseButton />
+          </ModalHeader>
+
+          <ModalBody>
+            <form
+              id="new-note"
+              onSubmit={(event) => {
+                event.preventDefault();
+                // console.log(formName)
+                
+              }}
+            >
+              <FormControl>
+                <FormLabel>Create New Form</FormLabel>
+                <Input type="text" placeholder='Enter Form Name' value={formName} onChange={({ target }) => setFormName(target?.value)} />
+              </FormControl>
+            </form>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button type="submit" form="new-note" colorScheme={`whatsapp`} onClick={handleModalClose}>
+              Continue
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+            </Modal>
+
         </div>
     )
 }
@@ -66,6 +120,7 @@ const Header = ({ darkMode, setDarkMode }) => {
 
     const router = useRouter();
     const {user,setUser} = useContext(AppContext);
+    
 
     const handleLogout = async () => {
         console.log('Logout clicked!')
@@ -75,8 +130,8 @@ const Header = ({ darkMode, setDarkMode }) => {
             const result = await axios.post("/api/auth/logout", params);
             if (result.status == 200) {
               router.push("/");
-              localStorage.removeItem("token");
-              localStorage.removeItem("user");
+              localStorage.removeItem("form_buildertoken");
+              localStorage.removeItem("form_builderuser");
               setUser("");
             }
           
@@ -97,6 +152,7 @@ const Header = ({ darkMode, setDarkMode }) => {
                 <MdOutlineExitToApp onClick={handleLogout} size="1.5em" color="secondary" className="cursor-pointer" />
                 {/* <p className="text-white text-sm md:text-lg font-semibold cursor-pointer ">Close</p> */}
             </div>
+
         </div>
     )
 }
