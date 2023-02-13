@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div className={` ${darkMode && "dark"} w-full h-full `}>
       <div className="flex w-full h-full bg-opacity-90 bg-bglite dark:bg-my_bg_img" >
-        <Sidebar darkMode={darkMode} setDarkMode={setDarkMode}/>
+        <Sidebar darkMode={darkMode} setDarkMode={setDarkMode} />
         <div className="w-full h-full dark:bg-gradient-to-tr dark:from-black/50 dark:to-gray-900/0  ">
           <Header darkMode={darkMode} setDarkMode={setDarkMode}/>
           <Container darkMode={darkMode} setDarkMode={setDarkMode} formsLoading={formsLoading} />

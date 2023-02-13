@@ -1,4 +1,9 @@
 module.exports = {
+  variants: {
+    extend: {
+      backgroundImage: ["dark"],
+    },
+  },
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -32,7 +37,10 @@ module.exports = {
         arimo: ['Arimo','sans-serif'],
         play: ['Play','sans-serif'],
         spacemono: ['Space Mono',' monospace'],
-        fredericka: ['Fredericka the Great', 'cursive']
+        fredericka: ['Fredericka the Great', 'cursive'],
+        arapey: ["Arapey", "serif"],
+        petit: ["Petit Formal Script", "cursive"],
+        oswald: ["Oswald"],
       },
       backgroundImage: {
         'my_bg_img' : "url('/bg.jpeg')",

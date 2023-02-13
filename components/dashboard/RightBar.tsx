@@ -23,7 +23,7 @@ const data = {
 
 const RightBar = ({ darkMode, setDarkMode }) => {
     return (
-        <div className="bg-cetacean/70 md:bg-cetacean/70 dark:bg-slate-900/50 h-60 md:h-72 w-full rounded-xl ">
+        <div className="bg-cetacean/70 md:bg-cetacean/80 dark:bg-slate-900/50 h-60 md:h-72 w-full rounded-xl ">
             <div className="border-b p-3 border-gray-100">
                 <p className="font-semibold text-white font-spacemono text-lg md:text-xl ">Archives</p>
             </div>
