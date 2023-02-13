@@ -256,7 +256,7 @@ const Home: NextPage = ({ formID }: any) => {
       //If not new, then send the data to the backend to update the form
       //For New form
       var dataToSend ={formHeading:formHeading,formAreaItems:formAreaItems,user:user,formID:formID}
-      return;
+      
       const response = await fetch('/api/createForm',{
         method:'POST',
         headers:{

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import AppContext from '../../src/context/appContext';
 import {useRouter} from  'next/router' 
-const Middle = ({ darkMode, setDarkMode }) => {
+const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
     const {user,setUser,createdForms, setCreatedForms} = useContext(AppContext);
     const router = useRouter();
     const handleFormClick = (form) => {
@@ -18,8 +18,16 @@ const Middle = ({ darkMode, setDarkMode }) => {
                 <p className="font-semibold text-white text-lg md:text-xl font-spacemono ">
                     Forms made by you ..
                 </p>
-                {createdForms?.length > 0 ?
-                (<div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-2 justify-between cursor-pointer mt-4">
+                
+                {!formsLoading ?
+                ( 
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-2 justify-between cursor-pointer mt-4">
+                 {createdForms?.length == 0?
+                 (<><div ><p className='text-white text-lg text-center transition cursor-pointer'>No created forms found</p></div></>)
+                 :
+                 
+                 (<>
+                
                 {createdForms.map((form,idx) => 
                 {
                     return(
@@ -35,10 +43,16 @@ const Middle = ({ darkMode, setDarkMode }) => {
                     )
 
                 }
-                )}                
+                )}  
+                 
+                 
+                 </>)}
+                               
                 </div>):
                 
-                (<div ><p className='text-yellow-400 text-lg text-center transition animate-pulse '>Loading your forms...</p></div>)}
+                (<div >
+                    <p className='text-yellow-400 text-lg text-center transition animate-pulse '>Loading your forms ...</p>
+                </div>)}
             </div>
         </div>
     )

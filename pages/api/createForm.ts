@@ -15,7 +15,16 @@ export default async function handler(req,res)
       console.log('User : ', user)
       
      // var query = `INSERT INTO form (formID, formHeading, formAreaItems) VALUES ('${formID}', '${formHeading}', '${formAreaItems}')`
-      var query = `INSERT INTO public."Form" ("Formid","user_id","name","Form_data") VALUES('${formID}','${user}','${formHeading}', '${JSON.stringify(formAreaItems)}' )`;
+      //var query = `INSERT INTO public."Form" ("Formid","user_id","name","Form_data") VALUES('${formID}','${user}','${formHeading}', '${JSON.stringify(formAreaItems)}' )`;
+      var query = `DO $$
+      BEGIN
+      IF EXISTS(SELECT * FROM public."Form" where "Formid"='${formID}') then
+      update public."Form" set "name" ='${formHeading}' where  "Formid"='${formID}';
+      else
+      INSERT INTO public."Form" ("Formid","user_id","name","Form_data") VALUES('${formID}','${user}','${formHeading}', '${JSON.stringify(formAreaItems)}' );
+      END IF;
+      END $$;
+      `
       console.log(query);
       
       const results = await conn.query(query);

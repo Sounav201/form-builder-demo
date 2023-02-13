@@ -31,7 +31,7 @@ const enumTypeDict ={
     "ATTENDANCE":attendanceTemplate
 }
 
-const Container = ({ darkMode, setDarkMode }) => {
+const Container = ({ darkMode, setDarkMode,formsLoading }) => {
     // const [showModal, setShowModal] = useState(false);
     const router = useRouter();
     const [scrollY, setScrollY] = useState(0);
@@ -122,7 +122,7 @@ const Container = ({ darkMode, setDarkMode }) => {
                 </button>
             </div>
             <div className="flex flex-col  mt-2 md:mt-6 gap-3 md:gap-6  mx-1 md:mx-3" >
-                <Middle darkMode={darkMode} setDarkMode={setDarkMode}/>
+                <Middle darkMode={darkMode} setDarkMode={setDarkMode} formsLoading={formsLoading}/>
                 <RightBar darkMode={darkMode} setDarkMode={setDarkMode}/>
             </div>
             <div className=" flex flex-col px-2 md:px-8 gap-1 md:gap-1 ">

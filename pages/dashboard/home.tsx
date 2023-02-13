@@ -11,6 +11,7 @@ export default function Home() {
   const {user,setUser,createdForms, setCreatedForms} = useContext(AppContext);
   const router = useRouter();
   const [darkMode, setDarkMode] = useState(true);
+  const [formsLoading, setFormsLoading] = useState(true);
   useEffect(() => {
     if (user && user.length > 0) {
       console.log("User logged in" );
@@ -37,6 +38,7 @@ export default function Home() {
       })
       const data = await response.json();
       console.log('Data from API : ', data?.data);
+      setFormsLoading(false);
       setCreatedForms(data?.data);
     }
     
@@ -53,7 +55,7 @@ export default function Home() {
         <Sidebar darkMode={darkMode} setDarkMode={setDarkMode}/>
         <div className="w-full h-full dark:bg-gradient-to-tr dark:from-black/50 dark:to-gray-900/0  ">
           <Header darkMode={darkMode} setDarkMode={setDarkMode}/>
-          <Container darkMode={darkMode} setDarkMode={setDarkMode} />
+          <Container darkMode={darkMode} setDarkMode={setDarkMode} formsLoading={formsLoading} />
         </div>
       </div>
       {/* <Footer /> */}
