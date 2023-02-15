@@ -22,6 +22,34 @@ const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
     }
         
     }
+
+    const handleDelete = async (ID:any) => {
+        try {
+            setCreatedForms((oldArray:any) => {
+                const newArray = oldArray.filter((oldItem: any) => oldItem.Formid !== ID);
+                return [...newArray];
+            });
+            
+            const dataToSend = {user:user,formID:ID}
+            const response = await fetch('/api/deleteForm', {
+                method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            body:JSON.stringify(dataToSend)
+            })
+            if(response.status == 200)
+            {
+                console.log('Form deleted successfully!');
+            }
+        
+        } catch (error) {
+            console.log("Error : ",error)
+        }
+        
+
+
+    }
    
     return (
         <div className=" bg-cetacean/70 md:bg-cetacean/80 dark:bg-slate-900/50 shadow-sm w-full rounded-xl ">
@@ -55,8 +83,9 @@ const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
                             
                             <p className='text-center font-semibold text-rose-700 hover:text-rose-800 dark:text-gray-400 dark:group-hover:text-white md:text-xl text-lg font-fredericka'>{form.name}</p> 
 
-                            <div className="w-full flex justify-end py-2 px-2 md:px-4 invisible group-hover:visible"><div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-rose-700 dark:text-white hover:text-white dark:hover:text-background border border-rose-700 dark:border-white hover:border-rose-700 dark:hover:border-primary/90 hover:bg-rose-700 dark:hover:bg-primary/90 rounded-full p-1 md:p-0.5 m-1 font-bold">
-                                <MdDelete className="text-lg md:text-xl"/>
+                            <div className="w-full flex justify-end py-2 px-2 md:px-4 invisible group-hover:visible">
+                            <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-rose-700 dark:text-white hover:text-white dark:hover:text-background border border-rose-700 dark:border-white hover:border-rose-700 dark:hover:border-primary/90 hover:bg-rose-700 dark:hover:bg-primary/90 rounded-full p-1 md:p-0.5 m-1 font-bold">
+                                <MdDelete className="text-lg md:text-xl" onClick={() => handleDelete(form.Formid)}/>
                             </div>   
                             </div>               
                         </div>

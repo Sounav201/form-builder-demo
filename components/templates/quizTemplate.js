@@ -14,7 +14,7 @@ const quizTemplate = [
     },
     {
         "type": "longtext",
-        "question": "1. Describe the process of photosynthesis.",
+        "question": "Describe the process of photosynthesis.",
         "attributes": {
             "required": false,
             "styling": {
@@ -27,7 +27,7 @@ const quizTemplate = [
     },
     {
         "type": "checkbox",
-        "question": "2. Which of the following is penultimate layer of the atmosphere?",
+        "question": "Which of the following is penultimate layer of the atmosphere?",
         "attributes": {
             "required": false,
             "styling": {
