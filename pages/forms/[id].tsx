@@ -242,7 +242,7 @@ const Home: NextPage = ({ formID }: any) => {
         })
       }
       else {
-        router.push("/preview");
+        router.push(`/previews/${formID}`);
   
         //console.log('Preview state of Form Area : ', formAreaItems);
       }

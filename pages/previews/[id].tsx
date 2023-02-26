@@ -1,15 +1,15 @@
 import React,{useState,useEffect} from 'react'
-import ShortTextElement from "../components/display-form/elements/ShortTextElement"
-import LongTextElement from '../components/display-form/elements/LongTextElement'
+import ShortTextElement from "../../components/display-form/elements/ShortTextElement"
+import LongTextElement from '../../components/display-form/elements/LongTextElement'
 import { useRouter } from 'next/router'
-import CheckboxElement from '../components/display-form/elements/CheckboxElement'
-import FileUploadElement from '../components/display-form/elements/FileUploadElement'
+import CheckboxElement from '../../components/display-form/elements/CheckboxElement'
+import FileUploadElement from '../../components/display-form/elements/FileUploadElement'
 import Link from 'next/link'
-import RatingElement from '../components/display-form/elements/RatingElement'
+import RatingElement from '../../components/display-form/elements/RatingElement'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 
-const Preview = () => {
+const Preview = ({ formID }: any) => {
 
     const router = useRouter();
     const data = router.query;
@@ -154,4 +154,9 @@ const Preview = () => {
   )
 }
 
+export async function getServerSideProps(context:any) {
+    console.log('Params id : ', context.params.id)
+    return {props:{formID:context.params.id}}
+  }
+  
 export default Preview
