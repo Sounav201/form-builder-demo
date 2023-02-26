@@ -41,12 +41,14 @@ module.exports = {
         arapey: ["Arapey", "serif"],
         petit: ["Petit Formal Script", "cursive"],
         oswald: ["Oswald"],
+        vastshadow: ['Vast Shadow', 'cursive'],
       },
       backgroundImage: {
         'my_bg_img' : "url('/bg.jpeg')",
         'light_bg' : "url('/bglite.jpg')",
         'mobileRedirect_bg' : "url('/mobileRedirectbg.jpg')",
         'bglite' : "url('/lightbg.jpg')",
+        'landing_dark': "url('/landing.png')",
       },
       backgroundColor: theme => ({
         'neon': '#ccff00',
