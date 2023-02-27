@@ -17,37 +17,37 @@ export default function Register() {
   const [username, setUsername] = useState("")
   const [password, setpassword] = useState("")
  
-  const handleLogin = async() => {
-    console.log('Login clicked!!!');
+  const handleRegister = async() => {
+    console.log('Registration clicked!!!');
    // console.log('Creds : ', email,password);
 
     try {
-      const response = await fetch('/api/auth/login' ,{
+      const response = await fetch('/api/auth/register' ,{
         method:"POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password}),
+        body: JSON.stringify({ email, password,username}),
 
       })
       const data = await response.json();
       console.log('Data from API : ', data);
-      if(data.message == "Login Successful")
+      if(data.message == "Registration Successful")
       {
-        alert('Logged in!')
-        localStorage.setItem("form_buildertoken", data.token);
-              //console.log("User role logged in ", data.role);
-        localStorage.setItem("form_builderuser", data.email);
-
-        setUser(email);
-
+        alert('Registered')
+        
         router.push('/dashboard/home');
+      }
+      else if(data.message =="already registered"){
+        alert("already exists..try to login")
+        router.push('/login');
       }
 
     } catch (error) {
       console.log('Error : ', error);
       setEmail("");
       setpassword("");
+      setUsername("");
     }
 
   }
@@ -103,7 +103,7 @@ export default function Register() {
         </div> */}
 
         <div>
-          <button onClick={handleLogin} type="button"
+          <button onClick={handleRegister} type="button"
             className="w-full rounded-full bg-sky-500 dark:bg-sky-400 h-11 flex items-center justify-center px-6 py-3 transition hover:bg-sky-600 focus:bg-sky-600 active:bg-sky-800"
           >
             <span className="text-base font-semibold text-white dark:text-gray-900">Register</span>
