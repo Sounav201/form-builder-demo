@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useContext} from 'react'
 import ShortTextElement from "../../components/display-form/elements/ShortTextElement"
 import LongTextElement from '../../components/display-form/elements/LongTextElement'
 import { useRouter } from 'next/router'
@@ -8,14 +8,28 @@ import Link from 'next/link'
 import RatingElement from '../../components/display-form/elements/RatingElement'
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import AppContext from '../../src/context/appContext'
 
 const Preview = ({ formID }: any) => {
 
     const router = useRouter();
-    const data = router.query;
+    const {user} = useContext(AppContext);
     const [dummyHeading, setdummyHeading] = useState("Untitled Form")
+    const [form, setform] = useState([]);
 
-    const [form, setform] = useState([ ]);
+    useEffect(() => {
+        if (user && user.length > 0) {
+          console.log("User logged in" );
+      
+        } else if (typeof window != undefined && localStorage.getItem("form_builderuser")) {
+          console.log("User logged in" ); 
+
+        } else {
+          router.push("/login");
+        }
+        
+      }, []);
+    
 
     useEffect(() => {
 
@@ -48,7 +62,7 @@ const Preview = ({ formID }: any) => {
 
         }).then((result)=> {
             if(result.isConfirmed)
-            {   const dataToSend = {formHeading:dummyHeading, formData:form};
+            {   const dataToSend = {formHeading:dummyHeading, formData:form, formID:formID, user:user};
                 //Need to show preloader here while publishing the form 
                 console.log('Data to send',dataToSend)
                 fetch('/api/generateForm',{
@@ -60,7 +74,8 @@ const Preview = ({ formID }: any) => {
                 }).then((res) =>{
                     if(res.status == 200)
                     {
-                        Swal.fire('Published!', '', 'success')
+                        Swal.fire('Publishing your form!', '', 'success')
+                        router.push('/published/'+formID)
                     }
                 })
             }
