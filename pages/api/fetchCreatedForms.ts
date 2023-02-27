@@ -23,6 +23,9 @@ export default async function handler(req,res)
         res.status(200).json({ message: 'ok', data: results.rows })
       
     }
+    else{
+      res.status(201).json({message:'ok'})
+    }
   
         
     } catch (error) {

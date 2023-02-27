@@ -36,10 +36,15 @@ export default function Home() {
         body: JSON.stringify({ user }),
 
       })
-      const data = await response.json();
-      console.log('Data from API : ', data?.data);
+      if(response.status == 200)
+      {
+        const data = await response.json();
+        console.log('Data from API : ', data?.data);
+        
+        setCreatedForms(data?.data);
+  
+      }
       setFormsLoading(false);
-      setCreatedForms(data?.data);
     }
     
     if(user && user.length>0)
