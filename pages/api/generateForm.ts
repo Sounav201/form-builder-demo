@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { generateUUID } from '../../services/generateUUID';
 import conn from '../../utils/db';
 
 type Data = {

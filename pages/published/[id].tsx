@@ -104,12 +104,12 @@ const fetchFormDataByID = async(formID:any) => {
   //console.log('Data from fetchFormDataByID',data)
   return res.data;
 }
-export async function getServerSideProps(context:any) {
+export async function getStaticProps(context:any) {
   console.log('Params id : ', context.params.id)
   let formID = context.params.id
   const data = await fetchFormDataByID(formID)
-//  console.log('Data from getServerSideProps',data)
-  return {props:{data:data}}
+  console.log('Data from getStaticProps',data)
+  return {props:{data:data}, revalidate:1}
 }
 
 
