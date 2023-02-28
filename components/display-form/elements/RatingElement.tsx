@@ -14,8 +14,8 @@ const RatingElement = (props:any) => {
     const [ratingElement,setratingElement] = useState(props.attributes.emoji ? props.attributes.emoji : "Star")    
 
     return (
-        <div>    <Stack w={[300, 550, 700]} marginX="auto" maxWidth={800}   >
-            <FormControl w={[300, 500, 600]} marginX="auto">
+        <div>    <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}   >
+            <FormControl w={['100%', 500, 600]} marginX="auto">
                 <FormLabel   >{props.question}</FormLabel>
                 <div className='mt-6 mb-4'>
 

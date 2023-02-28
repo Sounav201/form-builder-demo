@@ -5,8 +5,8 @@ import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, Stack,
 const CheckboxElement = (props: any) => {
     return (
         <div>
-            <Stack w={[300, 550, 700]} marginX="auto" maxWidth={800}  >
-                <FormControl isRequired={props.attributes.required} w={[300, 500, 600]} marginX="auto">
+            <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}  >
+                <FormControl isRequired={props.attributes.required} w={['100%', 500, 600]} marginX="auto">
                     <FormLabel  >{props.question}</FormLabel>
 
                     <div className='my-6'>

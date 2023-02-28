@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { generateUUID } from '../../services/generateUUID';
 import conn from '../../utils/db';
 
 type Data = {
@@ -19,7 +18,7 @@ export default async function handler(req,res)
       INSERT INTO public."Form" ("Formid","user_id","name","Form_data") VALUES('${formID}','${user}','${formHeading}', '${JSON.stringify(formData)}' );
       END IF;
       END $$;`  
-      console.log(query);
+      //console.log(query);
         
       const results = await conn.query(query);
     //  console.log('response fro DB ', results);

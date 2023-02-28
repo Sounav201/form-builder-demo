@@ -8,12 +8,12 @@ const ShortTextElement = (props:any) => {
   //console.log('Required field : ', props.attributes.required)
   return (
     <div>
-        <Stack w={[300, 550, 700]} marginX="auto" maxWidth={800}   >
-       <FormControl isRequired={props.attributes.required} w={[300, 500, 600]} marginX="auto"> 
+        <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}   >
+       <FormControl isRequired={props.attributes.required} w={['100%', 500, 600]} marginX="auto"> 
         <FormLabel  >{props.question}</FormLabel>
       <div className='mt-6 mb-4'>
 
-        <Input w={[300,500,600]} size='md'   type="text" placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input>
+        <Input w={['100%',500,600]} size='md'   type="text" placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input>
         
       </div>
 

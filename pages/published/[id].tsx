@@ -1,26 +1,33 @@
-import React, { useState } from "react";
-import ShortTextElement from "../../components/display-form/elements/ShortTextElement";
-import LongTextElement from "../../components/display-form/elements/LongTextElement";
-import { useRouter } from "next/router";
+import React, { useState } from 'react'
+import ShortTextElement from "../../components/display-form/elements/ShortTextElement"
+import LongTextElement from '../../components/display-form/elements/LongTextElement'
+import { useRouter } from 'next/router'
+import CheckboxElement from '../../components/display-form/elements/CheckboxElement'
+import FileUploadElement from '../../components/display-form/elements/FileUploadElement'
+import Link from 'next/link'
+import RatingElement from '../../components/display-form/elements/RatingElement'
+import Swal from 'sweetalert2'
+import {FiSend} from 'react-icons/fi';
 import Footer from '../../components/published/Footer'
-import CheckboxElement from "../../components/display-form/elements/CheckboxElement";
-import FileUploadElement from "../../components/display-form/elements/FileUploadElement";
-import {FiSend} from "react-icons/fi"
-import Link from "next/link";
-import RatingElement from "../../components/display-form/elements/RatingElement";
-import Swal from "sweetalert2";
 
-const Published = ({ data }: any) => {
-  console.log("Form data from Published", data);
-  console.log("Form Heading: ", data[0].name);
-  console.log("Form Data: ", data[0].Form_data);
+const Published = ({data}:any) => {
 
-  const [formData, setformData] = useState(data[0]?.Form_data || []);
-  const [formHeading, setformHeading] = useState(data[0]?.name || "Form");
+  console.log('Form data from Published',data);
+  console.log('Form Heading: ', data[0].name);
+  console.log('Form Data: ', data[0].Form_data);
+  
+  const [formData, setformData] = useState(data[0]?.Form_data || [])
+  const [formHeading, setformHeading] = useState(data[0]?.name || "Form")
 
   const handleSubmit = async () => {
     console.log("Form Submitted");
   };
+
+  if(formData.length == 0)
+  return <div className='h-screen bg-black flex items-center justify-center text-center'>
+    <h1 className='text-3xl font-medium text-white'>Loading...</h1>
+    
+    </div>
 
   return (
     <div className="bg-cover min-h-screen flex flex-col bg-background">
@@ -98,31 +105,34 @@ const Published = ({ data }: any) => {
   );
 };
 
-const fetchFormDataByID = async (formID: any) => {
-  var endpoint = ``;
-  if (process.env.NODE_ENV == "development") {
-    endpoint = `http://localhost:3000/api/fetchFormbyID`;
-  } else if (process.env.NODE_ENV == "production") {
-    endpoint = `https://form-builder-demo.vercel.app/pages/api/fetchFormbyID`;
+const fetchFormDataByID = async(formID:any) => {
+  var endpoint = ``
+  if(process.env.NODE_ENV == "development")
+  {
+    endpoint = `http://localhost:3000/api/fetchFormbyID`
   }
-  const response = await fetch(endpoint, {
-    method: "POST",
+  else if(process.env.NODE_ENV == "production")
+  {
+    endpoint = `https://form-builder-demo.vercel.app/pages/api/fetchFormbyID`
+  }
+  const response = await fetch(endpoint,{
+    method:"POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ formID: formID }),
-  });
+    body: JSON.stringify({formID:formID})
+  })
 
-  const res = await response.json();
+  const res = await response.json()
   //console.log('Data from fetchFormDataByID',data)
   return res.data;
-};
-export async function getServerSideProps(context: any) {
-  console.log("Params id : ", context.params.id);
-  let formID = context.params.id;
-  const data = await fetchFormDataByID(formID);
-  //  console.log('Data from getServerSideProps',data)
-  return { props: { data: data } };
+}
+export async function getServerSideProps(context:any) {
+  console.log('Params id : ', context.params.id)
+  let formID = context.params.id
+  const data = await fetchFormDataByID(formID)
+//  console.log('Data from getServerSideProps',data)
+  return {props:{data:data}}
 }
 
 export default Published;

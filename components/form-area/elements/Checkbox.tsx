@@ -104,8 +104,8 @@ const Checkbox = (props: CheckboxProps) => {
       
             className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto  w-11/12 relative box-border border-2 border-dotted border-violet-900` : `my-4 pt-8 pb-2 md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
         >
-            <Stack w={[300, 550, 700]} marginX="auto" maxWidth={800}  >
-                <FormControl w={[300, 500, 600]} marginX="auto">
+            <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}  >
+                <FormControl w={['100%', 500, 600]} marginX="auto">
                     <Question
                         numbering={props.numbering}
                         required={props.attributes.required}
