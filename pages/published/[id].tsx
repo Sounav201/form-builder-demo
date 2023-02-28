@@ -45,7 +45,7 @@ export const getStaticPaths = async() => {
   }
   else if(process.env.NODE_ENV === "production")
   {
-    endpoint = `https://form-builder-demo.vercel.app/pages/api/fetchAllForms`
+    endpoint = `https://form-builder-demo.vercel.app/api/fetchAllForms`
   }
 const data = await getPaths(endpoint);
 console.log('Data from getStaticPaths ',data);
