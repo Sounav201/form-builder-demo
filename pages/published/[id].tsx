@@ -7,35 +7,47 @@ import FileUploadElement from '../../components/display-form/elements/FileUpload
 import Link from 'next/link'
 import RatingElement from '../../components/display-form/elements/RatingElement'
 import Swal from 'sweetalert2'
+const fetchFormDataByID = async(formID:any) => {
+  try {
+    var endpoint = ``
+    if(process.env.NODE_ENV == "development")
+    {
+      endpoint = `http://localhost:3000/api/fetchFormbyID`
+    }
+    else if(process.env.NODE_ENV == "production")
+    {
+      endpoint = `https://form-builder-demo.vercel.app/api/fetchFormbyID`
+    }
+    const response = await fetch(endpoint,{
+      method:"POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({formID:formID})
+    })
+  
+    const res = await response.json()
+  
+    //console.log('Data from fetchFormDataByID',data)
+    return res.data;  
+  } catch (error) {
+    console.log('Error in fetchFormDataByID paths :',error)
+  }
+  
+}
 
 const getPaths = async(APIendpoint) => {
-  const res = await fetch(APIendpoint);
-  const data = await res.json();
-  return data.data;
+  console.log('Endpoint : ', APIendpoint);
+  try {
+    const res = await fetch(APIendpoint);
+    const data = await res.json();
+    return data.data;  
+  } catch (error) {
+    console.log('Error in getPaths : ',error)
+  }
+  
 }
 
-const fetchFormDataByID = async(formID:any) => {
-  var endpoint = ``
-  if(process.env.NODE_ENV == "development")
-  {
-    endpoint = `http://localhost:3000/api/fetchFormbyID`
-  }
-  else if(process.env.NODE_ENV == "production")
-  {
-    endpoint = `https://form-builder-demo.vercel.app/pages/api/fetchFormbyID`
-  }
-  const response = await fetch(endpoint,{
-    method:"POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({formID:formID})
-  })
-
-  const res = await response.json()
-  //console.log('Data from fetchFormDataByID',data)
-  return res.data;
-}
 
 export const getStaticPaths = async() => {
   var endpoint = ``
