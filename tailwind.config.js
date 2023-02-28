@@ -42,13 +42,17 @@ module.exports = {
         petit: ["Petit Formal Script", "cursive"],
         oswald: ["Oswald"],
         vastshadow: ['Vast Shadow', 'cursive'],
+        mulish: ["Mulish", "sans-serif"],
+        alegreya: ["Alegreya Sans SC", "sans-serif"],
+        oxygen: ["Oxygen", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       backgroundImage: {
         'my_bg_img' : "url('/bg.jpeg')",
         'light_bg' : "url('/bglite.jpg')",
         'mobileRedirect_bg' : "url('/mobileRedirectbg.jpg')",
         'bglite' : "url('/lightbg.jpg')",
-        'landing_dark': "url('/landing.png')",
+        'landing' : "url('/landing.png')",
       },
       backgroundColor: theme => ({
         'neon': '#ccff00',

@@ -9,13 +9,13 @@ const LongTextElement = (props: any) => {
 
     return (
         <div>
-            <Stack w={[350, 550, 700]} marginX="auto" maxWidth={800}   >
-                <FormControl w={[350, 500, 600]} marginX="auto">
+            <Stack w={[300, 550, 700]} marginX="auto" maxWidth={800}   >
+                <FormControl w={[300, 500, 600]} marginX="auto">
                 <FormLabel  >{props.question}</FormLabel>
 
                     <div className='mt-6 mb-4'>
 
-                        <Textarea w={[350, 500, 600]} size='md' placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)} />
+                        <Textarea w={[300, 500, 600]} size='md' placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)} />
 
                     </div>
 

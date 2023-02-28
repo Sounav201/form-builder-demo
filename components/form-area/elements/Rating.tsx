@@ -122,8 +122,8 @@ const Rating = (props:RatingProps) => {
     onClick={() => props.onQuestionSelected()}
     className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto  w-11/12 relative box-border border-2 border-dotted border-violet-900` : `my-4 pt-8 pb-2 md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
     >
-    <Stack w={[350, 550, 700]} marginX="auto" maxWidth={800}   >
-       <FormControl w={[350, 500, 600]} marginX="auto"> 
+    <Stack w={[300, 550, 700]} marginX="auto" maxWidth={800}   >
+       <FormControl w={[300, 500, 600]} marginX="auto"> 
         <Question
         required={props.attributes.required}
         numbering={props.numbering}
@@ -222,7 +222,7 @@ const Rating = (props:RatingProps) => {
 
             })}
         </div>
-        {/* <Input w={[350,500,600]} size='md'   type="text" placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input> */}
+        {/* <Input w={[300,500,600]} size='md'   type="text" placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input> */}
 
       </div>
 

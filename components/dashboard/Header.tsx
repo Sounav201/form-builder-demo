@@ -143,8 +143,9 @@ const Header = ({ darkMode, setDarkMode }) => {
     return (
         <div className="flex shadow-sm bg-slate-900/90 dark:bg-slate-900/50 px-4 md:px-8  justify-between items-center h-12 md:h-14 ">
             <Topbar minimize={minimize} setMinimize={setMinimize}/>
-            <div className="flex space-x-3 ">
+            <div className="flex space-x-4 ">
                 <GiHamburgerMenu size="1.5em" className="cursor-pointer text-gray-300 visible md:invisible" onClick={() => setMinimize(!minimize)} />
+                <img src="/fulltitle-nav.png" alt="" className="h-[1.25em] md:h-[1.5em] opacity-60"/>
             </div>
             <div className="flex gap-4 md:gap-6 text-gray-400 ">
 

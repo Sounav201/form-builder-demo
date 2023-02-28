@@ -111,12 +111,12 @@ const Container = ({ darkMode, setDarkMode,formsLoading }) => {
                     onClick={() => setDarkMode(!darkMode)}
                     className="transition duration-300 ease-in-out text-2xl text-primary dark:text-white hover:scale-125 hover:text-primary dark:hover:text-yellow-500"
                     >
-                    {darkMode ? <BsFillMoonFill size="1.25em"/> : <BsFillSunFill size="1.5em"/>}
+                    {darkMode ? <BsFillMoonFill className="text:3xl md:text-4xl"/> : <BsFillSunFill className='text-3xl md:text-5xl'/>}
                 </button>
                 <button
                     type="button"
                     onClick={scrollToTop}
-                    className={` fixed right-[8%] lg:right-[3%] bottom-[3%] lg:bottom-[5%] h-12 w-12 z-40 animate-bounce bg-primary dark:bg-primary dark:hover:bg-rose-800 hover:bg-sky-600 text-background dark:hover:text-white dark:text-background font-bold hover:text-white transition duration-300 ease-in-out items-center rounded-full p-3 shadow-sm`}
+                    className={` fixed md:left-[8%] right-[8%] bottom-[3%] lg:bottom-[5%] h-12 w-12 z-40 animate-bounce bg-primary dark:bg-primary dark:hover:bg-rose-800 hover:bg-sky-600 text-background dark:hover:text-white dark:text-background font-bold hover:text-white transition duration-300 ease-in-out items-center rounded-full p-3 shadow-sm`}
                 >
                     <AiOutlineArrowUp size="1.5em" />
                 </button>

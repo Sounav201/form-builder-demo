@@ -32,8 +32,8 @@ const FileUploadElement = (props: any) => {
 
   return (
     <div className=''>
-            <Stack w={[350, 550, 700]} marginX="auto" maxWidth={800}   >
-                <FormControl w={[350, 500, 600]} marginX="auto">
+            <Stack w={[300, 550, 700]} marginX="auto" maxWidth={800}   >
+                <FormControl w={[300, 500, 600]} marginX="auto">
                 <FormLabel style={{fontWeight:"700"}} >{props.question}</FormLabel>
 
                     <div className='mt-4 mb-4'>
