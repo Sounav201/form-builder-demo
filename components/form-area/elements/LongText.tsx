@@ -103,8 +103,8 @@ const LongText = (props:LongTextProps) => {
     onClick={() => props.onQuestionSelected()}
     className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto rounded-md  w-11/12 relative box-border border-2 border-dotted border-violet-900` : `my-4 pt-8 pb-2 rounded-md md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
     >
-  <Stack w={[350, 550, 700]} marginX="auto" maxWidth={800}   >
-                <FormControl w={[350, 500, 600]} marginX="auto">
+  <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}   >
+                <FormControl w={['100%', 500, 600]} marginX="auto">
                   <Question
         required={props.attributes.required}
         questionImage = {props.attributes.styling.questionImage}
@@ -116,7 +116,7 @@ const LongText = (props:LongTextProps) => {
       />
       <div className='mt-6 mb-4'>
 
-        <Textarea w={[350,500,600]} size='md'   placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)} />
+        <Textarea w={['100%',500,600]} size='md'   placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)} />
 
       </div>
 

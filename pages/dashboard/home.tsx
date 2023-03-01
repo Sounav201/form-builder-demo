@@ -21,7 +21,7 @@ export default function Home() {
       
 
     } else {
-      router.push("/");
+      router.push("/login");
     }
     
   }, []);
@@ -36,10 +36,15 @@ export default function Home() {
         body: JSON.stringify({ user }),
 
       })
-      const data = await response.json();
-      console.log('Data from API : ', data?.data);
+      if(response.status == 200)
+      {
+        const data = await response.json();
+        console.log('Data from API : ', data?.data);
+        
+        setCreatedForms(data?.data);
+  
+      }
       setFormsLoading(false);
-      setCreatedForms(data?.data);
     }
     
     if(user && user.length>0)
@@ -51,7 +56,7 @@ export default function Home() {
 
   return (
     <div className={` ${darkMode && "dark"} w-full h-full `}>
-      <div className="flex w-full h-full bg-opacity-90 bg-bglite dark:bg-my_bg_img" >
+      <div className="flex w-full h-full bg-opacity-90 bg-bglite dark:bg-my_bg_img " >
         <Sidebar darkMode={darkMode} setDarkMode={setDarkMode} />
         <div className="w-full h-full dark:bg-gradient-to-tr dark:from-black/50 dark:to-gray-900/0  ">
           <Header darkMode={darkMode} setDarkMode={setDarkMode}/>

@@ -19,7 +19,7 @@ export default async function handler(req,res)
       var query = `DO $$
       BEGIN
       IF EXISTS(SELECT * FROM public."Form" where "Formid"='${formID}') then
-      update public."Form" set "name" ='${formHeading}' where  "Formid"='${formID}';
+      update public."Form" set "name" ='${formHeading}', "Form_data" = '${JSON.stringify(formAreaItems)}' where  "Formid"='${formID}';
       else
       INSERT INTO public."Form" ("Formid","user_id","name","Form_data") VALUES('${formID}','${user}','${formHeading}', '${JSON.stringify(formAreaItems)}' );
       END IF;

@@ -12,6 +12,7 @@ import {
   } from "./ElementBank.types";
 import {AiFillPlusCircle} from 'react-icons/ai'
 import { useDisclosure } from '@chakra-ui/react'
+import {HiArrowRight} from 'react-icons/hi'
 import {Drawer,DrawerBody,DrawerFooter,DrawerHeader,DrawerOverlay,DrawerContent,DrawerCloseButton} from '@chakra-ui/react'
 import Element from "./Element";
 import {AiOutlineArrowDown,AiOutlineCopy, AiOutlineDown,AiOutlineCodepenCircle,AiFillStar,AiOutlinePlus} from 'react-icons/ai'
@@ -123,7 +124,10 @@ const ElementBank = (props:ElementBankProps) => {
     <>
         <Drawer placement={"left"} onClose={handleClose} isOpen={isOpen} size={"xs"} isFullHeight={false} >
         <DrawerContent bgColor={"#000116"} >
-          <DrawerHeader borderBottomWidth='1px' color={"#FFFFFF"} className="text-center">Drag & Drop an element to add it to your form --{'>'}</DrawerHeader>
+          <DrawerHeader borderBottomWidth='1px' color={"#FFFFFF"} className="text-center flex flex-row"> 
+          <div>Drag & Drop an element to add it to your form </div>
+          <div className='items-end flex'><HiArrowRight size="1.5em"/></div>
+          </DrawerHeader>
           <DrawerBody>
             
             {elements.map((element) => {

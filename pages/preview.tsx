@@ -84,7 +84,7 @@ const Preview = () => {
                </button>
              
            </div>
-          <div className="flex flex-col bg-none fixed right-8 top-6 gap-52 z-20">
+          <div className="bg-transparent fixed right-8 top-6">
              
               <button 
               onClick={handlePublish}

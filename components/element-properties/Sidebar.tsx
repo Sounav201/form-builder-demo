@@ -86,11 +86,11 @@ const Sidebar = (props: ElementPropertiesProps) => {
             <div className={`top-0 right-0 w-[20vw] bg-slate-900/95 px-4 text-white fixed h-full z-40 transition  ease-in-out duration-300 ${isSelected && props.sidebarStatus ? "translate-x-0 " : "translate-x-full"
                 }`}>
 
-            <h1 className="mt-4 text-2xl text-violet-800 font-spacemono font-bold uppercase">
+            <h1 className="mt-2 text-2xl text-violet-800 font-spacemono font-bold uppercase">
                 Element Properties
             </h1>
             <div className='flex flex-col '>
-                <div className=' py-4 px-2 flex flex-col'>
+                <div className=' py-2 px-2 flex flex-col'>
                     <label className='font-medium text-lg text-zinc-300 '>Mandatory Field?</label>
                     <Switch size='md' mt={1} className="px-2" colorScheme={'yellow'} onChange={() => {
                         setisRequired(prevstate => !prevstate);
@@ -103,7 +103,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
                 </div>
 
 
-                <div className=' py-4 flex flex-col px-2 gap-2'>
+                <div className=' flex flex-col px-2 gap-2'>
                     <label className='font-medium text-lg text-zinc-300 '>Text Color</label>
                     <div className='px-2'>
                     <input
@@ -122,7 +122,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
 
                 </div>
 
-                <div className=' py-4 px-2 flex flex-col'>
+                <div className=' py-2 px-2 flex flex-col'>
                     <label className='font-medium text-lg text-zinc-300 '>Question Image</label>
                     {src && src.length>0 && <img src={src} className='w-20 h-20 m-1 rounded-md border-2 border-white' />}
                     
@@ -140,13 +140,13 @@ const Sidebar = (props: ElementPropertiesProps) => {
 
 
                     
-                    <button type='button' className='p-2 my-2 mx-auto w-1/2 rounded-md bg-white font-semibold bg-gradient-to-r from-emerald-500 to-teal-800  text-white hover:bg-gradient-to-r hover:from-teal-800 hover:to-emerald-500 hover:animate-text' onClick={handleRemove}>Clear</button>
+                    <button type='button' className='p-2 mx-auto w-1/2 rounded-md bg-white font-semibold bg-gradient-to-r from-emerald-500 to-teal-800  text-white hover:bg-gradient-to-r hover:from-teal-800 hover:to-emerald-500 hover:animate-text' onClick={handleRemove}>Clear</button>
                     
                     
                 </div>
 
                 {ratingType.length > 0 && (
-                    <div className='py-2 flex flex-col'>
+                    <div className=' flex flex-col'>
                         <label className='font-medium'>Block Color</label>
                         <input
                             className='rounded-md my-1'
@@ -164,7 +164,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
                     </div>
                 )}
                 {ratingType.length > 0 && (
-                    <div className='py-2 flex flex-col'>
+                    <div className=' flex flex-col'>
                         <label className='font-medium'>Fill Color</label>
                         <input
                             className='rounded-md my-1'
@@ -185,8 +185,8 @@ const Sidebar = (props: ElementPropertiesProps) => {
                 {ratingType.length > 0 && (
                     <div className='py-2 flex flex-col gap-2'>
                         <label className='font-medium '>Rating type</label>
-                        <Select bg='tomato' borderColor='tomato'
-                            color='black' placeholder='Select option' onChange={(e) => {
+                        <Select bg='white' borderColor='blue' 
+                            color='black' placeholder='Select option' className="font-semibold" onChange={(e) => {
                                 //console.log(e.target.value);
                                 setratingType(e.target.value);
                                 if (props.selectedItem !== null) {
@@ -212,7 +212,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
                     Close
                 </Button>
             </div> */}
-            <button className="bottom-12 right-8 absolute font-medium text-violet-500 border-2 border-violet-800 hover:border-yellow-500 w-1/2  hover:pr-8 duration-300 rounded-full hover:text-yellow-500 group flex justify-center items-center overflow-hidden" onClick={handleClose}>
+            <button className="bottom-4 right-4 absolute font-medium text-violet-500 border-2 border-violet-800 hover:border-yellow-500 w-1/2  hover:pr-8 duration-300 rounded-full hover:text-yellow-500 group flex justify-center items-center overflow-hidden" onClick={handleClose}>
                         <span className="absolute left-0 w-full h-0 transition-all bg-background opacity-100 group-hover:h-full group-hover:top-0  ease"></span>
                         <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-8 group-hover:translate-y-0 "><IoMdCloseCircleOutline size="1.5em" /></span>
                         <span className={`relative py-1 text-xs md:text-lg font-monospace `}>CLOSE</span>
