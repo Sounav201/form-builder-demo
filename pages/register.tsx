@@ -36,7 +36,7 @@ export default function Register() {
       {
         alert('Registered')
         
-        router.push('/dashboard/home');
+        router.push('/login');
       }
       else if(data.message =="already registered"){
         alert("already exists..try to login")

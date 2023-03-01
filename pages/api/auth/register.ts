@@ -10,8 +10,8 @@ export default async function handler(req, res) {
         const results = await conn.query(query);
         //console.log(results);
         if(results.rowCount==0){
-            const query1=`insert into public."users"("email","name","password") values('${email}','${password}','${username}')`;
-            //console.log(query1);
+            const query1=`insert into public."users"("email","name","password") values('${email}','${username}','${password}')`;
+            console.log(query1);
             const results2 = await conn.query(query1);
             return res.status(200).json({ message: "Registration Successful" });
         }
