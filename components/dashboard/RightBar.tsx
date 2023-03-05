@@ -1,4 +1,7 @@
-import React from 'react'
+import  React from 'react';
+import { useEffect } from 'react';
+import AOS from "aos";
+import "aos/dist/aos.css"
 // import { Doughnut } from 'react-chartjs-2';
 
 const data = {
@@ -22,8 +25,17 @@ const data = {
 
 
 const RightBar = ({ darkMode, setDarkMode }) => {
+    useEffect(() => {
+        AOS.init({
+          disable: function () {
+            var maxWidth = 768
+            return window.innerWidth < maxWidth
+          },
+          duration: 800,
+        })
+      }, [])
     return (
-        <div className="bg-cetacean/70 md:bg-cetacean/80 dark:bg-slate-900/50 h-60 md:h-72 w-full rounded-xl ">
+        <div className="bg-cetacean/70 md:bg-cetacean/80 dark:bg-slate-900/50 h-60 md:h-72 w-full rounded-xl " data-aos="zoom-in-up">
             <div className="border-b p-3 border-gray-100">
                 <p className="font-semibold text-white font-spacemono text-lg md:text-xl ">Archives</p>
             </div>

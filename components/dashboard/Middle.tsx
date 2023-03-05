@@ -2,9 +2,14 @@ import React, { useContext } from 'react'
 import AppContext from '../../src/context/appContext';
 import {useRouter} from  'next/router' ;
 import { MdDelete } from "react-icons/md";
+import { useEffect } from 'react';
 import {FiDownload} from 'react-icons/fi';
 import {BsBoxArrowUpRight} from 'react-icons/bs';
+import {BsTable} from 'react-icons/bs';
 import {isMobile} from 'react-device-detect';
+import AOS from "aos";
+import "aos/dist/aos.css"
+
 const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
     const {user,setUser,createdForms, setCreatedForms} = useContext(AppContext);
     const router = useRouter();
@@ -21,6 +26,10 @@ const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
         router.push('/mobileredirect');
     }
         
+    }
+
+    const handleresponses = (form) => {
+        router.push(`/tables/${form.Formid}`);
     }
 
     const handleDelete = async (ID:any) => {
@@ -47,12 +56,21 @@ const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
             console.log("Error : ",error)
         }
         
-
+        
 
     }
+    useEffect(() => {
+        AOS.init({
+          disable: function () {
+            var maxWidth = 768
+            return window.innerWidth < maxWidth
+          },
+          duration: 800,
+        })
+      }, [])
    
     return (
-        <div className=" bg-cetacean/70 md:bg-cetacean/80 dark:bg-slate-900/50 shadow-sm w-full rounded-xl ">
+        <div className=" bg-cetacean/70 md:bg-cetacean/80 dark:bg-slate-900/50 shadow-sm w-full rounded-xl " data-aos="zoom-in-up">
             <div className=" p-2 md:p-3 border-gray-100">
                 <p className="font-semibold text-white text-lg md:text-xl font-spacemono ">
                     Forms made by you ..
@@ -83,7 +101,10 @@ const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
                             
                             <p className='text-center font-semibold text-rose-700 hover:text-rose-800 dark:text-gray-400 dark:group-hover:text-white md:text-xl text-lg font-fredericka'>{form.name}</p> 
 
-                            <div className="w-full flex justify-end py-2 px-2 md:px-4 invisible group-hover:visible">
+                            <div className="w-full flex justify-between py-2 px-2 md:px-4 invisible group-hover:visible">
+                            <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-rose-700 dark:text-white hover:text-white dark:hover:text-background border border-rose-700 dark:border-white hover:border-rose-700 dark:hover:border-primary/90 hover:bg-rose-700 dark:hover:bg-primary/90 rounded-full p-1 md:p-0.5 m-1 font-bold">
+                                <BsTable className="text-md md:text-xl" onClick={() => handleresponses(form)}/>
+                            </div>
                             <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-rose-700 dark:text-white hover:text-white dark:hover:text-background border border-rose-700 dark:border-white hover:border-rose-700 dark:hover:border-primary/90 hover:bg-rose-700 dark:hover:bg-primary/90 rounded-full p-1 md:p-0.5 m-1 font-bold">
                                 <MdDelete className="text-lg md:text-xl" onClick={() => handleDelete(form.Formid)}/>
                             </div>   

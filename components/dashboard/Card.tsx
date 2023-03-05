@@ -1,5 +1,7 @@
 import React from 'react'
-import { useState } from 'react';
+import AOS from "aos";
+import "aos/dist/aos.css"
+import { useState, useEffect } from 'react';
 import {isMobile} from 'react-device-detect';
 // import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import {RiQuestionAnswerFill} from 'react-icons/ri';
@@ -24,12 +26,21 @@ const Card = (props) => {
     const [formName, setFormName] = useState('');
     const handleModalClose = () => onClose();
 
+    useEffect(() => {
+      AOS.init({
+        disable: function () {
+          var maxWidth = 768
+          return window.innerWidth < maxWidth
+        },
+        duration: 600,
+      })
+    }, [])
     return (
         <>
         <div 
         onClick={onOpen}  
         // onClick={() => props.chooseTemplateClick(balance)}
-        className={`transform hover:scale-105  transition delay-100 w-full cursor-pointer p-1 md:p-2 h-32 md:h-40 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} >
+        className={`transform hover:scale-105  transition delay-100 w-full cursor-pointer p-1 md:p-2 h-32 md:h-40 md:py-4 shadow-xl  border font-spacemono rounded-xl bg-gradient-to-r ${Color[props.icon]}`} data-aos="zoom-in">
             <div className="flex justify-between">
                 <div></div>
                 <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-slate-800 bg-gray-300 rounded-full p-1 md:p-0.5 m-1  bg-opacity-60">

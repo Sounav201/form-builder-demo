@@ -57,6 +57,13 @@ module.exports = {
       backgroundColor: theme => ({
         'neon': '#ccff00',
         'cetacean': '#001440',
+        'metagold': '#d4af37',
+      }),
+      textColor: theme => ({
+        'metagold': '#d4af37',
+      }),
+      borderColor: theme => ({
+        'metagold': '#d4af37',
       }),
       'animation': {
         'text':'text 5s ease infinite',

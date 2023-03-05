@@ -132,13 +132,13 @@ const Published = ({ formID }: any) => {
   if (formData.length == 0)
     return (
       <div className="h-screen bg-black flex items-center justify-center text-center">
-        <h1 className="text-3xl font-medium text-white">Loading...</h1>
+        <h1 className="text-3xl font-medium font-oxygen text-white">Loading...</h1>
       </div>
     );
 
   return (
-    <div className="bg-cover min-h-screen flex flex-col bg-background">
-      <div className="fixed top-[2%] right-[2%] md:top-[4%] md:right-[4%]">
+    <div className="bg-cover min-h-screen flex flex-col bg-cetacean/20 md:bg-background">
+      <div className="fixed top-[2%] right-[2%] md:top-[4%] md:right-[4%] hidden md:flex">
         <button
           className="relative w-fit px-3 md:px-5 py-2 md:py-3 overflow-hidden font-medium text-lime-400 bg-transparent border border-lime-400 rounded-lg shadow-inner group delay-1000 absolute justify-end"
           data-aos="zoom-in-left"
@@ -156,10 +156,11 @@ const Published = ({ formID }: any) => {
           </span>
         </button>
       </div>
-      <div className="w-7/13 my-16 md:my-16 bg-cover bg-violet-200 px-2 py-2 md:py-8 mx-auto ">
+      <div className="my-2 mx-2 md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-auto shadow-sm shadow-slate-600">
         <div className="text-2xl md:text-3xl font-bold  text-center outline-none  w-full py-4 md:py-6">
           {formHeading}
         </div>
+        <hr className="w-full border-1 border-slate-300"></hr>
         <form onSubmit={handleSubmit}>
           {formData.length > 0 &&
             formData.map((element, idx) => {
@@ -211,6 +212,16 @@ const Published = ({ formID }: any) => {
               }
             })}
         </form>
+        <hr className="w-full border-1 border-slate-300 md:hidden"></hr>
+        <div className="flex w-full justify-center md:hidden">
+        <button className=" font-medium mt-4 mb-2 rounded-md flex bg-lime-500 hover:bg-lime-600 hover:shadow shadow-slate-800" >
+        <span className="flex flex-row gap-3 items-center py-3 px-10">
+                {/* <span className="absolute right-0 flex items-center h-10 duration-300 transform translate-x-full group-hover:translate-x-0"><MdArrowForward size="1.5em" /></span> */}
+                <span className={` text-xl font-alegreya font-semibold text-white`}>Submit</span> 
+                <FiSend className=" text-2xl text-white" />  
+              </span>                     
+            </button>
+        </div>
       </div>
       <Footer />
     </div>

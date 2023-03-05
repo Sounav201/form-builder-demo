@@ -5,6 +5,7 @@ import Header from '../../components/dashboard/Header'
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../../src/context/appContext';
 import { useRouter } from 'next/router'
+import Footer from '../../components/dashboard/Footer'
 
 
 export default function Home() {
@@ -58,12 +59,14 @@ export default function Home() {
     <div className={` ${darkMode && "dark"} w-full h-full `}>
       <div className="flex w-full h-full bg-opacity-90 bg-bglite dark:bg-my_bg_img " >
         <Sidebar darkMode={darkMode} setDarkMode={setDarkMode} />
-        <div className="w-full h-full dark:bg-gradient-to-tr dark:from-black/50 dark:to-gray-900/0  ">
+        <div className="w-full h-full dark:bg-gradient-to-tr dark:from-black/50 dark:to-gray-900/0  mb-5">
           <Header darkMode={darkMode} setDarkMode={setDarkMode}/>
           <Container darkMode={darkMode} setDarkMode={setDarkMode} formsLoading={formsLoading} />
         </div>
       </div>
-      {/* <Footer /> */}
+      <div className="bg-black">
+      <Footer />
+      </div>
     </div>
   )
 }
