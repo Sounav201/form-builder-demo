@@ -15,7 +15,7 @@ const LongTextElement = (props: any) => {
 
                     <div className='mt-6 mb-4'>
 
-                        <Textarea w={['100%', 500, 600]} size='md' placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)} />
+                        <Textarea w={['100%', 500, 600]} name={props.question} size='md' placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)} />
 
                     </div>
 
