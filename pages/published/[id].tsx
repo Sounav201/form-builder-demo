@@ -125,47 +125,30 @@ const Published = ({ formID }: any) => {
     }
   }, [formData]);
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Submitted");
     const formData = new FormData(e.target);
-  const formValues = Object.fromEntries(formData.entries());
-  console.log("Form Submitted");
-  console.log('Form values : ', formValues);
- //   console.log('Form : ',e.target)
-//    console.log('Form values : ', e.target[0].values);
-
+    const formValues = Object.fromEntries(formData.entries());
+    console.log("Form Submitted");
+    console.log("Form values : ", formValues);
+    //   console.log('Form : ',e.target)
+    //    console.log('Form values : ', e.target[0].values);
   };
 
   if (formData.length == 0)
     return (
       <div className="h-screen bg-black flex items-center justify-center text-center">
-        <h1 className="text-3xl font-medium font-oxygen text-white">Loading...</h1>
+        <h1 className="text-3xl font-medium font-oxygen text-white">
+          Loading...
+        </h1>
       </div>
     );
 
   return (
     <div className="bg-cover min-h-screen flex flex-col bg-cetacean/20 md:bg-background">
-      <div className="fixed top-[2%] right-[2%] md:top-[4%] md:right-[4%] hidden md:flex">
-        <button
-        type="submit"
-          className="relative w-fit px-3 md:px-5 py-2 md:py-3 overflow-hidden font-medium text-lime-400 bg-transparent border border-lime-400 rounded-lg shadow-inner group delay-1000  justify-end"
-          data-aos="zoom-in-left"
-        >
-          <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-lime-400 group-hover:w-full ease"></span>
-          <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-lime-400 group-hover:w-full ease"></span>
-          <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-lime-400 group-hover:h-full ease"></span>
-          <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-lime-400 group-hover:h-full ease"></span>
-          <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-lime-500 opacity-0 group-hover:opacity-100"></span>
-          <span className="flex flex-row gap-1">
-            <span className="relative transition-colors duration-300 delay-200 group-hover:text-white font-bold text-base  md:text-lg ease font-oxygen">
-              Submit
-            </span>
-            <FiSend className="group-hover:text-white relative transition-colors duration-300 delay-200 ease text-2xl md:text-2xl" />
-          </span>
-        </button>
-      </div>
-      <div className="my-2  md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-auto shadow-sm shadow-slate-600">
+      
+      <div className="my-2 mx-2 md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-auto shadow-sm shadow-slate-600">
         <div className="text-2xl md:text-3xl font-bold  text-center outline-none  w-full py-4 md:py-6">
           {formHeading}
         </div>
@@ -220,18 +203,47 @@ const Published = ({ formID }: any) => {
                 );
               }
             })}
-            <button type="submit" className="my-4 p-4 text-black bg-blue-600 cursor-pointer rounded-lg ">Submit form</button>
-        <div className="flex w-full justify-center md:hidden">
-        <button type='submit' 
-        className=" font-medium mt-4 mb-2 rounded-md flex bg-lime-500 hover:bg-lime-600 hover:shadow shadow-slate-800" >
-        <span className="flex flex-row gap-3 items-center py-3 px-10">
-                {/* <span className="absolute right-0 flex items-center h-10 duration-300 transform translate-x-full group-hover:translate-x-0"><MdArrowForward size="1.5em" /></span> */}
-                <span className={` text-xl font-alegreya font-semibold text-white`}>Submit</span> 
-                <FiSend className=" text-2xl text-white" />  
-              </span>                     
+            <div className="fixed top-[2%] right-[2%] md:top-[4%] md:right-[4%] hidden md:flex">
+        <button
+          type="submit"
+          className="relative w-fit px-3 md:px-5 py-2 md:py-3 overflow-hidden font-medium text-lime-400 bg-transparent border border-lime-400 rounded-lg shadow-inner group delay-1000  justify-end fixed top-[2%] right-[2%] md:top-[4%] md:right-[4%] hidden md:flex"
+          
+        >
+          <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-lime-400 group-hover:w-full ease"></span>
+          <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-lime-400 group-hover:w-full ease"></span>
+          <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-lime-400 group-hover:h-full ease"></span>
+          <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-lime-400 group-hover:h-full ease"></span>
+          <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-lime-500 opacity-0 group-hover:opacity-100"></span>
+          <span className="flex flex-row gap-1">
+            <span className="relative transition-colors duration-300 delay-200 group-hover:text-white font-bold text-base  md:text-lg ease font-oxygen">
+              Submit
+            </span>
+            <FiSend className="group-hover:text-white relative transition-colors duration-300 delay-200 ease text-2xl md:text-2xl" />
+          </span>
         </button>
-        </div>
-
+      </div>
+          {/* <button
+            type="submit"
+            className="my-4 p-4 text-black bg-blue-600 cursor-pointer rounded-lg "
+          >
+            Submit form
+          </button> */}
+          <div className="flex w-full justify-center md:hidden">
+            <button
+              type="submit"
+              className=" font-medium mt-4 mb-2 rounded-md flex bg-lime-500 hover:bg-lime-600 hover:shadow shadow-slate-800"
+            >
+              <span className="flex flex-row gap-3 items-center py-3 px-10">
+                {/* <span className="absolute right-0 flex items-center h-10 duration-300 transform translate-x-full group-hover:translate-x-0"><MdArrowForward size="1.5em" /></span> */}
+                <span
+                  className={` text-xl font-alegreya font-semibold text-white`}
+                >
+                  Submit
+                </span>
+                <FiSend className=" text-2xl text-white" />
+              </span>
+            </button>
+          </div>
         </form>
         <hr className="w-full border-1 border-slate-300 md:hidden"></hr>
       </div>
