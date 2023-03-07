@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ShortTextElement from "../../components/display-form/elements/ShortTextElement";
 import LongTextElement from "../../components/display-form/elements/LongTextElement";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import CheckboxElement from "../../components/display-form/elements/CheckboxElement";
 import FileUploadElement from "../../components/display-form/elements/FileUploadElement";
 import Link from "next/link";
@@ -101,6 +101,9 @@ const Published = ({ formID }: any) => {
   // const [formHeading, setformHeading] = useState(data[0]?.name || "Form")
   const [formData, setformData] = useState([]);
   const [formHeading, setformHeading] = useState("Form");
+  const [user,setuser] = useState("")
+  const router = useRouter();
+   
 
   useEffect(() => {
     async function fetchData(formID) {
@@ -115,6 +118,7 @@ const Published = ({ formID }: any) => {
         const resData = await res.json();
         const data = resData.data;
         console.log("Form data: ", data);
+        setuser(data[0]?.user_id)
 
         setformData(data[0]?.Form_data || []);
         setformHeading(data[0]?.name || "Form");
@@ -127,11 +131,54 @@ const Published = ({ formID }: any) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted");
     const formData = new FormData(e.target);
     const formValues = Object.fromEntries(formData.entries());
     console.log("Form Submitted");
-    console.log("Form values : ", formValues);
+    //console.log("Form values : ", formValues);
+    const formArray = Object.entries(formValues).map(([question, answer]) => ({
+      question,
+      answer,
+    }));
+    console.log('Form array object : ', formArray)
+    const responseID = Math.random().toString(36).substring(2, 7)
+    let timestamp = new Date().getTime();
+   // console.log('Timestamp : ',timestamp)
+    const date = new Date(timestamp);
+    const dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' ' + 
+                   ('0' + date.getHours()).slice(-2) + ':' + 
+                   ('0' + date.getMinutes()).slice(-2) + ':' + 
+                   ('0' + date.getSeconds()).slice(-2) ;
+    console.log(dateString);
+    const dataToSend = {
+      formID: formID,
+      user: user,
+      responseID: responseID,
+      responseData: formArray,
+      created_at: dateString,
+    }
+    
+    try {
+      const res = await fetch("/api/submitForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      })
+      if(res.status == 200)
+      {
+        Swal.fire(
+          {
+            title: 'Form Submitted',
+            text: 'Thank you for submitting the form',
+            icon: 'success',
+          }
+        )
+        router.push('/thank-you')
+      }
+    } catch (error) {
+      
+    }
     //   console.log('Form : ',e.target)
     //    console.log('Form values : ', e.target[0].values);
   };

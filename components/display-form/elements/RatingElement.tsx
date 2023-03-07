@@ -26,7 +26,7 @@ const RatingElement = (props:any) => {
                             return (
                                 <>
                                     {choiceOfElement == "Heart" ?
-                                        (<>
+                                        (<div key={i}>
                                             <label className="hidden md:block">
                                                 <input type="radio"   className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
 
@@ -48,9 +48,9 @@ const RatingElement = (props:any) => {
                                             </label>
 
 
-                                        </>) : choiceOfElement == "Smiley" ?
+                                        </div>) : choiceOfElement == "Smiley" ?
 
-                                            (<>
+                                            (<div key={i}>
 
                                                 <label className="hidden md:block">
                                                     <input type="radio" className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
@@ -73,8 +73,8 @@ const RatingElement = (props:any) => {
                                                 </label>
 
 
-                                            </>) :
-                                            (<>
+                                            </div>) :
+                                            (<div key={i}>
 
                                                 <label className="hidden md:block">
                                                     <input type="radio" className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
@@ -97,7 +97,7 @@ const RatingElement = (props:any) => {
                                                 </label>
 
 
-                                            </>)}
+                                            </div>)}
 
                                 </>
 
