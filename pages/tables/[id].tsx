@@ -1,10 +1,116 @@
 import type { NextPage } from "next";
+import { Router, useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Navbar from "../../components/tables/Navbar";
 import { Fillers } from "../../components/tables/Fillers";
 import Footer from '../../components/tables/Footer';
 
+export async function getServerSideProps(context: any) {
+  console.log("Params id : ", context.params.id);
+  let formID = context.params.id;
+  console.log("Form ID ", formID);
+  return { props: { formID: formID } };
+}
+
+
 const Home: NextPage = ({ formID }: any) => {
+  const [formData, setformData] = useState([]);
+  const [formHeading, setformHeading] = useState("Form");
+  const [user,setuser] = useState("")
+  const router = useRouter();
+   
+
+  useEffect(() => {
+    async function fetchData(formID) {
+      const res = await fetch("/api/fetchTableData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ formID: formID }),
+      });
+      // console.log(formID);
+      if (res.status == 200) {
+        const resData = await res.json();
+        const data = resData.data;
+        console.log("Form data: ", data);
+        setuser(data[0]?.user_id)
+
+        setformData(data[0]?.Form_data || []);
+        setformHeading(data[0]?.name || "Form");
+      }
+    }
+    if (formData.length == 0) {
+      
+      fetchData(formID);
+    }
+  // }, [formData]);
+  });
+
+  const handleData = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formValues = Object.fromEntries(formData.entries());
+    
+    //console.log("Form values : ", formValues);
+    const formArray = Object.entries(formValues).map(([question, answer]) => ({
+      question,
+      answer,
+    }));
+    console.log('Form array object : ', formArray)
+    const responseID = Math.random().toString(36).substring(2, 7)
+    let timestamp = new Date().getTime();
+   // console.log('Timestamp : ',timestamp)
+    const date = new Date(timestamp);
+    const dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' ' + 
+                   ('0' + date.getHours()).slice(-2) + ':' + 
+                   ('0' + date.getMinutes()).slice(-2) + ':' + 
+                   ('0' + date.getSeconds()).slice(-2) ;
+    console.log(dateString);
+    const dataToSend = {
+      formID: formID,
+      user: user,
+      responseID: responseID,
+      responseData: formArray,
+      created_at: dateString,
+    }
+    
+    try {
+      const res = await fetch("/api/submitForm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      })
+      if(res.status == 200)
+      {
+        // Swal.fire(
+        //   {
+        //     title: 'Form Submitted',
+        //     text: 'Thank you for submitting the form',
+        //     icon: 'success',
+        //   }
+        // )
+        router.push('/thank-you')
+      }
+    } catch (error) {
+      
+    }
+    //   console.log('Form : ',e.target)
+    //    console.log('Form values : ', e.target[0].values);
+  };
+
+  // if (formData.length == 0)
+  //   return (
+  //     <div className="h-screen bg-black flex items-center justify-center text-center">
+  //       <h1 className="text-3xl font-medium font-oxygen text-white">
+  //         Loading...
+  //       </h1>
+  //     </div>
+  //   );
+
   return (
     <div>
       <Head>
