@@ -35,18 +35,18 @@ const Home: NextPage = ({ formID }: any) => {
         const resData = await res.json();
         const data = resData.data;
         console.log("Form data: ", data);
-        setuser(data[0]?.user_id)
+       setuser(data[0]?.user_id)
 
-        setformData(data[0]?.Form_data || []);
-        setformHeading(data[0]?.name || "Form");
+       setformData(data);
+       setformHeading(data[0]?.name || "Form");
       }
     }
-    if (formData.length == 0) {
+   
       
       fetchData(formID);
-    }
-  // }, [formData]);
-  });
+   
+   }, []);
+  
 
   const handleData = async (e) => {
     e.preventDefault();
@@ -121,7 +121,7 @@ const Home: NextPage = ({ formID }: any) => {
       <div className={` w-full h-full `}>
         <Navbar />
         <div className="bg-white">
-        <Fillers />
+        <Fillers formData={formData} />
         </div>
       </div>
       <Footer />
