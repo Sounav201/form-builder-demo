@@ -48,21 +48,13 @@ import { GlobalFilter } from "./globalFilter";
 
 export function Fillers({formData}) {
   const [products, setProducts] = useState([]);
-  // console.log("hehehe", formData.responses);
-  const filler = formData.responses;
-  // console.log("Hehehehe", filler);
+  // console.log("responses", formData.responses);
+  // const filler = formData.responses;
+  // console.log("filler: ", filler);
 
   const fetchProducts = async () => {
-    const res = await axios
-      .get("https://fakestoreapi.com/products")
-      .catch((err) => console.log(err));
-
-    if (res) {
-      const products = filler;
-
-      console.log("Products: ", products);
-      setProducts(products);
-    }
+    const products = formData.responses;
+    console.log("Products: ",products);
   };
 
   // const data = useMemo(
@@ -134,15 +126,15 @@ export function Fillers({formData}) {
     () =>
       products[0]
         ? Object.keys(products[0])
-            .filter((key) => key !== "")
+            .filter((key) => key !== "rating")
             .map((key) => {
-              // if (key === "image")
-              //   return {
-              //     Header: key,
-              //     accessor: key,
-              //     Cell: ({ value }) => <img src={value} alt=''/>,
-              //     maxWidth: 70,
-              //   };
+              if (key === "image")
+                return {
+                  Header: key,
+                  accessor: key,
+                  Cell: ({ value }) => <img src={value} alt=''/>,
+                  maxWidth: 70,
+                };
 
               return { Header: key, accessor: key };
             })
