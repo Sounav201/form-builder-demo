@@ -128,19 +128,19 @@ export function Fillers({formData}) {
   // );
 
   const productsData = useMemo(() => [...products], [products]);
-
+  // console.log(products[0]);
   const productsColumns = useMemo(
     () =>
       products[0]
         ? Object.keys(products[0])
-            .filter((key) => key !== "rating")
+            .filter((key) => key !== "")
             .map((key) => {
               if (key === "image")
                 return {
                   Header: key,
                   accessor: key,
-                  Cell: ({ value }) => <img src={value} alt=''/>,
-                  maxWidth: 70,
+                  // Cell: ({ value }) => <img src={value} alt=''/>,
+                  // maxWidth: 70,
                 };
 
               return { Header: key, accessor: key };
@@ -235,21 +235,21 @@ export function Fillers({formData}) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()} className='bg-white'>
-          {rows.map((row, idx) => {
+          {rows.map((row, index) => {
             prepareRow(row);
 
             return (
-              <tr key={idx}
+              <tr key={index}
                 {...row.getRowProps()}
-                className={isEven(idx) ? "bg-white" : "bg-violet-200 "}
+                className={isEven(index) ? "bg-white" : "bg-violet-200 "}
               >
-                {row.cells.map((cell, idx) => (
-                  <td key={idx}
+                {row.cells.map((cell, index) => (
+                  <td key={index}
                     {...cell.getCellProps()}
                     className="border
                   border-slate-400 p-2  "
                   >
-                    <span className="flex items-center justify-center text-xs md:text-base font-oxygen text-slate-900">{cell.render("Cell")}</span>
+                    <span className="flex items-center justify-center text-xs md:text-base font-oxygen text-slate-900">{cell.render('Cell')}</span>
                   </td>
                 ))}
               </tr>
