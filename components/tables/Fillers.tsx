@@ -53,8 +53,15 @@ export function Fillers({formData}) {
   // console.log("filler: ", filler);
 
   const fetchProducts = async () => {
-    const products = formData.responses;
+    const products = await formData.responses;
     console.log("Products: ",products);
+    // const products = res.data;
+
+      // console.log("Products: ", products);
+      if (products)
+        setProducts(products);
+      
+    
   };
 
   // const data = useMemo(
@@ -142,23 +149,23 @@ export function Fillers({formData}) {
     [products]
   );
 
-  const tableHooks = (hooks) => {
-    hooks.visibleColumns.push((columns) => [
-      ...columns,
-      {
-        id: "Edit",
-        Header: "Edit",
-        Cell: ({ row }) => (
-          <button
-            onClick={() => alert("Editing: " + row.values.price)}
-            className="px-2 md:px-4 py-1 md:py-2 text-white rounded-md bg-lime-500 hover:bg-lime-600  transition-colors font-alegreya text-base md:text-lg"
-          >
-            Edit
-          </button>
-        ),
-      },
-    ]);
-  };
+  // const tableHooks = (hooks) => {
+  //   hooks.visibleColumns.push((columns) => [
+  //     ...columns,
+  //     {
+  //       id: "Edit",
+  //       Header: "Edit",
+  //       Cell: ({ row }) => (
+  //         <button
+  //           onClick={() => alert("Editing: " + row.values.price)}
+  //           className="px-2 md:px-4 py-1 md:py-2 text-white rounded-md bg-lime-500 hover:bg-lime-600  transition-colors font-alegreya text-base md:text-lg"
+  //         >
+  //           Edit
+  //         </button>
+  //       ),
+  //     },
+  //   ]);
+  // };
 
   const tableInstance = useTable(
     {
@@ -166,7 +173,7 @@ export function Fillers({formData}) {
       data: productsData,
     },
     useGlobalFilter,
-    tableHooks,
+    // tableHooks,
     useSortBy
   );
 
@@ -182,8 +189,8 @@ export function Fillers({formData}) {
   } = tableInstance;
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if(formData) fetchProducts();
+  }, [formData]);
 
   const isEven = (idx) => idx % 2 === 0;
 
