@@ -46,8 +46,11 @@ import { GlobalFilter } from "./globalFilter";
 //   transition-colors
 // `;
 
-export function Fillers(props) {
+export function Fillers({formData}) {
   const [products, setProducts] = useState([]);
+  // console.log("hehehe", formData.responses);
+  const filler = formData.responses;
+  // console.log("Hehehehe", filler);
 
   const fetchProducts = async () => {
     const res = await axios
@@ -55,7 +58,7 @@ export function Fillers(props) {
       .catch((err) => console.log(err));
 
     if (res) {
-      const products = res.data;
+      const products = filler;
 
       console.log("Products: ", products);
       setProducts(products);
@@ -131,15 +134,15 @@ export function Fillers(props) {
     () =>
       products[0]
         ? Object.keys(products[0])
-            .filter((key) => key !== "rating")
+            .filter((key) => key !== "")
             .map((key) => {
-              if (key === "image")
-                return {
-                  Header: key,
-                  accessor: key,
-                  Cell: ({ value }) => <img src={value} alt=''/>,
-                  maxWidth: 70,
-                };
+              // if (key === "image")
+              //   return {
+              //     Header: key,
+              //     accessor: key,
+              //     Cell: ({ value }) => <img src={value} alt=''/>,
+              //     maxWidth: 70,
+              //   };
 
               return { Header: key, accessor: key };
             })
