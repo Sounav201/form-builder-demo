@@ -48,7 +48,7 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
                     <FiCodesandbox  size="1.5em" className={`absolute text-rose-600 float-left ${!open && "justify-center" } relative`} />
                     <h1 className={ ` text-base md:text-xl text-rose-600 font-bold md:duration-300 origin-left ${!open && " hidden scale-0 " } `}>Dashboard</h1>
                 </div>
-                <MdOutlineArrowBackIos size="1.5em" className={`bg-gray-700/75 p-0.5 text-white rounded-full absolute -right-3 top-4 border md:duration-300 cursor-pointer ${ !open && "rotate-180" }`} onClick={() => setOpen(!open)} />
+                <MdOutlineArrowBackIos size="1.5em" className={`bg-gray-700/75 p-0.5 text-white rounded-full absolute -right-3 top-4 border md:duration-300 cursor-pointer ${ !open && "-180" }`} onClick={() => setOpen(!open)} />
                 {/* <KeyboardArrowRightIcon className={`bg-gray-700 text-white rounded-full absolute -right-3 top-3 border cursor-pointer ${open ? "invisible":"visible"}`} onClick={() => setOpen(!open)} /> */}
                 {/* <p>|</p>
                 <p className="text-red-500 font-semibold text-xl">My Forms</p> */}

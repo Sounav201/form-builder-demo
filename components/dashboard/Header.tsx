@@ -79,7 +79,7 @@ function Topbar({minimize, setMinimize}) {
                     <p className={` text-base font-semibold text-gray-400 group-hover:text-white `} >Archives</p>
                 </div>
 
-               <IoMdCloseCircleOutline size="3em" className={`mt-24 text-white animate-spin hover:scale-110`} onClick={() => setMinimize(!minimize)}/>
+               <IoMdCloseCircleOutline size="3em" className={`mt-24 text-white hover:scale-110`} onClick={() => setMinimize(!minimize)}/>
             </div>  
             <Modal isOpen={modal.isOpen} onClose={modal.onClose}>
         <ModalOverlay />

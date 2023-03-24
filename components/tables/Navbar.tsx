@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { FaShare } from "react-icons/fa";
 import { FiDownload } from "react-icons/fi";
 
-const Navbar = (props) => {
+const Navbar = ({ formID }: any) => {
   //   localStorage.setItem("formHeading", JSON.stringify(form.name));
   const router = useRouter();
   return (
@@ -30,9 +30,9 @@ const Navbar = (props) => {
           </div>
         </Link>
         <div className="flex justify-center items-center">
-          <p className="flex text-metagold justify-between font-bold font-alegreya text-md md:text-xl">
-            [FORM_NAME]
-          </p>
+          <span className="flex text-metagold justify-between font-bold font-alegreya text-md md:text-xl">
+            {formID}
+          </span>
         </div>
         <div className="flex flex-row gap-3 md:gap-6">
           <button className="text-md text-white bg-lime-500 hover:bg-lime-600 flex flex-row gap-2 px-3 md:px-4 py-2 md:py-2 justify-center items-center rounded-full">
@@ -61,5 +61,10 @@ const Navbar = (props) => {
     </>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  console.log("Params id : ", context.params.id);
+  return { props: { formID: context.params.id } };
+}
 
 export default Navbar;
