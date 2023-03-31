@@ -13,7 +13,7 @@ const ShortTextElement = (props:any) => {
         <FormLabel  >{props.question}</FormLabel>
       <div className='mt-6 mb-4'>
 
-        <Input w={['100%',500,600]} size='md' name={props.question}  type="text" placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input>
+        <Input w={['100%',500,600]} size='md' name={props.question} id={props.id}   type="text" placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input>
         
       </div>
 

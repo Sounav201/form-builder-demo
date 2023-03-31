@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef} from "react";
 import ShortTextElement from "../../components/display-form/elements/ShortTextElement";
 import LongTextElement from "../../components/display-form/elements/LongTextElement";
 import { Router, useRouter } from "next/router";
@@ -99,6 +99,7 @@ const Published = ({ formID }: any) => {
 
   // // const [formData, setformData] = useState(data[0]?.Form_data || [])
   // const [formHeading, setformHeading] = useState(data[0]?.name || "Form")
+  const formRef = useRef(null);
   const [formData, setformData] = useState([]);
   const [formHeading, setformHeading] = useState("Form");
   const [user,setuser] = useState("")
@@ -131,15 +132,32 @@ const Published = ({ formID }: any) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //console.log(e.target);
+    const form = formRef.current;
+    const inputs = form.querySelectorAll('input , textarea');
+    const formIDDict = {};
+    inputs.forEach(input => {
+      if (input.type == 'checkbox' && !input.checked) {
+        // ignore unchecked checkboxes
+        return;
+      }
+      formIDDict[input.name] = input.id;
+    });
+    //console.log(formIDDict);
+    
     const formData = new FormData(e.target);
     const formValues = Object.fromEntries(formData.entries());
-    console.log("Form Submitted");
-    //console.log("Form values : ", formValues);
+    console.log("Form Submitted", formValues);
+    
     const formArray = Object.entries(formValues).map(([question, answer]) => ({
       question,
       answer,
+      questionID: formIDDict[question],
     }));
-    console.log('Form array object : ', formArray)
+    
+    console.log("Form Array", formArray);
+    
+    
     const responseID = Math.random().toString(36).substring(2, 7)
     let timestamp = new Date().getTime();
    // console.log('Timestamp : ',timestamp)
@@ -200,7 +218,7 @@ const Published = ({ formID }: any) => {
           {formHeading}
         </div>
         <hr className="w-full border-1 border-slate-300"></hr>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} ref={formRef}>
           {formData.length > 0 &&
             formData.map((element, idx) => {
               if (element.type == "shorttext") {
@@ -209,6 +227,7 @@ const Published = ({ formID }: any) => {
                     <ShortTextElement
                       question={element.question}
                       attributes={element.attributes}
+                      id={element.id}
                     />
                   </div>
                 );
@@ -218,6 +237,7 @@ const Published = ({ formID }: any) => {
                     <LongTextElement
                       question={element.question}
                       attributes={element.attributes}
+                      id={element.id}
                     />
                   </div>
                 );
@@ -227,6 +247,7 @@ const Published = ({ formID }: any) => {
                     <CheckboxElement
                       question={element.question}
                       attributes={element.attributes}
+                      id={element.id}
                     />
                   </div>
                 );
@@ -236,6 +257,7 @@ const Published = ({ formID }: any) => {
                     <FileUploadElement
                       question={element.question}
                       attributes={element.attributes}
+                      id={element.id}
                     />
                   </div>
                 );
@@ -245,6 +267,7 @@ const Published = ({ formID }: any) => {
                     <RatingElement
                       question={element.question}
                       attributes={element.attributes}
+                      id={element.id}
                     />
                   </div>
                 );
