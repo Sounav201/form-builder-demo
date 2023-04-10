@@ -1,18 +1,17 @@
 import { useRef } from "react";
 import { useDrag, useDrop, XYCoord } from "react-dnd";
 import React, { useState } from 'react'
-import { ShortTextAttributes } from "../../element-bank/ElementBank.types";
+import { DatePickerAttributes } from "../../element-bank/ElementBank.types";
 import Question from "../../Question";
+import DatePicker from "react-datepicker";
 import { FormAreaItem,DragItem } from "../FormArea.types";
 import Image from 'next/image'
-import { FormControl,FormLabel,FormErrorMessage,FormHelperText,Input, Stack,Textarea, Box} from '@chakra-ui/react'
+import { FormControl,FormLabel,FormErrorMessage,FormHelperText,Input, Stack, Box, Textarea} from '@chakra-ui/react'
 
-interface ShortTextProps extends FormAreaItem<ShortTextAttributes> {}
-//Need to put isSelected boolean 
+interface DatePickerProps extends FormAreaItem<DatePickerAttributes> {}
 
-const ShortText = (props:ShortTextProps) => {
-
-    const [input, setinput] = useState("")
+const DatePickerInput = (props:DatePickerProps) => {
+  const [startDate, setStartDate] = useState(new Date());
     const isSelected = props.isSelected;
     const ref = useRef<HTMLDivElement>(null);
     const [{ isDragging }, drag] = useDrag(
@@ -91,8 +90,17 @@ const ShortText = (props:ShortTextProps) => {
     });
     drag(drop(ref));
   
-
-
+    const handleDateChange = (e) => {
+      console.log(e.target.value,typeof(e.target.value))
+      //Format startDate to YYYY-MM-DD
+      const date = new Date(startDate)
+      const year = date.getFullYear()
+      var month = date.getMonth() + 1
+      
+      const day = date.getDate()
+      const formattedDate = `${year}-${month<10 ? '0'+month.toString() : month}-${day}`
+      console.log(formattedDate)
+    }
 
 
   return (
@@ -103,10 +111,10 @@ const ShortText = (props:ShortTextProps) => {
     }}
     data-handler-id={handlerId}
     onClick={() => props.onQuestionSelected()}
-    className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto  w-11/12 relative box-border border-2 border-dotted border-violet-900` : `my-4 pt-8 pb-2 md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
+    className={isSelected ? `my-4 pt-8 pb-2 md:pt-8 mx-auto rounded-md  w-11/12 relative box-border border-2 border-dotted border-violet-900` : `my-4 pt-8 pb-2 rounded-md md:pt-8 mx-auto box-border border-2 border-transparent  w-11/12 relative`}
     >
-    <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}   >
-       <FormControl w={['100%', 500, 600]} marginX="auto"> 
+  <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}   >
+        <FormControl w={['100%', 500, 600]} marginX="auto">
         <Question
         required={props.attributes.required}
         questionImage = {props.attributes.styling.questionImage}
@@ -118,7 +126,7 @@ const ShortText = (props:ShortTextProps) => {
       />
       <div className='mt-6 mb-4'>
 
-        <Input w={['100%',500,600]} size='md'   type={props?.attributes?.inputType || "text"} placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input>
+      <input type={"date"} placeholder='Date' name="input-date" onChange={handleDateChange} />
 
       </div>
 
@@ -126,7 +134,6 @@ const ShortText = (props:ShortTextProps) => {
     </Stack>
     </div>
   )
-
 }
 
-export default ShortText
+export default DatePickerInput

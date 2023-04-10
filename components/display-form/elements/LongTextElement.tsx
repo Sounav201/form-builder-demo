@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { LongTextAttributes } from "../../element-bank/ElementBank.types";
 import Image from 'next/image'
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Input, Stack, Box, Textarea } from '@chakra-ui/react'
 

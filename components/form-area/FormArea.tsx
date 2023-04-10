@@ -6,11 +6,13 @@ import { useCallback, useRef, useState } from "react";
 import { ImBin } from "react-icons/im";
 import ShortText from "./elements/ShortText";
 import {
+  ShortTextAttributes,
   CheckboxAttributes,
   ElementAttributes,
   ElementType,
   RatingAttributes,
   FileUploadAttributes,
+  DatePickerAttributes,
 } from "../element-bank/ElementBank.types";
 import Checkbox from "./elements/Checkbox";
 import { Button } from "@chakra-ui/react";
@@ -18,6 +20,7 @@ import FormElement from "./FormElement";
 import LongText from "./elements/LongText";
 import Rating from "./elements/Rating";
 import FileUpload from "./elements/FileUpload";
+import DatePickerInput from "./elements/DatePickerInput";
 
 const FormArea = (props: FormAreaProps) => {
   const [{ handlerId }, drop] = useDrop(() => ({
@@ -35,25 +38,24 @@ const FormArea = (props: FormAreaProps) => {
     },
   }));
 
-
   return (
     <div>
       <div className="relative m-auto  ">
         <div className="md:w-5/6 lg:w-5/6    mt-16 overflow-visible mx-auto mb-12 bg-violet-200  rounded-md flex flex-col justify-center">
-        <div
-              className="text-3xl font-bold mt-4 text-center outline-none  w-full "
-              contentEditable
-              onBlur={(e) => {
-                props.onFormHeadingChanged(e.target.innerText);
-              }}
-              defaultValue={props.formHeading}
-              suppressContentEditableWarning={true}
-              style={{
-                color: "black",
-              }}
-            >
-              {props.formHeading}
-            </div>
+          <div
+            className="text-3xl font-bold mt-4 text-center outline-none  w-full "
+            contentEditable
+            onBlur={(e) => {
+              props.onFormHeadingChanged(e.target.innerText);
+            }}
+            defaultValue={props.formHeading}
+            suppressContentEditableWarning={true}
+            style={{
+              color: "black",
+            }}
+          >
+            {props.formHeading}
+          </div>
 
           <ul
             className={
@@ -63,7 +65,6 @@ const FormArea = (props: FormAreaProps) => {
             }
             ref={drop}
           >
-
             {props.items.length > 0 &&
               props.items.map((item, index) => {
                 switch (item.type) {
@@ -73,61 +74,59 @@ const FormArea = (props: FormAreaProps) => {
                         key={index}
                         className="list-none box-border flex md:w-3/4 lg:w-11/12 mx-auto"
                       >
-                        <FormElement>
-                          <ShortText
-                            key={index}
-                            {...item}
-                            index={index}
-                            numbering={index + 1}
-                            moveCard={props.moveCard}
-                            onDelete={() => props.onItemDelete(item)}
-                            onQuestionTextChanged={(questionText) =>
-                              props.onQuestionTextChange(item, questionText)
-                            }
-                            onQuestionSelected={() =>
-                              props.onQuestionSelected(item)
-                            }
-                          />
-                          <div className=" flex flex-col gap-4 my-4">
-                            <div className="">
-                              <Button
-                                aria-label="Delete"
-                                colorScheme="red"
-                                onClick={() => props.onItemDelete(item)}
-                                className="absolute group flex justify-center items-center overflow-hidden transform duration-300  "
+                        <ShortText
+                          key={index}
+                          {...(item as FormAreaItem<ShortTextAttributes>)}
+                          index={index}
+                          numbering={index + 1}
+                          moveCard={props.moveCard}
+                          onDelete={() => props.onItemDelete(item)}
+                          onQuestionTextChanged={(questionText) =>
+                            props.onQuestionTextChange(item, questionText)
+                          }
+                          onQuestionSelected={() =>
+                            props.onQuestionSelected(item)
+                          }
+                        />
+                        <div className=" flex flex-col gap-4 my-4">
+                          <div className="">
+                            <Button
+                              aria-label="Delete"
+                              colorScheme="red"
+                              onClick={() => props.onItemDelete(item)}
+                              className="absolute group flex justify-center items-center overflow-hidden transform duration-300  "
+                            >
+                              <span className="absolute left-0 w-full h-0 transition-all bg-rose-700 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                              <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 ">
+                                <ImBin size="1.5em" />
+                              </span>
+                              <span
+                                className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}
                               >
-                                <span className="absolute left-0 w-full h-0 transition-all bg-rose-700 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
-                                <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 ">
-                                  <ImBin size="1.5em" />
-                                </span>
-                                <span
-                                  className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}
-                                >
-                                  Delete
-                                </span>
-                              </Button>
-                              {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
-                            </div>
-                            <div className="">
-                              <Button
-                                aria-label="Properties"
-                                colorScheme="yellow"
-                                onClick={() => props.setshowSidebar()}
-                                className="absolute group flex justify-center items-center overflow-hidden transform duration-300  "
-                              >
-                                <span className="absolute left-0 w-full h-0 transition-all bg-orange-400 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
-                                <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 ">
-                                  <FiSettings size="1.5em" />
-                                </span>
-                                <span
-                                  className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}
-                                >
-                                  Properties
-                                </span>
-                              </Button>
-                            </div>
+                                Delete
+                              </span>
+                            </Button>
+                            {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
                           </div>
-                        </FormElement>
+                          <div className="">
+                            <Button
+                              aria-label="Properties"
+                              colorScheme="yellow"
+                              onClick={() => props.setshowSidebar()}
+                              className="absolute group flex justify-center items-center overflow-hidden transform duration-300  "
+                            >
+                              <span className="absolute left-0 w-full h-0 transition-all bg-orange-400 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                              <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 ">
+                                <FiSettings size="1.5em" />
+                              </span>
+                              <span
+                                className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}
+                              >
+                                Properties
+                              </span>
+                            </Button>
+                          </div>
+                        </div>
                       </li>
                     );
                   case ElementType.CHECKBOX:
@@ -324,6 +323,68 @@ const FormArea = (props: FormAreaProps) => {
                             </div>
                           </div>
                         </FormElement>
+                      </li>
+                    );
+
+                  case ElementType.DATEPICKER:
+                    return (
+                      <li
+                        key={index}
+                        className="list-none box-border flex md:w-3/4 lg:w-11/12 mx-auto"
+                      >
+                        <DatePickerInput
+                          key={index}
+                          {...(item as FormAreaItem<DatePickerAttributes>)}
+                          index={index}
+                          numbering={index + 1}
+                          moveCard={props.moveCard}
+                          onDelete={() => props.onItemDelete(item)}
+                          onQuestionTextChanged={(questionText) =>
+                            props.onQuestionTextChange(item, questionText)
+                          }
+                          onQuestionSelected={() =>
+                            props.onQuestionSelected(item)
+                          }
+                        />
+                        <div className=" flex flex-col gap-4 my-4">
+                          <div className="">
+                            <Button
+                              aria-label="Delete"
+                              colorScheme="red"
+                              onClick={() => props.onItemDelete(item)}
+                              className="absolute group flex justify-center items-center overflow-hidden transform duration-300  "
+                            >
+                              <span className="absolute left-0 w-full h-0 transition-all bg-rose-700 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                              <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 ">
+                                <ImBin size="1.5em" />
+                              </span>
+                              <span
+                                className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}
+                              >
+                                Delete
+                              </span>
+                            </Button>
+                            {/* <button className='bg-red-600 p-2 rounded-lg inline-flex items-center'  aria-label='Delete'  color="red" onClick={() => props.onItemDelete(item)}><ImBin size={18} className="mr-2" color={"white"} /><span className='text-base'>Delete</span> </button> */}
+                          </div>
+                          <div className="">
+                            <Button
+                              aria-label="Properties"
+                              colorScheme="yellow"
+                              onClick={() => props.setshowSidebar()}
+                              className="absolute group flex justify-center items-center overflow-hidden transform duration-300  "
+                            >
+                              <span className="absolute left-0 w-full h-0 transition-all bg-orange-400 opacity-100 group-hover:h-full group-hover:top-0  ease "></span>
+                              <span className="absolute right-0 flex items-center w-40 md:w-20 h-10 duration-300 transform translate-y-10 translate-x-10 group-hover:translate-y-0 ">
+                                <FiSettings size="1.5em" />
+                              </span>
+                              <span
+                                className={`relative py-1 px-4 text-xs md:text-base font-monospace transform translate-x-0 group-hover:-translate-x-4 duration-300`}
+                              >
+                                Properties
+                              </span>
+                            </Button>
+                          </div>
+                        </div>
                       </li>
                     );
 

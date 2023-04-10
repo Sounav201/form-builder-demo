@@ -8,14 +8,15 @@ import {
     ShortTextAttributes,
     LongTextAttributes,
     RatingAttributes,
-    FileUploadAttributes
+    FileUploadAttributes,
+    DatePickerAttributes,
   } from "./ElementBank.types";
 import {AiFillPlusCircle} from 'react-icons/ai'
 import { useDisclosure } from '@chakra-ui/react'
 import {HiArrowRight} from 'react-icons/hi'
 import {Drawer,DrawerBody,DrawerFooter,DrawerHeader,DrawerOverlay,DrawerContent,DrawerCloseButton} from '@chakra-ui/react'
 import Element from "./Element";
-import {AiOutlineArrowDown,AiOutlineCopy, AiOutlineDown,AiOutlineCodepenCircle,AiFillStar,AiOutlinePlus} from 'react-icons/ai'
+import {AiOutlineArrowDown,AiOutlineCopy, AiOutlineDown,AiOutlineCodepenCircle,AiFillStar,AiOutlinePlus,AiTwotoneCalendar} from 'react-icons/ai'
 import {BsTextareaResize, BsUpload} from "react-icons/bs";
 import {FcRating} from "react-icons/fc"
 import {FiUpload} from "react-icons/fi"
@@ -52,6 +53,7 @@ const ElementBank = (props:ElementBankProps) => {
                     questionImage:"",
                 },
                 icon:AiOutlineCodepenCircle,
+                inputType:"text",
             } as ShortTextAttributes,
             displayName:"Short Text",
         },
@@ -115,6 +117,20 @@ const ElementBank = (props:ElementBankProps) => {
             } as FileUploadAttributes,
             displayName:"File Upload",
             
+        },
+        {
+            type:ElementType.DATEPICKER,
+            question:"Type your Question",
+            attributes:{
+                required:false,
+                styling:{
+                    fontColor:"#000000",
+                    questionImage:"",
+                },
+                icon:AiTwotoneCalendar,
+            } as DatePickerAttributes,
+            displayName:"Date Picker",
+
         }
         
     ];

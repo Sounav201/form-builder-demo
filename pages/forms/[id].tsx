@@ -355,8 +355,12 @@ const Home: NextPage = ({ formID }: any) => {
 
                     if (index !== -1) {
                       if (item.type != "rating")
+                      {
                         oldArray[index].attributes.styling =
-                          item.attributes.styling;
+                        item.attributes.styling;
+                        oldArray[index].attributes = item.attributes;
+                      }
+                        
                       else if (item.type == "rating") {
                         (oldArray[index].attributes as RatingAttributes).emoji =
                           (item.attributes as RatingAttributes).emoji;

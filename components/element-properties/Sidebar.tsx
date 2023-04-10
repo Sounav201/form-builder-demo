@@ -4,7 +4,7 @@ import { FiSettings, FiTrash2 } from 'react-icons/fi';
 import {IoMdCloseCircleOutline} from 'react-icons/io';
 import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
 import { FormControl, FormLabel, Select, Stack, Switch, useDisclosure, Button } from '@chakra-ui/react'
-import { RatingAttributes } from '../element-bank/ElementBank.types'
+import { RatingAttributes, ShortTextAttributes } from '../element-bank/ElementBank.types'
 const Sidebar = (props: ElementPropertiesProps) => {
 
 
@@ -89,7 +89,7 @@ const Sidebar = (props: ElementPropertiesProps) => {
             <h1 className="mt-2 text-2xl text-violet-800 font-spacemono font-bold uppercase">
                 Element Properties
             </h1>
-            <div className='flex flex-col '>
+            <div className='flex flex-col gap-2'>
                 <div className=' py-2 px-2 flex flex-col'>
                     <label className='font-medium text-lg text-zinc-300 '>Mandatory Field?</label>
                     <Switch size='md' mt={1} className="px-2" colorScheme={'yellow'} onChange={() => {
@@ -101,8 +101,28 @@ const Sidebar = (props: ElementPropertiesProps) => {
                     }} />
                     <label className='text-xs text-yellow-400 px-2'>Prevents submission if this question is empty*</label>
                 </div>
+                
+                {props.selectedItem && props.selectedItem.type == "shorttext" && (<>
+                    <div className='flex flex-col items-center gap-2 '>
+                    <label className='font-medium text-lg text-zinc-300 '>Input Type</label>
+                    <Select bg='white' borderColor='blue'  defaultValue={(props.selectedItem.attributes as ShortTextAttributes).inputType}
+                            color='black' placeholder='Select option' className="font-semibold" onChange={(e)=> {
+                                if (props.selectedItem !== null) {
+                                    (props.selectedItem.attributes as ShortTextAttributes).inputType = e.target.value;
+                                    // (props.selectedItem.attributes as RatingAttributes).emoji = e.target.value;
+                                     props.onItemPropertiesChange(props.selectedItem);
+                                }
+                            }}>
+                            <option className='bg-purple-500 text-yellow-800' value='text'>Text </option>
+                            <option value='email'>Email</option>
+                            <option value='number'>Number</option>
+                        </Select>
 
+                
+                </div>
 
+                </>)}
+                
                 <div className=' flex flex-col px-2 gap-2'>
                     <label className='font-medium text-lg text-zinc-300 '>Text Color</label>
                     <div className='px-2'>

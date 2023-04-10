@@ -29,7 +29,7 @@ export default function Login(){
       console.log('Data from API : ', data);
       if(data.message == "Login Successful")
       {
-        alert('Logged in!')
+        //alert('Logged in!')
         localStorage.setItem("form_buildertoken", data.token);
               //console.log("User role logged in ", data.role);
         localStorage.setItem("form_builderuser", data.email);

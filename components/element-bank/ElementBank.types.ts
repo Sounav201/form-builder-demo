@@ -11,7 +11,8 @@ export enum ElementType {
     LONG_TEXT = "longtext",
     RATING = "rating",
     FILE_UPLOAD = "fileupload",
-    DROPDOWN = "dropdown"
+    DROPDOWN = "dropdown",
+    DATEPICKER = "datepicker",
 } 
 
 export interface LogicalAttributes{
@@ -27,13 +28,14 @@ export interface RatingStyleAttributes extends StylingAttributes{
     fillColor:string;
 }
 
-export type ElementAttributes = ShortTextAttributes | CheckboxAttributes | RatingAttributes | FileUploadAttributes | LongTextAttributes;
+export type ElementAttributes = ShortTextAttributes | CheckboxAttributes | RatingAttributes | FileUploadAttributes | LongTextAttributes | DatePickerAttributes;
 
 //Default structure of Shorttext element
 export interface ShortTextAttributes{
     required:Boolean
     styling:StylingAttributes;
     icon:IconType;
+    inputType:string;
 }
 //Default structure of Rating element
 export interface RatingAttributes {
@@ -67,6 +69,11 @@ export interface LongTextAttributes{
 export interface FileUploadAttributes{
     required:Boolean
     typeofFile:string
+    styling:StylingAttributes
+    icon:IconType;
+}
+export interface DatePickerAttributes{
+    required:Boolean
     styling:StylingAttributes
     icon:IconType;
 }

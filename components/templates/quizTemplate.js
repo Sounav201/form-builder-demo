@@ -7,7 +7,8 @@ const quizTemplate = [
             "styling": {
                 "fontColor": "#000000",
                 "questionImage": ""
-            }
+            },
+            "textType":"text"
         },
         "id": "gHfltsH6k-W1a5bB70grY",
         "isSelected": true
