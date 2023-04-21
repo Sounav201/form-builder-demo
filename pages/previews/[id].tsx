@@ -12,6 +12,7 @@ import FileUploadElement from "../../components/display-form/elements/FileUpload
 import Link from "next/link";
 import RatingElement from "../../components/display-form/elements/RatingElement";
 import Swal from "sweetalert2";
+import Qrcode from '../../components/QRcode';
 import {
   ChakraProvider,
   Modal,
@@ -139,7 +140,7 @@ const Preview = ({ formID }: any) => {
   const handleRedirect = () => {
     router.push('/published/' + formID);
   }
-
+  const url="https://form-builder-demo.vercel.app/published/" + formID;
   return (
     <>
       <div className=" bg-cover min-h-screen flex flex-col bg-background ">
@@ -156,6 +157,10 @@ const Preview = ({ formID }: any) => {
                   <span className="flex text-xl md:text-3xl font-alegreya font-bold text-slate-600">
                     Hurrah! Your form has been published .
                   </span>
+                  <div>
+                    <Qrcode url={url}/>
+                    
+                  </div>
                   <div className="flex flex-col gap-4 ">
                     <div className="flex flex-row gap-2 md:gap-2">
                       
