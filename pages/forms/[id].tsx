@@ -13,7 +13,9 @@ import {
 import { useCallback, useContext, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { IoIosColorPalette } from "react-icons/io";
-import {RiArrowGoBackLine} from "react-icons/ri";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import { AiOutlineCloseSquare } from "react-icons/ai";
+import { RiArrowGoBackLine } from "react-icons/ri";
 import { IoIosSave } from "react-icons/io";
 import {
   FormControl,
@@ -31,10 +33,33 @@ import AppContext from "../../src/context/appContext";
 import Sidebar from "../../components/element-properties/Sidebar";
 import FormArea from "../../components/form-area/FormArea";
 
+const styles = {
+  sideImage:
+    "card-pop-in md:object-cover md:object-contain hover:scale-105 ease-out duration-500 hover:cursor-pointer overflow-hidden shadow-sm shadow-black ",
+};
+
+const sideImages = [
+  "https://images.unsplash.com/photo-1660385938160-b0dd49ef09d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1460355976672-71c3f0a4bdac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
+  "https://images.unsplash.com/photo-1476842634003-7dcca8f832de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1560004849-db18a2018f77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1501472081208-b511e0536e15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
+  "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1516319915504-015b432d407c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1442&q=80",
+  "https://images.unsplash.com/photo-1483982258113-b72862e6cff6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1475359476683-cb0be9a3bcfc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1600102547096-b47c89b02055?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1494587351196-bbf5f29cff42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
+  "https://images.unsplash.com/photo-1524087086535-177f3752451c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1489846986031-7cea03ab8fd0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80",
+  "https://images.unsplash.com/photo-1530974664676-36b51a281dc8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+];
+
 const Home: NextPage = ({ formID }: any) => {
   const { user } = useContext(AppContext);
   const router = useRouter();
-
+  const [newImage, setNewImage] = useState("");
+  const [activeImage, setActiveImage] = useState(0);
   const [selectedItem, setSelectedItem] = useState(
     null as FormAreaItem<ElementAttributes> | null
   );
@@ -247,6 +272,49 @@ const Home: NextPage = ({ formID }: any) => {
     router.push("/dashboard/home");
   };
 
+  function Topbar({ minimize, setMinimize }) {
+    return (
+      <div
+        className={` top-0 right-0 h-screen w-1/3 bg-slate-900 dark:bg-gray-900 z-50 transition  ease-in-out duration-500 fixed ${
+          minimize ? "translate-x-0 " : "translate-x-full "
+        } overflow-y-scroll scrollbar-thin scrollbar-rounded scrollbar-thumb-slate-400 hover:scrollbar-thumb-slate-500`}
+      >
+        <div className="flex flex-col justify-center items-end ">
+          <AiOutlineCloseSquare
+            size="2em"
+            className={`text-white hover:scale-110  my-2 mx-4 duration-500 cursor-pointer`}
+            onClick={() => setMinimize(!minimize)}
+          />
+          <div className="flex flex-col w-full justify-center items-center ">
+            <span className={`text-lg font-bold text-slate-300 font-poppins`}>Choose your background theme</span>
+            <hr className="w-11/12 mt-1 mb-4 border-1 border-slate-400"></hr>
+          </div>
+          <div className="grid grid-cols-2 mx-3  mb-4 px-1 md:px-2 gap-x-2 gap-y-3 ">
+            {sideImages.map((image, i) => {
+              return (
+                <img
+                  src={image}
+                  alt=""
+                  key={i}
+                  className={styles.sideImage}
+                  onClick={() => {
+                    setNewImage("");
+                    setActiveImage(i);
+                  }}
+                />
+              );
+            })}
+          </div>
+          {/* <div className='p-0'>
+                <div className='overflow-hidden rounded-lg'>
+                  <img src={newImage ? newImage : sideImages[activeImage]} alt='Enter the correct image url below' className='w-auto h-auto md:w-[600px] md:h-[400px] overflow-hidden card-pop-out hover:scale-110 duration-500 object-cover hover:cursor-pointer ' />
+                </div>
+              </div> */}
+        </div>
+      </div>
+    );
+  }
+
   const handleSaveClick = async () => {
     //Must be a conditional statement to check if the form is new or not
     //If new, then send the data to the backend to create a new form
@@ -277,6 +345,7 @@ const Home: NextPage = ({ formID }: any) => {
     }
   };
 
+  const [minimize, setMinimize] = useState(false);
   return (
     <div>
       <Head>
@@ -285,14 +354,32 @@ const Home: NextPage = ({ formID }: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DndProvider backend={HTML5Backend}>
-        <div className="h-full min-h-screen min-w-screen bg-background    ">
+        <div
+          style={{
+            backgroundImage: `url(${
+              newImage ? newImage : sideImages[activeImage]
+            })`,
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed",
+            // position: 'sticky',
+            // width: '100%',
+            // height: '100%',
+            // minHeight: '100vh',
+            // minWidth: '100vw',
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            overflow: "hidden",
+          }}
+          className="h-full min-h-screen min-w-screen bg-background"
+        >
+          <Topbar minimize={minimize} setMinimize={setMinimize} />
           <div className="flex flex-col bg-none fixed left-8 top-6 gap-52 z-20">
             <button
               className="flex flex-row gap-2 relative border-2 border-violet-800 py-2.5 px-5 font-medium uppercase text-violet-500 transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-gradient-to-r from-violet-900  to-blue-600 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:border-violet-800 before:hover:scale-x-100"
               onClick={handleBackClick}
             >
-            Return
-            <RiArrowGoBackLine size='1.5em' />
+              Return
+              <RiArrowGoBackLine size="1.5em" />
             </button>
           </div>
           <div className="flex flex-col bg-none fixed right-8 top-6 gap-52 z-20">
@@ -303,9 +390,16 @@ const Home: NextPage = ({ formID }: any) => {
               Preview
             </button>
             <div className={` `}>
-              {/* <button className={` absolute bg-blue-500 w-fit p-4 rounded-full duration-300 `} >
-                  <IoIosColorPalette size="2em" color="white"/>
-                </button> */}
+              <button
+                className={` absolute bg-blue-500 w-fit p-4 rounded-full duration-300 hover:scale-110`}
+                onClick={() => setMinimize(!minimize)}
+              >
+                <IoIosColorPalette
+                  size="2em"
+                  color="white"
+                  className={` text-white `}
+                />
+              </button>
             </div>
           </div>
           <div className="flex flex-col group bg-none fixed right-8 bottom-6 gap-52 z-20">
@@ -354,14 +448,11 @@ const Home: NextPage = ({ formID }: any) => {
                     );
 
                     if (index !== -1) {
-                      if (item.type != "rating")
-                      {
+                      if (item.type != "rating") {
                         oldArray[index].attributes.styling =
-                        item.attributes.styling;
+                          item.attributes.styling;
                         oldArray[index].attributes = item.attributes;
-                      }
-                        
-                      else if (item.type == "rating") {
+                      } else if (item.type == "rating") {
                         (oldArray[index].attributes as RatingAttributes).emoji =
                           (item.attributes as RatingAttributes).emoji;
                         (

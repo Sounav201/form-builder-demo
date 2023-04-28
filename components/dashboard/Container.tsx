@@ -99,7 +99,7 @@ const Container = ({ darkMode, setDarkMode,formsLoading }) => {
                     <p className="font-semibold text-rose-800 dark:text-white">Hi there</p>
                     <p className="font-extrabold text-primary dark:text-yellow-500 ">!</p>
                 </div>
-                <p className="pl-2 md:pl-4 py-2 md:py-3 font-extrabold text-3xl md:text-6xl bg-sky-600 md:bg-sky-500 dark:bg-gradient-to-r dark:from-yellow-500 dark:to-yellow-400 md:tracking-wide text-transparent bg-clip-text animate-text mb-8 md:mb-16">
+                <p className="pl-2 md:pl-4 py-2 md:py-3 font-extrabold text-3xl md:text-6xl bg-sky-600 md:bg-blue-600 dark:bg-gradient-to-r dark:from-yellow-500 dark:to-yellow-400 md:tracking-wide text-transparent bg-clip-text animate-text mb-8 md:mb-16">
                     {"Let's build your form"} <br/> {"Together !"}
                 </p>
             </div>
@@ -109,7 +109,7 @@ const Container = ({ darkMode, setDarkMode,formsLoading }) => {
             <div className="absolute top-[5%] md:top-[7%] right-[6%] md:right-[4%] ">
                 <button
                     onClick={() => setDarkMode(!darkMode)}
-                    className="transition duration-300 ease-in-out text-2xl text-primary dark:text-white hover:scale-125 hover:text-primary dark:hover:text-yellow-500"
+                    className="transition duration-300 ease-in-out text-2xl text-zinc-500 dark:text-white hover:scale-125 hover:text-rose-800 dark:hover:text-yellow-500"
                     >
                     {darkMode ? <BsFillMoonFill className="text:3xl md:text-4xl"/> : <BsFillSunFill className='text-3xl md:text-5xl'/>}
                 </button>

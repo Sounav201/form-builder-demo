@@ -53,6 +53,7 @@ module.exports = {
         'mobileRedirect_bg' : "url('/mobileRedirectbg.jpg')",
         'bglite' : "url('/lightbg.jpg')",
         'landing' : "url('/landing.png')",
+        'lightbg' : "url('/lightbg1.jpg')",
       },
       backgroundColor: theme => ({
         'neon': '#ccff00',
