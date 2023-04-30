@@ -1,4 +1,6 @@
 import type { NextPage } from "next";
+import React, { Dispatch, SetStateAction } from "react";
+import { AddThemeTabButton } from "../../types/formTheme";
 import Head from "next/head";
 import Image from "next/image";
 import Cookies from "js-cookie";
@@ -272,22 +274,59 @@ const Home: NextPage = ({ formID }: any) => {
     router.push("/dashboard/home");
   };
 
-  function Topbar({ minimize, setMinimize }) {
+  const tabButtons = [
+    {
+      text: "Themes",
+      style: " font-semibold font-alegreya text-lg text-slate-300 shadow-sm shadow-slate-600",
+      selectedStyle:
+        " font-bold font-alegreya text-lg text-slate-100 bg-blue-900 -shadow-md ease-in duration-200 ",
+      selectedAltStyle:
+        " font-bold font-alegreya text-lg text-slate-200 bg-blue-900 -shadow-md ease-in duration-200 ",
+    },
+
+    {
+      text: "Fonts",
+      style: "  font-semibold font-alegreya text-lg text-slate-300 shadow-sm shadow-slate-600",
+      selectedStyle:
+        " font-bold font-alegreya text-lg text-slate-100 bg-blue-900 -shadow-md ease-in duration-200",
+      selectedAltStyle:
+        " font-bold font-alegreya text-lg text-slate-200 bg-blue-900 -shadow-md ease-in duration-200 ",
+    },
+  ];
+
+  type ThemeParams = {
+    activeButton: AddThemeTabButton;
+    setActiveButton: Dispatch<SetStateAction<number>>;
+  };
+
+  const Fonts = (props: ThemeParams) => {
+    const { activeButton, setActiveButton } = props;
     return (
-      <div
-        className={` top-0 right-0 h-screen w-1/3 bg-slate-900 dark:bg-gray-900 z-50 transition  ease-in-out duration-500 fixed ${
-          minimize ? "translate-x-0 " : "translate-x-full "
-        } overflow-y-scroll scrollbar-thin scrollbar-rounded scrollbar-thumb-slate-400 hover:scrollbar-thumb-slate-500`}
-      >
+      <>
         <div className="flex flex-col justify-center items-end ">
-          <AiOutlineCloseSquare
-            size="2em"
-            className={`text-white hover:scale-110  my-2 mx-4 duration-500 cursor-pointer`}
-            onClick={() => setMinimize(!minimize)}
-          />
+          
           <div className="flex flex-col w-full justify-center items-center ">
-            <span className={`text-lg font-bold text-slate-300 font-poppins`}>Choose your background theme</span>
-            <hr className="w-11/12 mt-1 mb-4 border-1 border-slate-400"></hr>
+            <span className={`font-semibold text-slate-300 font-poppins`}>
+              Choose your custom font
+            </span>
+            <hr className="w-7/12 mt-1 mb-4 border-1 border-slate-400"></hr>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const Themes = (props: ThemeParams) => {
+    const { activeButton, setActiveButton } = props;
+    return (
+      <>
+        <div className="flex flex-col justify-center items-end ">
+          
+          <div className="flex flex-col w-full justify-center items-center ">
+            <span className={` font-semibold text-slate-300 font-poppins`}>
+              Choose your background theme
+            </span>
+            <hr className="w-8/12 mt-1 mb-4 border-1 border-slate-400"></hr>
           </div>
           <div className="grid grid-cols-2 mx-3  mb-4 px-1 md:px-2 gap-x-2 gap-y-3 ">
             {sideImages.map((image, i) => {
@@ -305,12 +344,71 @@ const Home: NextPage = ({ formID }: any) => {
               );
             })}
           </div>
-          {/* <div className='p-0'>
-                <div className='overflow-hidden rounded-lg'>
-                  <img src={newImage ? newImage : sideImages[activeImage]} alt='Enter the correct image url below' className='w-auto h-auto md:w-[600px] md:h-[400px] overflow-hidden card-pop-out hover:scale-110 duration-500 object-cover hover:cursor-pointer ' />
-                </div>
-              </div> */}
+          {/* <div className="p-0">
+            <div className="overflow-hidden rounded-lg">
+              <img
+                src={newImage ? newImage : sideImages[activeImage]}
+                alt="Enter the correct image url below"
+                className="w-auto h-auto md:w-[600px] md:h-[400px] overflow-hidden card-pop-out hover:scale-110 duration-500 object-cover hover:cursor-pointer "
+              />
+            </div>
+          </div> */}
         </div>
+      </>
+    );
+  };
+
+  function Topbar({ minimize, setMinimize }) {
+    const [activeButton, setActiveButton] = useState(0);
+    return (
+      <div
+        className={` top-0 right-0 h-screen w-1/3 bg-slate-900 dark:bg-gray-900 z-50 transition  ease-in-out duration-500 fixed ${
+          minimize ? "translate-x-0 " : "translate-x-full "
+        } overflow-y-scroll scrollbar-thin scrollbar-rounded scrollbar-thumb-slate-400 hover:scrollbar-thumb-slate-500 `}
+      >
+        <div className="flex flex-col justify-center items-end ">
+        <AiOutlineCloseSquare
+            size="2em"
+            className={`text-white hover:scale-110  my-2 mx-4 duration-500 cursor-pointer`}
+            onClick={() => setMinimize(!minimize)}
+          />
+          </div>
+        <div className="card-pop-in flex justify-center items-center w-11/12  mb-6 mx-auto shadow-sm shadow-slate-600">
+        
+          {tabButtons.map((button, i) => {
+            return (
+              <div className="w-full" key={i}>
+                <button
+                  className={
+                    " flex justify-center w-full h-full py-2 md:py-3 " +
+                    (i === activeButton
+                      ? "button-pop-out-2 ease-in duration-300"
+                      : button.style) +
+                    " " +
+                    (i === activeButton ? button.selectedStyle : "")
+                  }
+                  onClick={() => {
+                    setActiveButton(i);
+                  }}
+                >
+                  {button.text}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+        {activeButton === 0 && (
+          <Themes
+            activeButton={tabButtons[activeButton]}
+            setActiveButton={setActiveButton}
+          />
+        )}
+        {activeButton === 1 && (
+          <Fonts
+            activeButton={tabButtons[activeButton]}
+            setActiveButton={setActiveButton}
+          />
+        )}
       </div>
     );
   }
