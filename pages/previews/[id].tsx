@@ -40,6 +40,7 @@ const Preview = ({ formID }: any) => {
   const router = useRouter();
   const { user } = useContext(AppContext);
   const [dummyHeading, setdummyHeading] = useState("Untitled Form");
+  const [backgroundImage,setbackgroundImage]=useState(null);
   const [form, setform] = useState([]);
   const [copyText, setCopyText] = useState("");
   const handleCopy = () => {
@@ -68,6 +69,10 @@ const Preview = ({ formID }: any) => {
       }
       if (localStorage.getItem("formHeading")) {
         setdummyHeading(JSON.parse(localStorage.getItem("formHeading")));
+      }
+      if(localStorage.getItem("formBackground"))
+      {
+        setbackgroundImage(JSON.parse(localStorage.getItem("formBackground")));
       }
     }
   }, []);
