@@ -99,11 +99,8 @@ const Home: NextPage = ({ formID }: any) => {
       console.log("Setter runs!");
       localStorage.setItem("formAreaItems", JSON.stringify(formAreaItems));
       localStorage.setItem("formHeading", JSON.stringify(formHeading));
-      console.log('Bg image: ',sideImages[activeImage])
-      localStorage.setItem("formBackground", JSON.stringify(sideImages[activeImage]));
-
     }
-  }, [formAreaItems,activeImage]);
+  }, [formAreaItems]);
 
   //Change form heading
   const onFormHeadingChanged = (heading: string) => {

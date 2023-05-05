@@ -148,7 +148,21 @@ const Preview = ({ formID }: any) => {
   const url="https://form-builder-demo.vercel.app/published/" + formID;
   return (
     <>
-      <div className=" bg-cover min-h-screen flex flex-col bg-background ">
+      <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        // position: 'sticky',
+        // width: '100%',
+        // height: '100%',
+        // minHeight: '100vh',
+        // minWidth: '100vw',
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        overflow: "hidden",
+      }}
+       className=" bg-cover min-h-screen flex flex-col bg-background ">
         <div className="">
           <Modal isOpen={swalert} onClose={handleCloseClick}>
             <ModalOverlay />
