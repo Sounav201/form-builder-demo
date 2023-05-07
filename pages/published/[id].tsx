@@ -102,6 +102,7 @@ const Published = ({ formID }: any) => {
   const formRef = useRef(null);
   const [formData, setformData] = useState([]);
   const [formHeading, setformHeading] = useState("Form");
+  const [formBackground,setformBackground] = useState('')
   const [user,setuser] = useState("")
   const router = useRouter();
    
@@ -120,6 +121,7 @@ const Published = ({ formID }: any) => {
         const data = resData.data;
         console.log("Form data: ", data);
         setuser(data[0]?.user_id)
+        setformBackground(data[0]?.formBackground || '')
 
         setformData(data[0]?.Form_data || []);
         setformHeading(data[0]?.name || "Form");
@@ -200,6 +202,8 @@ const Published = ({ formID }: any) => {
     //   console.log('Form : ',e.target)
     //    console.log('Form values : ', e.target[0].values);
   };
+  
+  
 
   if (formData.length == 0)
     return (
@@ -209,11 +213,26 @@ const Published = ({ formID }: any) => {
         </h1>
       </div>
     );
+  
 
   return (
-    <div className="bg-cover min-h-screen flex flex-col bg-cetacean/20 md:bg-background">
+    <div 
+    style={ formBackground &&{
+      backgroundImage: `url(${formBackground})`,
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+      // position: 'sticky',
+      // width: '100%',
+      // height: '100%',
+      // minHeight: '100vh',
+      // minWidth: '100vw',
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      overflow: "hidden",
+    }}
+    className="bg-cover min-h-screen flex flex-col bg-cetacean/20 md:bg-background">
       
-      <div className="my-2 mx-2 md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-auto shadow-sm shadow-slate-600">
+      <div className="my-2  md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-auto shadow-sm shadow-slate-600">
         <div className="text-2xl md:text-3xl font-bold  text-center outline-none  w-full py-4 md:py-6">
           {formHeading}
         </div>

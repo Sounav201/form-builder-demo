@@ -70,6 +70,7 @@ const Home: NextPage = ({ formID }: any) => {
     [] as FormAreaItem<ElementAttributes>[]
   );
   const [formHeading, setformHeading] = useState("Untitled Form");
+
   const [showSidebar, setshowSidebar] = useState(false);
 
   useEffect(() => {
@@ -88,6 +89,9 @@ const Home: NextPage = ({ formID }: any) => {
       if (localStorage.getItem("formHeading")) {
         setformHeading(JSON.parse(localStorage.getItem("formHeading")));
       }
+      if(localStorage.getItem("formBackground")){
+        setNewImage(JSON.parse(localStorage.getItem("formBackground")));
+      }
     }
   }, []);
 
@@ -99,9 +103,11 @@ const Home: NextPage = ({ formID }: any) => {
       console.log("Setter runs!");
       localStorage.setItem("formAreaItems", JSON.stringify(formAreaItems));
       localStorage.setItem("formHeading", JSON.stringify(formHeading));
+      localStorage.setItem("formHeading", JSON.stringify(formHeading));
+      console.log('Bg image: ',sideImages[activeImage])
+      localStorage.setItem("formBackground", JSON.stringify(sideImages[activeImage]));
     }
-  }, [formAreaItems]);
-
+  }, [formAreaItems,activeImage]);
   //Change form heading
   const onFormHeadingChanged = (heading: string) => {
     setformHeading(heading);
@@ -423,6 +429,7 @@ const Home: NextPage = ({ formID }: any) => {
       formAreaItems: formAreaItems,
       user: user,
       formID: formID,
+      formBackground:sideImages[activeImage] ? sideImages[activeImage] : ''
     };
 
     const response = await fetch("/api/createForm", {
@@ -432,7 +439,8 @@ const Home: NextPage = ({ formID }: any) => {
       },
       body: JSON.stringify(dataToSend),
     });
-    if (response.status == 200) {
+
+    if(response.status == 200) {
       const data = await response.json();
       console.log("Response : ", data);
       Swal.fire({
