@@ -25,7 +25,7 @@ const Question = (props:QuestionProps) => {
           {props.numbering}.
     </div>  */}
     <div 
-    className='text-lg font-semibold flex-1 outline-none  w-full '
+    className={`text-lg font-semibold flex-1 outline-none  w-full  font-${props.styling.fontType}`}
     contentEditable
     onBlur={(e) => {
         props.onQuestionTextChanged(e.target.innerText);

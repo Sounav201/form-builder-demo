@@ -51,6 +51,7 @@ const ElementBank = (props:ElementBankProps) => {
                 styling:{
                     fontColor:"#000000",
                     questionImage:"",
+                    fontType:'inter'
                 },
                 icon:AiOutlineCodepenCircle,
                 inputType:"text",
@@ -65,6 +66,7 @@ const ElementBank = (props:ElementBankProps) => {
                 styling:{
                     fontColor:"#000000",
                     questionImage:"",
+                    fontType:'inter'
                 },
                 icon:RiCheckboxMultipleLine,
                 choices:[{label:"Yes",value:"Yes" ,id:"1"}, {label:"No", value:"No" ,id:"2"}],
@@ -79,6 +81,8 @@ const ElementBank = (props:ElementBankProps) => {
                 styling:{
                     fontColor:"#000000",
                     questionImage:"",
+                    fontType:'inter'
+
                 },
                 icon:BsTextareaResize,
             } as LongTextAttributes,
@@ -96,6 +100,8 @@ const ElementBank = (props:ElementBankProps) => {
                     hoverColor:"#c31432",
                     fillColor: "#000000",
                     questionImage:"",
+                    fontType:'inter'
+
                 },
                 icon:FcRating,
                 limit:5,
@@ -111,6 +117,7 @@ const ElementBank = (props:ElementBankProps) => {
                 styling:{
                     fontColor:"#000000",
                     questionImage:"",
+                    fontType:'inter'
                 },
                 icon:BsUpload,
                 typeofFile:"image"
@@ -126,6 +133,7 @@ const ElementBank = (props:ElementBankProps) => {
                 styling:{
                     fontColor:"#000000",
                     questionImage:"",
+                    fontType:'inter'
                 },
                 icon:AiTwotoneCalendar,
             } as DatePickerAttributes,
@@ -159,7 +167,7 @@ const ElementBank = (props:ElementBankProps) => {
       <div className={panelStatus ?`fixed h-fit flex w-68 overflow-auto my-72 transition ease-out duration-500 z-50`: `fixed h-full flex w-56 overflow-auto transition ease-out duration-500 -translate-x-56`} 
       onClick={handleOpen} > 
             <div className={`togglePanel flex my-auto text-violet-600 rounded-r-2xl py-2 px-4 justify-center gap-1.5 w-full  bg-black  border-y-2 border-r-2 border-violet-800    cursor-pointer`} >
-                <p className='flex toggleText pointer items-center text-2xl font-bold '>Add Form Elements</p>
+                <p className='flex toggleText pointer items-center text-2xl font-bold font-montserrat '>Add Form Elements</p>
                 <AiFillPlusCircle size="2.5em" className="bg-background rounded-full" />
             </div>
         </div>

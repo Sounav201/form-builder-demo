@@ -70,7 +70,7 @@ const Home: NextPage = ({ formID }: any) => {
     [] as FormAreaItem<ElementAttributes>[]
   );
   const [formHeading, setformHeading] = useState("Untitled Form");
-
+  const [chosenFont,setChosenFont] = useState("inter")
   const [showSidebar, setshowSidebar] = useState(false);
 
   useEffect(() => {
@@ -104,7 +104,6 @@ const Home: NextPage = ({ formID }: any) => {
       localStorage.setItem("formAreaItems", JSON.stringify(formAreaItems));
       localStorage.setItem("formHeading", JSON.stringify(formHeading));
       localStorage.setItem("formHeading", JSON.stringify(formHeading));
-      console.log('Bg image: ',sideImages[activeImage])
       localStorage.setItem("formBackground", JSON.stringify(sideImages[activeImage]));
     }
   }, [formAreaItems,activeImage]);
@@ -247,6 +246,19 @@ const Home: NextPage = ({ formID }: any) => {
       return [...oldArray];
     });
   };
+  const onFontChange = (font:string) => {
+    setChosenFont(font);
+    setFormAreaItems((oldArray: any) => {
+    //Iterate over the entire formAreaItems array and change the font
+    oldArray.forEach((item: any) => {
+      item.attributes.styling.fontType = font;
+    });
+
+    console.log("Font changed to : ", font);
+    
+      return [...oldArray];
+    });
+  }
 
   const addImage = (item: FormAreaItem<ElementAttributes>, image: any) => {
     console.log("Image string : ", image);
@@ -300,6 +312,15 @@ const Home: NextPage = ({ formID }: any) => {
     },
   ];
 
+  const fontStyles = [
+    {id:1,font:'inter',name:'Inter',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
+    {id:2,font:'roboto',name:'Roboto',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
+    {id:3,font:'montserrat',name:'Montserrat',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
+    {id:4,font:'poppins',name:'Poppins',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
+    {id:5,font:'alegreya',name:'Alegreya',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
+    {id:6,font:'biryani',name:'Biryani',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
+                  ]
+
   type ThemeParams = {
     activeButton: AddThemeTabButton;
     setActiveButton: Dispatch<SetStateAction<number>>;
@@ -317,6 +338,23 @@ const Home: NextPage = ({ formID }: any) => {
             </span>
             <hr className="w-7/12 mt-1 mb-4 border-1 border-slate-400"></hr>
           </div>
+          <div className="grid grid-cols-2 mx-3  mb-4 px-1 md:px-2 gap-x-2 gap-y-3 ">
+            {fontStyles.map((font, i) => {
+              return (
+                <div key={font.id} className="flex flex-col items-center gap-2" onClick={() => onFontChange(font.font)}>
+                <img
+                  loading="eager"
+                  src={font.image}
+                  alt={font.name}
+                  
+                  className={styles.sideImage}
+                />
+                <p className={`text-white text-lg font-${font.font}`}>{font.name}</p>
+                </div>
+              );
+            })}
+          </div>
+
         </div>
       </>
     );
@@ -529,6 +567,7 @@ const Home: NextPage = ({ formID }: any) => {
                 moveCard={moveCard}
                 items={formAreaItems}
                 formHeading={formHeading}
+                chosenFont={chosenFont}
                 onDrop={onFormAreaDrop}
                 onItemDelete={onElementDelete}
                 onQuestionTextChange={onElementQuestionChanged}

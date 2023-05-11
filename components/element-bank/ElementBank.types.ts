@@ -22,6 +22,7 @@ export interface LogicalAttributes{
 export interface StylingAttributes {
     fontColor:string;
     questionImage:string;
+    fontType:string;
 }
 export interface RatingStyleAttributes extends StylingAttributes{
     hoverColor:string;

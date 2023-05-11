@@ -13,6 +13,7 @@ export interface FormAreaProps {
     onOptionDelete: (item: FormAreaItem<ElementAttributes>, choiceIndex:number) => any;
     moveItem:(dragIndex:number, hoverIndex:number) => void
     onFormHeadingChanged:(heading:string) => void;
+    chosenFont:string;
 
   }
   

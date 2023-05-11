@@ -46,6 +46,11 @@ module.exports = {
         alegreya: ["Alegreya Sans SC", "sans-serif"],
         oxygen: ["Oxygen", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+        inter:["Inter", "sans-serif"],
+        'roboto':'"Roboto", sans-serif',
+        'montserrat':'"Montserrat", sans-serif',
+        'spartan':'"Spartan", sans-serif',
+        'biryani':'"Biryani", sans-serif',
       },
       backgroundImage: {
         'my_bg_img' : "url('/bg.jpeg')",

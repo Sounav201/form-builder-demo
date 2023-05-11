@@ -7,6 +7,13 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { useState,useEffect } from 'react';
 import AppContext from '../src/context/appContext';
+import "@fontsource/inter";
+import "@fontsource/roboto";
+import "@fontsource/montserrat"
+import "@fontsource/courier-prime"
+import "@fontsource/spartan"
+import "@fontsource/biryani"
+import "@fontsource/poppins"
 
 
 

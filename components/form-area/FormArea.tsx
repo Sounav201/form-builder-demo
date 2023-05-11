@@ -42,18 +42,17 @@ const FormArea = (props: FormAreaProps) => {
     <div>
       <div className="relative m-auto  ">
         <div className="md:w-5/6 lg:w-5/6    mt-16 overflow-visible mx-auto mb-12 bg-violet-200  rounded-md flex flex-col justify-center">
-          <div
-            className="text-3xl font-bold mt-4 text-center outline-none  w-full "
-            contentEditable
-            onBlur={(e) => {
-              props.onFormHeadingChanged(e.target.innerText);
-            }}
-            defaultValue={props.formHeading}
-            suppressContentEditableWarning={true}
-            style={{
-              color: "black",
-            }}
-          >
+        <div
+  className={`text-3xl font-bold mt-4 text-center outline-none w-full font-${props.chosenFont}`}
+  contentEditable
+  onBlur={(e) => {
+    props.onFormHeadingChanged(e.target.innerText);
+  }}
+  defaultValue={props.formHeading}
+  suppressContentEditableWarning={true}
+  style={{
+    color: "black",
+  }}          >
             {props.formHeading}
           </div>
 
