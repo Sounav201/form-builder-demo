@@ -6,7 +6,8 @@ const feedbackTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             }
         },
         "id": "3dUq90AIvpcT1L4fLa5W-",
@@ -19,7 +20,8 @@ const feedbackTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             },
             "choices": [
                 {
@@ -52,6 +54,7 @@ const feedbackTemplate = [
                 "hoverColor": "#c31432",
                 "fillColor": "#000000",
                 "questionImage": "",
+                "fontType":"inter"
             },
             "limit": 5,
             "emoji": "Star",

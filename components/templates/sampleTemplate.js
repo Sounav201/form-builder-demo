@@ -6,7 +6,8 @@ const sampleTemplate =  [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             }
         },
         "id": "tf45Wdvd6Sy7ArLiB5DRO",
@@ -19,7 +20,8 @@ const sampleTemplate =  [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             },
             "choices": [
                 {
@@ -44,7 +46,8 @@ const sampleTemplate =  [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             }
         },
         "id": "ufr3pmzFqvzjpgDPwekdG",

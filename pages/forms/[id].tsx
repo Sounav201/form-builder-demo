@@ -314,11 +314,11 @@ const Home: NextPage = ({ formID }: any) => {
 
   const fontStyles = [
     {id:1,font:'inter',name:'Inter',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
-    {id:2,font:'roboto',name:'Roboto',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
-    {id:3,font:'montserrat',name:'Montserrat',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
-    {id:4,font:'poppins',name:'Poppins',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
-    {id:5,font:'alegreya',name:'Alegreya',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
-    {id:6,font:'biryani',name:'Biryani',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683825203/font-inter_lmredf.png'},
+    {id:2,font:'roboto',name:'Roboto',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683894753/ROBOTO_2_1_pxfcor.png'},
+    {id:3,font:'montserrat',name:'Montserrat',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683894753/MONTSERRAT_2_1_zmdauo.png'},
+    {id:4,font:'poppins',name:'Poppins',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683894754/POPPINS_2_1_s436nh.png'},
+    {id:5,font:'alegreya',name:'Alegreya',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683894753/ALEGREYA_3_1_sgpxgl.png'},
+    {id:6,font:'biryani',name:'Biryani',image:'https://res.cloudinary.com/ddzphcini/image/upload/v1683894753/BIRYANI_3_1_nhbcfi.png'},
                   ]
 
   type ThemeParams = {

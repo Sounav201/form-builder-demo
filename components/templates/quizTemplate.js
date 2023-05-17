@@ -6,7 +6,8 @@ const quizTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             },
             "textType":"text"
         },
@@ -20,7 +21,9 @@ const quizTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
+
             }
         },
         "id": "yZv-1FzTsSNFYQg4Am8Wm",
@@ -33,7 +36,9 @@ const quizTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
+
             },
             "choices": [
                 {

@@ -6,7 +6,8 @@ const surveyTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             }
         },
         "id": "XTN1iVsTORRctIfNpAig",
@@ -22,6 +23,7 @@ const surveyTemplate = [
                 "hoverColor": "#c31432",
                 "fillColor": "#000000",
                 "questionImage": "",
+                "fontType":"inter"
             },
             "limit": 5,
             "emoji": "Smiley",
@@ -36,7 +38,8 @@ const surveyTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             },
             "choices": [
                 {

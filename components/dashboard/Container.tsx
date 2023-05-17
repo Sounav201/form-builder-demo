@@ -109,7 +109,7 @@ const Container = ({ darkMode, setDarkMode,formsLoading }) => {
             <div className="absolute top-[5%] md:top-[7%] right-[6%] md:right-[4%] ">
                 <button
                     onClick={() => setDarkMode(!darkMode)}
-                    className="transition duration-300 ease-in-out text-2xl text-zinc-500 dark:text-white hover:scale-125 hover:text-rose-800 dark:hover:text-yellow-500"
+                    className="transition duration-300 ease-in-out text-2xl text-yellow-500 dark:text-white hover:scale-125 hover:text-rose-800 dark:hover:text-yellow-500"
                     >
                     {darkMode ? <BsFillMoonFill className="text:3xl md:text-4xl"/> : <BsFillSunFill className='text-3xl md:text-5xl'/>}
                 </button>
@@ -123,11 +123,11 @@ const Container = ({ darkMode, setDarkMode,formsLoading }) => {
             </div>
             <div className="flex flex-col  mt-2 md:mt-6 gap-3 md:gap-6  mx-1 md:mx-3" >
                 <Middle darkMode={darkMode} setDarkMode={setDarkMode} formsLoading={formsLoading}/>
-                <RightBar darkMode={darkMode} setDarkMode={setDarkMode}/>
+                <RightBar darkMode={darkMode} setDarkMode={setDarkMode} formsLoading={formsLoading} />
             </div>
             <div className=" flex flex-col px-2 md:px-8 gap-1 md:gap-1 ">
                 <p className=" py-1 text-rose-800 dark:text-white font-semibold text-lg md:text-2xl  font-spacemono pt-4  md:tracking-wide animate-text ">Create a Form now</p>
-                <p className="px-2 md:px-4 font-extrabold text-2xl md:text-4xl bg-sky-600 dark:bg-gradient-to-r dark:from-sky-300 dark:to-green-500 md:tracking-wide text-transparent bg-clip-text animate-text pb-4 ">Choose from the templates below</p>
+                <p className="px-2 md:px-4 font-extrabold text-2xl md:text-4xl bg-gradient-to-r from-blue-700/90 to-sky-900/90 dark:bg-gradient-to-r dark:from-sky-300 dark:to-green-500 md:tracking-wide text-transparent bg-clip-text animate-text pb-4 ">Choose from the templates below</p>
             </div>
             <Fragment>
                 <div className="grid grid-cols-2 md:grid-cols-4 px-1 py-1  md:p-4 gap-1 md:gap-3 ">

@@ -70,7 +70,7 @@ const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
       }, [])
    
     return (
-        <div className=" bg-cetacean/70 md:bg-cetacean/80 dark:bg-slate-900/50 shadow-sm w-full rounded-xl " data-aos="zoom-in-up">
+        <div className=" bg-cetacean/60 md:bg-cetacean/60 dark:bg-slate-900/50 shadow-sm w-full rounded-xl " data-aos="zoom-in-up">
             <div className=" p-2 md:p-3 border-gray-100">
                 <p className="font-semibold text-white text-lg md:text-xl font-spacemono ">
                     Forms made by you ..

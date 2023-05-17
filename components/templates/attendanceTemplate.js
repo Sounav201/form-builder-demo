@@ -6,7 +6,8 @@ const attendanceTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             }
         },
         "id": "gHfltsH6k-W1a5bB70grY",
@@ -19,7 +20,8 @@ const attendanceTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             }
         },
         "id": "SrVjiERE3DTqUtwfXt6Rn",
@@ -32,7 +34,8 @@ const attendanceTemplate = [
             "required": false,
             "styling": {
                 "fontColor": "#000000",
-                "questionImage": ""
+                "questionImage": "",
+                "fontType":"inter"
             },
             "choices": [
                 {

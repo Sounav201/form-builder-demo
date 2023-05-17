@@ -59,6 +59,7 @@ module.exports = {
         'bglite' : "url('/lightbg.jpg')",
         'landing' : "url('/landing.png')",
         'lightbg' : "url('/lightbg1.jpg')",
+        'lite' : "url('/lite2.jpg')",
       },
       backgroundColor: theme => ({
         'neon': '#ccff00',
