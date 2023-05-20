@@ -53,9 +53,16 @@ export function Fillers({formData}) {
   // console.log("filler: ", filler);
 
   const fetchProducts = async () => {
-    const products = await formData.responses;
-    console.log("Products: ",products);
+    var products = await formData.responses;
+    products && products.length> 0 && products.map((product) => {
+    let dateString = product.created_at;
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString();
+
+    product.created_at = formattedDate;
+    });
     // const products = res.data;
+    console.log("Products: ",products);
 
       // console.log("Products: ", products);
       if (products)

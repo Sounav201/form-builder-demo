@@ -24,7 +24,7 @@ const RatingElement = (props:any) => {
                             const ratingVal = i + 1;
 
                             return (
-                                <>
+                                <div key={i}>
                                     {choiceOfElement == "Heart" ?
                                         (<div key={i}>
                                             <label className="hidden md:block">
@@ -99,7 +99,7 @@ const RatingElement = (props:any) => {
 
                                             </div>)}
 
-                                </>
+                                </div>
 
 
                             )
