@@ -4,6 +4,7 @@ import LongTextElement from "../../components/display-form/elements/LongTextElem
 import { Router, useRouter } from "next/router";
 import CheckboxElement from "../../components/display-form/elements/CheckboxElement";
 import FileUploadElement from "../../components/display-form/elements/FileUploadElement";
+import DatePickerElement from "../../components/display-form/elements/DatePickerElement";
 import Link from "next/link";
 import RatingElement from "../../components/display-form/elements/RatingElement";
 import Swal from "sweetalert2";
@@ -223,6 +224,15 @@ const Published = ({ formID }: any) => {
                       question={element.question}
                       attributes={element.attributes}
                       id={element.id}
+                    />
+                  </div>
+                );
+              } else if (element.type == "datepicker") {
+                return (
+                  <div key={idx} className="w-10/11 mx-auto my-4">
+                    <DatePickerElement 
+                      question={element.question}
+                      attributes={element.attributes}
                     />
                   </div>
                 );

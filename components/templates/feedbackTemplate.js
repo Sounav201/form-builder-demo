@@ -35,8 +35,8 @@ const feedbackTemplate = [
                     "id": "2"
                 },
                 {
-                    "label": "I don't want to specify",
-                    "value": "I don't want to specify",
+                    "label": "I do not want to specify",
+                    "value": "I do not want to specify",
                     "id": "3"                
                 }
             ]

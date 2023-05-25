@@ -9,6 +9,7 @@ import { BsBoxArrowUpRight } from "react-icons/bs";
 import {RiArrowGoBackLine} from "react-icons/ri";
 import CheckboxElement from "../../components/display-form/elements/CheckboxElement";
 import FileUploadElement from "../../components/display-form/elements/FileUploadElement";
+import DatePickerElement from "../../components/display-form/elements/DatePickerElement";
 import Link from "next/link";
 import RatingElement from "../../components/display-form/elements/RatingElement";
 import Swal from "sweetalert2";
@@ -299,6 +300,15 @@ const Preview = ({ formID }: any) => {
                 return (
                   <div key={idx} className="w-10/11 mx-auto my-4">
                     <RatingElement
+                      question={element.question}
+                      attributes={element.attributes}
+                    />
+                  </div>
+                );
+              } else if (element.type == "datepicker") {
+                return (
+                  <div key={idx} className="w-10/11 mx-auto my-4">
+                    <DatePickerElement 
                       question={element.question}
                       attributes={element.attributes}
                     />
