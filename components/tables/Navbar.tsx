@@ -93,7 +93,7 @@ const Navbar = ({ formID }: any) => {
             </ModalContent>
           </Modal>
         <Link href="/dashboard/home">
-          <div className="hidden md:flex items-center ml-0 ">
+          <div className="hidden md:flex items-center ml-0  cursor-pointer">
             <img
               src="/fulltitle-gold.png"
               alt=""
@@ -102,7 +102,7 @@ const Navbar = ({ formID }: any) => {
           </div>
         </Link>
         <Link href="/dashboard/home">
-          <div className="flex md:hidden items-center ml-0">
+          <div className="flex md:hidden items-center ml-0 cursor-pointer">
             <img
               src="/logo-gold.png"
               alt=""

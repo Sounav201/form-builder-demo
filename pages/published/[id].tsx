@@ -9,81 +9,7 @@ import RatingElement from "../../components/display-form/elements/RatingElement"
 import Swal from "sweetalert2";
 import { FiSend } from "react-icons/fi";
 import Footer from "../../components/published/Footer";
-// const fetchFormDataByID = async(formID:any) => {
-//   try {
-//     var endpoint = ``
-//     if(process.env.NODE_ENV == "development")
-//     {
-//       endpoint = `http://localhost:3000/api/fetchFormbyID`
-//     }
-//     else if(process.env.NODE_ENV == "production")
-//     {
-//       endpoint = `https://form-builder-demo.vercel.app/api/fetchFormbyID`
-//     }
-//     const response = await fetch(endpoint,{
-//       method:"POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({formID:formID})
-//     })
 
-//     const res = await response.json()
-
-//     //console.log('Data from fetchFormDataByID',data)
-//     return res.data;
-//   } catch (error) {
-//     console.log('Error in fetchFormDataByID paths :',error)
-//   }
-
-// }
-
-// const getPaths = async(APIendpoint) => {
-//   console.log('Endpoint : ', APIendpoint);
-//   try {
-//     const res = await fetch(APIendpoint);
-//     console.log('res status : ',res.status);
-//     const data = await res.json();
-//     console.log('Data back in getPaths: ',data)
-//     return data.data;
-//   } catch (error) {
-//     console.log('Error in getPaths : ',error)
-//   }
-
-// }
-
-// export const getStaticPaths = async() => {
-//   var endpoint = ``
-//   if(process.env.NODE_ENV === "development")
-//   {
-//     endpoint = `http://localhost:3000/api/fetchAllForms`
-//   }
-//   else if(process.env.NODE_ENV === "production")
-//   {
-//     endpoint = `https://form-builder-demo.vercel.app/api/fetchAllForms`
-//   }
-// const data = await getPaths(endpoint);
-// console.log('Data from getStaticPaths ',data);
-// const paths = data ? data.length>0 && data.map((form:any) => {
-//   return{
-//   params:{id:  form.Formid}
-//   }
-//   }) : []
-
-// return{
-//   paths,
-//   fallback:true,
-// }
-
-// }
-
-// export async function getStaticProps(context:any) {
-//   console.log('Params id : ', context.params.id)
-//   let formID = context.params.id
-//   const data = await fetchFormDataByID(formID)
-//   console.log('Data from getStaticProps',data)
-//   return {props:{data:data}, revalidate:1}
-// }
 
 export async function getServerSideProps(context: any) {
   console.log("Params id : ", context.params.id);
@@ -93,44 +19,50 @@ export async function getServerSideProps(context: any) {
 }
 
 const Published = ({ formID }: any) => {
-  // console.log('Form data from Published',data || {});
-  // console.log('Form Heading: ', data[0]?.name || "" );
-  // console.log('Form Data: ', data[0]?.Form_data || "" ) ;
-
-  // // const [formData, setformData] = useState(data[0]?.Form_data || [])
-  // const [formHeading, setformHeading] = useState(data[0]?.name || "Form")
   const formRef = useRef(null);
   const [formData, setformData] = useState([]);
   const [formHeading, setformHeading] = useState("Form");
-  const [formBackground,setformBackground] = useState('')
+  const [formBackground,setformBackground] = useState(null);
+  const [formPublished,setformPublished] = useState(false);
   const [user,setuser] = useState("")
   const router = useRouter();
-   
+  async function fetchData(formID) {
+    const res = await fetch("/api/fetchFormbyID", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ formID: formID }),
+    });
+    if (res.status == 200) {
+      const resData = await res.json();
+      const data = resData.data;
+      console.log("received data: ", data);
+      if(data[0]?.published )
+        {
+          setformPublished(true)
+        }
+      setuser(data[0]?.user_id)
+      
+      setformBackground(data[0]?.formBackground )
+      setformData(data[0]?.Form_data );
+      setformHeading(data[0]?.name || "Form");
+    }
+  }
+ 
 
   useEffect(() => {
-    async function fetchData(formID) {
-      const res = await fetch("/api/fetchFormbyID", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ formID: formID }),
-      });
-      if (res.status == 200) {
-        const resData = await res.json();
-        const data = resData.data;
-        console.log("Form data: ", data);
-        setuser(data[0]?.user_id)
-        setformBackground(data[0]?.formBackground || '')
-
-        setformData(data[0]?.Form_data || []);
-        setformHeading(data[0]?.name || "Form");
-      }
-    }
+    let isMounted = true; 
     if (formData.length == 0) {
       fetchData(formID);
     }
-  }, [formData]);
+    return () => {
+      // Cleanup function: set the flag to false when the component unmounts
+      isMounted = false;
+    };
+  }, [formID]);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -202,7 +134,7 @@ const Published = ({ formID }: any) => {
     //   console.log('Form : ',e.target)
     //    console.log('Form values : ', e.target[0].values);
   };
-  
+
   
 
   if (formData.length == 0)
@@ -214,22 +146,26 @@ const Published = ({ formID }: any) => {
       </div>
     );
   
+  if(!formPublished)
+  return(
+    <div className="h-screen bg-black flex  flex-col gap-2 items-center justify-center text-center">
+    <h1 className="text-3xl font-medium font-oxygen text-white">
+      This form has not been published!
+    </h1>
+      <h3 className="text-white font-oxygen text-xl">Please contact the administrator</h3>
+  </div>
 
+  )
   return (
     <div 
-    style={ formBackground &&{
+    style={ formBackground  ? {
       backgroundImage: `url(${formBackground})`,
       backgroundRepeat: "no-repeat",
       backgroundAttachment: "fixed",
-      // position: 'sticky',
-      // width: '100%',
-      // height: '100%',
-      // minHeight: '100vh',
-      // minWidth: '100vw',
       backgroundPosition: "center",
       backgroundSize: "cover",
       overflow: "hidden",
-    }}
+    }: {overflow:'hidden'}}
     className="bg-cover min-h-screen flex flex-col bg-cetacean/20 md:bg-background">
       
       <div className="my-2  md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-1 shadow-sm shadow-slate-600">
@@ -311,19 +247,12 @@ const Published = ({ formID }: any) => {
           </span>
         </button>
       </div>
-          {/* <button
-            type="submit"
-            className="my-4 p-4 text-black bg-blue-600 cursor-pointer rounded-lg "
-          >
-            Submit form
-          </button> */}
           <div className="flex w-full justify-center md:hidden">
             <button
               type="submit"
               className=" font-medium mt-4 mb-2 rounded-md flex bg-lime-500 hover:bg-lime-600 hover:shadow shadow-slate-800"
             >
               <span className="flex flex-row gap-3 items-center py-3 px-10">
-                {/* <span className="absolute right-0 flex items-center h-10 duration-300 transform translate-x-full group-hover:translate-x-0"><MdArrowForward size="1.5em" /></span> */}
                 <span
                   className={` text-xl font-alegreya font-semibold text-white`}
                 >
