@@ -232,7 +232,7 @@ const Published = ({ formID }: any) => {
     }}
     className="bg-cover min-h-screen flex flex-col bg-cetacean/20 md:bg-background">
       
-      <div className="my-2  md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-auto shadow-sm shadow-slate-600">
+      <div className="my-2  md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-1 shadow-sm shadow-slate-600">
         <div className="text-2xl md:text-3xl font-bold  text-center outline-none  w-full py-4 md:py-6">
           {formHeading}
         </div>

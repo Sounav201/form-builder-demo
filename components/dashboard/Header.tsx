@@ -58,7 +58,7 @@ function Topbar({minimize, setMinimize}) {
                     <p className={` text-lg font-bold text-gray-400 group-hover:text-white `} >All Forms</p>
                 </div>
                 <hr className="w-10/12 mt-1 mb-4 border-1 border-gray-400"></hr>
-                <div className=" w-10/12 p-2 my-1 group hover:bg-sky-400/60 dark:hover:bg-indigo-900 flex justify-start rounded-md space-x-4 ">
+                {/* <div className=" w-10/12 p-2 my-1 group hover:bg-sky-400/60 dark:hover:bg-indigo-900 flex justify-start rounded-md space-x-4 ">
                     <MdFolderShared size="1.4em" className="group-hover:text-white text-gray-300" />
                     <p className={` text-base font-semibold text-gray-400 group-hover:text-white `}  >SHARED WITH ME</p>
                 </div>
@@ -77,7 +77,7 @@ function Topbar({minimize, setMinimize}) {
                 <div className=" w-10/12 p-2 my-2 group hover:bg-sky-400/60 dark:hover:bg-indigo-900 flex justify-start rounded-md space-x-4 ">
                     <IoMdArchive size="1.4em" className="group-hover:text-white text-gray-300" />
                     <p className={` text-base font-semibold text-gray-400 group-hover:text-white `} >Archives</p>
-                </div>
+                </div> */}
 
                <IoMdCloseCircleOutline size="3em" className={`mt-24 text-white hover:scale-110`} onClick={() => setMinimize(!minimize)}/>
             </div>  

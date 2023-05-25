@@ -79,7 +79,7 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
 
                 </div>
                 <hr className="w-full mt-1 mb-4 border-1 border-gray-400"></hr>
-                    <div className="">
+                    {/* <div className="">
                         <div className={`flex p-1 md:p-3 text-gray-400  space-x-2 md:space-x-4 group hover:bg-blue-900 hover:text-white  cursor-pointer ${open ? "justify-start":"justify-center"} `}>
                             <MdFolderShared size="1.5em" className=" text-gray-300 group-hover:text-white" />
                             <p className={` text-sm md:text-base hover:text-white ${!open && "hidden"} `}  >SHARED WITH ME</p>
@@ -108,7 +108,7 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
                             <IoMdArchive size="1.5em" className="text-gray-300 group-hover:text-white" />
                             <p className={` text-sm md:text-base hover:text-white ${!open && "hidden"} `} >Archives</p>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
                 
