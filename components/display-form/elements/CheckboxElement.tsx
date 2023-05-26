@@ -25,6 +25,7 @@ const CheckboxElement = (props: any) => {
                             key={index} 
                             value={choice.value}
                             id={props.id}
+                            required={props.attributes.required}
                             isChecked={selectedValue === choice.value}
                             onChange={handleCheckboxChange}
                             >

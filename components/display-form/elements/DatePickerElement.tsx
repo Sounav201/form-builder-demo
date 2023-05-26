@@ -12,20 +12,16 @@ import {
 } from "@chakra-ui/react";
 
 const DatePickerElement = (props: any) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const handleDateChange = (e) => {
-    console.log(e.target.value,typeof(e.target.value))
 
-}
 
   return (
     <div>
       <Stack w={["100%", 550, 700]} marginX="auto" maxWidth={800}>
-        <FormControl w={["100%", 500, 600]} marginX="auto">
+        <FormControl w={["100%", 500, 600]} marginX="auto" isRequired={props.attributes.required}>
         <FormLabel ><p className={`font-${props.attributes.styling.fontType}`}>{props.question}</p></FormLabel>
 
           <div className="mt-6 mb-4">
-          <input type={"date"}  placeholder='Date' name="input-date" onChange={handleDateChange} />
+          <input type={"date"}  placeholder='Date' name={props.question} id={props.id} required={props.attributes.required} />
           </div>
         </FormControl>
       </Stack>

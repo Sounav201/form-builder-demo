@@ -76,13 +76,14 @@ const Published = ({ formID }: any) => {
         // ignore unchecked checkboxes
         return;
       }
+
       formIDDict[input.name] = input.id;
     });
-    //console.log(formIDDict);
+    // console.log(formIDDict);
     
     const formData = new FormData(e.target);
     const formValues = Object.fromEntries(formData.entries());
-    console.log("Form Submitted", formValues);
+    // console.log("Form Submitted", formValues);
     
     const formArray = Object.entries(formValues).map(([question, answer]) => ({
       question,
@@ -109,7 +110,7 @@ const Published = ({ formID }: any) => {
       responseData: formArray,
       created_at: dateString,
     }
-    
+  
     try {
       const res = await fetch("/api/submitForm", {
         method: "POST",
@@ -233,6 +234,7 @@ const Published = ({ formID }: any) => {
                     <DatePickerElement 
                       question={element.question}
                       attributes={element.attributes}
+                      id={element.id}
                     />
                   </div>
                 );

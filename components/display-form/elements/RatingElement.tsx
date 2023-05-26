@@ -28,7 +28,8 @@ const RatingElement = (props:any) => {
                                     {choiceOfElement == "Heart" ?
                                         (<div key={i}>
                                             <label className="hidden md:block">
-                                                <input type="radio" id={props.id}   className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
+                                                <input type="radio" id={props.id}          required={props.attributes.required}
+  className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
 
                                                 <FaHeart
                                                     className="rating cursor-pointer transition-colors duration-200 mx-1"
@@ -38,7 +39,8 @@ const RatingElement = (props:any) => {
                                                 />
                                             </label>
                                             <label className=" block md:hidden">
-                                                <input type="radio" className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
+                                                <input type="radio" className="radio hidden"         required={props.attributes.required}
+ name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
                                                 <FaHeart
                                                     className="rating cursor-pointer transition-colors duration-200 mx-1"
                                                     color={ratingVal <= (hover || rating) ? hoverColor : blockColor}
@@ -53,7 +55,8 @@ const RatingElement = (props:any) => {
                                             (<div key={i}>
 
                                                 <label className="hidden md:block">
-                                                    <input type="radio" id={props.id} className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
+                                                    <input type="radio" id={props.id}         required={props.attributes.required}
+ className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
 
                                                     <FaRegSmileBeam
                                                         className="rating cursor-pointer transition-colors duration-200 mx-1"
@@ -77,8 +80,9 @@ const RatingElement = (props:any) => {
                                             (<div key={i}>
 
                                                 <label className="hidden md:block">
-                                                    <input type="radio" id={props.id} className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
-
+                                                    <input 
+                                                        type="radio" id={props.id}         required={props.attributes.required}
+                                                        className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
                                                     <FaStar
                                                         className="rating cursor-pointer transition-colors duration-200 mx-1"
                                                         color={ratingVal <= (hover || rating) ? hoverColor : blockColor}
@@ -87,7 +91,10 @@ const RatingElement = (props:any) => {
                                                     />
                                                 </label>
                                                 <label className=" block md:hidden">
-                                                    <input type="radio" id={props.id} className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
+                                                    <input type="radio" id={props.id}
+                                                            required={props.attributes.required}
+
+                                                    className="radio hidden" name={props.question} value={ratingVal} onClick={() => setRating(ratingVal)} />
                                                     <FaStar
                                                         className="rating cursor-pointer transition-colors duration-200 mx-1"
                                                         color={ratingVal <= (hover || rating) ? hoverColor : blockColor}

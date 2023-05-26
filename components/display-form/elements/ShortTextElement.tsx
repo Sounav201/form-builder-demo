@@ -19,6 +19,7 @@ const ShortTextElement = (props:any) => {
         name={props.question} 
         id={props.id}   
         type={props?.attributes?.inputType || "text"} 
+        required={props.attributes.required}
         placeholder="Enter your text here" value={input} onChange={(e) => setinput(e.target.value)}></Input>
         
       </div>
