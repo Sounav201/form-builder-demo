@@ -14,6 +14,10 @@ export default async function handler(req,res)
       
       console.log('User : ', user)
       console.log('Background : ', formBackground)
+      formAreaItems.forEach((element,index) => {
+        let question = element.question;  
+        element.question = question.replace(/'/g, "''");
+      })
       
      // var query = `INSERT INTO form (formID, formHeading, formAreaItems) VALUES ('${formID}', '${formHeading}', '${formAreaItems}')`
       //var query = `INSERT INTO public."Form" ("Formid","user_id","name","Form_data") VALUES('${formID}','${user}','${formHeading}', '${JSON.stringify(formAreaItems)}' )`;

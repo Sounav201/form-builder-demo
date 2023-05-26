@@ -114,7 +114,7 @@ const Published = ({ formID }: any) => {
       responseData: formArray,
       created_at: dateString,
     }
-  
+    
     try {
       const res = await fetch("/api/submitForm", {
         method: "POST",

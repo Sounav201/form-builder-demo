@@ -16,7 +16,7 @@ const DatePickerElement = (props: any) => {
 
   return (
     <div>
-      <Stack w={["100%", 550, 700]} marginX="auto" maxWidth={800}>
+      <Stack w={["100%", 550, 700]} marginX="auto" maxWidth={800} >
         <FormControl w={["100%", 500, 600]} marginX="auto" isRequired={props.attributes.required}>
         <FormLabel ><p className={`font-${props.attributes.styling.fontType}`}>{props.question}</p></FormLabel>
 

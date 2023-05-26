@@ -10,7 +10,16 @@ export default async function handler(req,res)
 {
     try {
       const {responseID, formID, user,responseData,created_at} = req.body;
-//      console.log(responseData)
+      //Escape single quotes
+      responseData.forEach((element,index) => {
+        let answer = element.answer;
+        element.answer = answer.replace(/'/g, "''");        
+        let question = element.question;  
+        element.question = question.replace(/'/g, "''");
+
+      })
+
+      console.log(responseData)
       var query = `Do $$
       Begin
       If not exists(select * from public."Response" where "Responseid"='${responseID}') then

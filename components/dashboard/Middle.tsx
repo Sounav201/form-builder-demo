@@ -91,9 +91,9 @@ const Middle = ({ darkMode, setDarkMode,formsLoading }) => {
                     <div key={form.Formid} className=" rounded-xl group hover:scale-105 duration-500">
                         <div  className=" w-full h-32 md:h-48 flex flex-col items-center justify-between dark:bg-cyan-900/20  dark:bg-none rounded-xl bg-bglite">   
                             <div className="flex flex-row justify-between py-2 px-2 md:px-4 w-full invisible group-hover:visible">
-                            <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-rose-700 dark:text-white hover:text-white dark:hover:text-background hover:bg-rose-700 dark:hover:bg-primary/90 font-bold border border-rose-700 dark:border-white hover:border-rose-700 dark:hover:border-primary/90 rounded-full p-1 md:p-0.5 m-1 ">
+                            {/* <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-rose-700 dark:text-white hover:text-white dark:hover:text-background hover:bg-rose-700 dark:hover:bg-primary/90 font-bold border border-rose-700 dark:border-white hover:border-rose-700 dark:hover:border-primary/90 rounded-full p-1 md:p-0.5 m-1 ">
                                 <FiDownload className="text-base md:text-xl"/>
-                            </div>
+                            </div> */}
                             <div className=" w-auto h-auto md:w-10  md:h-10 flex items-center justify-center text-rose-700 dark:text-white hover:text-white dark:hover:text-background border border-rose-700 dark:border-white hover:border-rose-700 dark:hover:border-primary/90 hover:bg-rose-700 dark:hover:bg-primary/90 font-bold rounded-full p-1 md:p-0.5 m-1 "  onClick={() => handleFormClick(form)}>
                             <BsBoxArrowUpRight className="text-sm md:text-lg"/>
                             </div>

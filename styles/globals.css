@@ -30,3 +30,7 @@ a {
   box-sizing: border-box;
 }
 
+.chakra-form__label{
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
