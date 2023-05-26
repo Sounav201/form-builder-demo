@@ -12,33 +12,15 @@ function modelData(data,formDataArray) {
 
   let formData = formDataArray[0]?.Form_data;
   //console.log('formData : ', formData)
-  
+  console.log('response data : ', data[0].Response_data);
   let questions = getQuestions(formData);
-  // console.log('questions : ', questions)
-  // console.log('responses : ', data)
-  // Map the questions to an object with their IDs as keys
-  //Extract the Object entries from the data
-  // let entries = Object.entries(responseData);
-  //console.log('Entries : ', entries);
+  console.log('questions : ', questions);
   const formattedResponses = data.map((response) => {
     const formattedResponse = {
       Responseid: response.Responseid,
       created_at: response.created_at,
     };
     
-    // const responseDict = Object.fromEntries(
-    //   response.Response_data
-    //     .filter((item) => {
-    //       const question = questions.find((q) => q.id === item.questionID);
-    //       return question != null;
-    //     })
-    //     .map((item) => {
-    //       const question = questions.find((q) => q.id === item.questionID);
-    //       return [question.question, item.answer];
-    //     })
-    // );
-
-    // return { ...formattedResponse, ...responseDict };
     response.Response_data.forEach((item) => {
       // Get matching question from questions array
       const matchingQuestion = questions.find((question) => question.id === item.questionID);
@@ -62,7 +44,7 @@ function modelData(data,formDataArray) {
   });
 
   
-  //console.log(formattedResponses);
+  console.log('Formatted responses',formattedResponses);
   return { responses:formattedResponses, questions };
 }
 
