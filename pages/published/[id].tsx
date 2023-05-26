@@ -45,7 +45,7 @@ const Published = ({ formID }: any) => {
         }
       setuser(data[0]?.user_id)
       
-      setformBackground(data[0]?.formBackground )
+      // setformBackground(data[0]?.formBackground )
       setformData(data[0]?.Form_data );
       setformHeading(data[0]?.name || "Form");
     }
@@ -57,6 +57,10 @@ const Published = ({ formID }: any) => {
     if (formData.length == 0) {
       fetchData(formID);
     }
+    if(localStorage.getItem("formBackground"))
+      {
+        setformBackground(JSON.parse(localStorage.getItem("formBackground")));
+      }
     return () => {
       // Cleanup function: set the flag to false when the component unmounts
       isMounted = false;
@@ -158,15 +162,15 @@ const Published = ({ formID }: any) => {
 
   )
   return (
+    <>
     <div 
-    style={ formBackground  ? {
+    style={{
       backgroundImage: `url(${formBackground})`,
       backgroundRepeat: "no-repeat",
       backgroundAttachment: "fixed",
       backgroundPosition: "center",
       backgroundSize: "cover",
-      overflow: "hidden",
-    }: {overflow:'hidden'}}
+      overflow: "hidden"}}
     className="bg-cover min-h-screen flex flex-col bg-cetacean/20 md:bg-background">
       
       <div className="my-2  md:mx-72 md:my-16 bg-cover bg-white md:bg-violet-200 px-6 py-2 md:py-8 mx-1 shadow-sm shadow-slate-600">
@@ -277,6 +281,7 @@ const Published = ({ formID }: any) => {
       </div>
       <Footer />
     </div>
+    </>
   );
 };
 
