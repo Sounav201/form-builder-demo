@@ -34,7 +34,9 @@ const FileUploadElement = (props: any) => {
     <div className=''>
             <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}   >
                 <FormControl w={['100%', 500, 600]} marginX="auto">
-                <FormLabel style={{fontWeight:"700"}} ><p className={`font-${props.attributes.styling.fontType}`}>{props.question}</p></FormLabel>
+                <FormLabel style={{fontWeight:"700"}} >
+                <p style={{color:props.attributes.styling.fontColor}} className={`font-${props.attributes.styling.fontType} text-[${props.attributes.styling.fontColor}] `}>{props.question}</p>
+                </FormLabel>
 
                     <div className='mt-4 mb-4'>
                     <div {...getRootProps()} className="border-2 border-dashed border-black bg-slate-100/25  my-4">

@@ -14,7 +14,11 @@ const CheckboxElement = (props: any) => {
         <div>
             <Stack w={['100%', 550, 700]} marginX="auto" maxWidth={800}  >
                 <FormControl   isRequired={props.attributes.required} w={['100%', 500, 600]} marginX="auto">
-                    <FormLabel ><p className={`font-${props.attributes.styling.fontType}`}>{props.question}</p></FormLabel>
+                    <FormLabel >
+                    <p 
+                    style={{color:props.attributes.styling.fontColor}}
+                    className={`font-${props.attributes.styling.fontType} text-[${props.attributes.styling.fontColor}] `}>{props.question}</p>
+                    </FormLabel>
 
                     <div className='my-6'>
                         <Stack spacing={[2,2]}>
